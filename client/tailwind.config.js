@@ -9,6 +9,7 @@ export default {
     extend: {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
+        dynapuff: ["Dynapuff", "sans-serif"],
       },
     },
   },
