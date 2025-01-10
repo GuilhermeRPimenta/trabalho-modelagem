@@ -1,7 +1,7 @@
 import { FaUserAlt } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { IoHomeSharp } from "react-icons/io5";
-import { LuDog } from "react-icons/lu";
+import { TbDog } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
 const NavLinks = ({
@@ -31,7 +31,7 @@ const NavLinks = ({
           `${baseStyle} ${isActive ? "text-blue-700" : "text-black"}`
         }
       >
-        <LuDog />
+        <TbDog />
         Animais
       </NavLink>
       <NavLink
