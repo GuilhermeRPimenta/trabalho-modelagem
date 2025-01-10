@@ -11,6 +11,9 @@ export default {
         quicksand: ["Quicksand", "sans-serif"],
         dynapuff: ["Dynapuff", "sans-serif"],
       },
+      screens: {
+        sm: "800px",
+      },
     },
   },
 };
