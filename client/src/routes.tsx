@@ -18,7 +18,7 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: "trabalho-modelagem" }
+  { basename: "/trabalho-modelagem" }
 );
 
 const AppRoutes = () => {
