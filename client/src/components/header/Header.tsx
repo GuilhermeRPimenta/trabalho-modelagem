@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import Nav from "./Nav";
 import NavLinks from "./NavLinks";
 import pawLogo from "../../assets/paw-logo.png";
+import { useAuth } from "../global/useAuth";
 
 const Header = () => {
+  const authContext = useAuth();
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
   const handleMobileNavIsOpenChange = () => {
@@ -25,6 +27,7 @@ const Header = () => {
 
         <div className="flex items-center justify-center">
           <Nav
+            authContext={authContext}
             mobileNavIsOpen={mobileNavIsOpen}
             handleMobileNavIsOpenChange={handleMobileNavIsOpenChange}
           />
@@ -34,6 +37,7 @@ const Header = () => {
         <div className="sm:hidden bg-gray-100 shadow-md">
           <NavLinks
             className="text-xl"
+            authContext={authContext}
             handleNavLinkClick={handleNavLinkClick}
           />
         </div>

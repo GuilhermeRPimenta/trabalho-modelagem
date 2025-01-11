@@ -1,10 +1,12 @@
 import Button from "../../../components/global/Button";
+import { useAuth } from "../../../components/global/useAuth";
 
 const UserHome = () => {
+  const authContext = useAuth();
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Bem vindo(a), Guilherme
+        Bem vindo(a), {authContext?.auth?.name}
       </h1>
       <div className="flex flex-col gap-2">
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">

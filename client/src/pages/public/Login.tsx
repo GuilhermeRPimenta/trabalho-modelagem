@@ -1,9 +1,11 @@
 import Button from "../../components/global/Button";
 import { useState } from "react";
 import UserHome from "../restricted/user/UserHome";
+import { useAuth } from "../../components/global/useAuth";
 
 const Login = () => {
   const [auth, setAuth] = useState(false);
+  const authContext = useAuth();
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       {!auth ? (
@@ -20,7 +22,13 @@ const Login = () => {
               />
               <label htmlFor="password">Senha</label>
               <input type="password" id="password" />
-              <Button variant="primary" onClick={() => setAuth(true)}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  authContext?.setAuth({ id: 1, name: "Guilherme Pimenta" });
+                  setAuth(true);
+                }}
+              >
                 Entrar
               </Button>
             </div>

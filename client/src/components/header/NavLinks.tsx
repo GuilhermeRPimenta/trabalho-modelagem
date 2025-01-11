@@ -6,9 +6,22 @@ import { NavLink } from "react-router-dom";
 
 const NavLinks = ({
   className,
+  authContext,
   handleNavLinkClick,
 }: {
   className?: string;
+  authContext: {
+    auth: {
+      id: number;
+      name: string;
+    } | null;
+    setAuth: React.Dispatch<
+      React.SetStateAction<{
+        id: number;
+        name: string;
+      } | null>
+    >;
+  } | null;
   handleNavLinkClick?: () => void;
 }) => {
   const baseStyle = `${className} flex items-center justify-center p-2 rounded-md font-semibold hover:bg-gray-200 hover:text-primary`;
@@ -42,7 +55,7 @@ const NavLinks = ({
         }
       >
         <FaUserAlt />
-        Entrar
+        {authContext?.auth ? authContext.auth.name.split(" ")[0] : "Entrar"}
       </NavLink>
       <NavLink
         onClick={handleNavLinkClick}
