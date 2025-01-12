@@ -1,8 +1,11 @@
+import { CiLogout } from "react-icons/ci";
 import Button from "../../../components/global/Button";
 import { useAuth } from "../../../components/global/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const UserHome = () => {
   const authContext = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
@@ -30,6 +33,19 @@ const UserHome = () => {
           <div className="flex sm:flex-row flex-col gap-2">
             <Button className="w-full">Editar</Button>
           </div>
+        </div>
+        <div className="justify-center flex">
+          <Button
+            onClick={() => {
+              authContext?.setAuth(null);
+              navigate("/login");
+            }}
+            variant="desctructive"
+            className="w-32"
+          >
+            <CiLogout />
+            Sair
+          </Button>
         </div>
       </div>
     </div>
