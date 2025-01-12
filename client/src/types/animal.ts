@@ -2,7 +2,7 @@ type Species = "CACHORRO" | "GATO" | "OUTRO";
 type AnimalGender = "MACHO" | "FEMEA";
 
 interface AnimalType {
-  id: string;
+  id: number;
   name: string | null;
   gender: AnimalGender;
   description: string | null;
