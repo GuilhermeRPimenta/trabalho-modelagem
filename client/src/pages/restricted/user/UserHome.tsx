@@ -2,6 +2,7 @@ import { CiLogout } from "react-icons/ci";
 import Button from "../../../components/global/Button";
 import { useAuth } from "../../../components/global/useAuth";
 import { useNavigate } from "react-router-dom";
+import NavLink from "../../../components/global/NavLink";
 
 const UserHome = () => {
   const authContext = useAuth();
@@ -18,7 +19,13 @@ const UserHome = () => {
             <Button className="w-full">Adotados</Button>
             <Button className="w-full">Doados</Button>
             <Button className="w-full">Em adoção</Button>
-            <Button className="w-full">Criar anuncio</Button>
+            <NavLink
+              to="/user/animalRegister"
+              variant="constructive"
+              className="w-full"
+            >
+              Criar anuncio
+            </NavLink>
           </div>
         </div>
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
