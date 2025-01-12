@@ -1,7 +1,28 @@
 import { AnimalType } from "../types/animal";
+import { UserType } from "../types/user";
+
+const users: UserType[] = [
+  {
+    id: "sha",
+    name: "Guilherme Pimenta",
+    birthDate: "1999-01-01",
+    email: "example@gmail.com",
+    password: "123456",
+    cpf: "123.456.789-00",
+    phone: "(11) 99999-9999",
+    address: "Rua das Margaridas",
+    number: "123",
+    neighborhood: "Jardim das Flores",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "12345-678",
+    imgUrl: null,
+  },
+];
 
 const animals: AnimalType[] = [
   {
+    user: users[0],
     id: 1,
     name: "Nick",
     gender: "MACHO",
@@ -17,6 +38,7 @@ const animals: AnimalType[] = [
       "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191112123933390_COVER.jpg",
   },
   {
+    user: users[0],
     id: 2,
     name: "Lucy",
     gender: "FEMEA",
@@ -31,6 +53,7 @@ const animals: AnimalType[] = [
     imgUrl: "https://images.dog.ceo/breeds/puggle/IMG_090821.jpg",
   },
   {
+    user: users[0],
     id: 3,
     name: "Thor",
     gender: "MACHO",
@@ -46,6 +69,7 @@ const animals: AnimalType[] = [
       "https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
+    user: users[0],
     id: 4,
     name: "Mel",
     gender: "FEMEA",

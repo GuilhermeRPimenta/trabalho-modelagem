@@ -15,4 +15,14 @@ interface UserType {
   imgUrl: string | null;
 }
 
-export { type UserType };
+interface UserPublicData {
+  id: string;
+  name: string;
+  address: string;
+  number: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+}
+
+export { type UserType, type UserPublicData };

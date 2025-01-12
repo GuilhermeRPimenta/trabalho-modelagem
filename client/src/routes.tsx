@@ -4,6 +4,7 @@ import LandingPage from "./pages/public/LandingPage";
 import Animals from "./pages/public/Animals";
 import Login from "./pages/public/Login";
 import AdminLogin from "./pages/public/AdminLogin";
+import Animal from "./pages/public/Animal";
 
 const router = createBrowserRouter(
   [
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       children: [
         { path: "/", element: <LandingPage /> },
         { path: "/animals", element: <Animals /> },
+        { path: "/animals/:animalId", element: <Animal /> },
         { path: "/login", element: <Login /> },
         { path: "/admin", element: <AdminLogin /> },
       ],
