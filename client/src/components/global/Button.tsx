@@ -17,7 +17,7 @@ const Button = ({
     primary: "bg-primary text-white bg-blue-700 hover:bg-blue-900",
     constructive: "bg-green-500 text-white hover:bg-green-700",
     desctructive: "bg-red-500 text-white hover:bg-red-700",
-    ghost: "bg-transparent text-black hover:bg-gray-200 hover:text-primary",
+    ghost: "bg-transparent text-black hover:bg-gray-200",
   };
 
   return (
