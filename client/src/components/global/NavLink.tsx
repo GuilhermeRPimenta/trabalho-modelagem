@@ -7,7 +7,7 @@ const NavLink = ({
   children,
 }: {
   to: string;
-  className: string;
+  className?: string;
   variant?: "constructive" | "desctructive" | "ghost" | "primary";
   children?: React.ReactNode;
 }) => {

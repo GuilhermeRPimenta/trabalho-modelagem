@@ -3,6 +3,7 @@ import { GrUserAdmin } from "react-icons/gr";
 import { IoHomeSharp } from "react-icons/io5";
 import { TbDog } from "react-icons/tb";
 import { Location, NavLink } from "react-router-dom";
+import { AuthType } from "../../types/auth";
 
 const NavLinks = ({
   className,
@@ -12,16 +13,8 @@ const NavLinks = ({
 }: {
   className?: string;
   authContext: {
-    auth: {
-      id: number;
-      name: string;
-    } | null;
-    setAuth: React.Dispatch<
-      React.SetStateAction<{
-        id: number;
-        name: string;
-      } | null>
-    >;
+    auth: AuthType | null;
+    setAuth: React.Dispatch<React.SetStateAction<AuthType | null>>;
   } | null;
   location: Location;
   handleNavLinkClick?: () => void;

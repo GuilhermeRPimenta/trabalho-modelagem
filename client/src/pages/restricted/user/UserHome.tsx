@@ -30,9 +30,12 @@ const UserHome = () => {
         </div>
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
           <h2 className="text-center text-2xl font-semibold">Meus abrigos</h2>
-          <div className="flex sm:flex-row flex-col gap-2">
+          <div className="flex sm:flex-row flex-col gap-2 text-center">
             <Button className="w-full">Abrigo dogs</Button>
             <Button className="w-full">Abrigo placeholder</Button>
+            <NavLink to="/shelterRegister" variant="constructive">
+              Cadastrar abrigo
+            </NavLink>
           </div>
         </div>
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">

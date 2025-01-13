@@ -1,3 +1,6 @@
+import { AnimalType } from "./animal";
+import { ShelterType } from "./shelter";
+
 interface UserType {
   id: string;
   name: string;
@@ -14,6 +17,8 @@ interface UserType {
   state: string;
   postalCode: string;
   imgUrl: string | null;
+  shelters: ShelterType[];
+  animals: AnimalType[];
 }
 
 interface UserPublicData {

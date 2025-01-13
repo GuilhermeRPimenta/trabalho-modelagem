@@ -3,6 +3,7 @@ import Button from "../../components/global/Button";
 import { useAuth } from "../../components/global/useAuth";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { users } from "../../assets/exampleData";
 
 const Login = () => {
   const authContext = useAuth();
@@ -28,7 +29,11 @@ const Login = () => {
           <Button
             variant="primary"
             onClick={() => {
-              authContext?.setAuth({ id: 1, name: "Guilherme Pimenta" });
+              authContext?.setAuth({
+                id: parseInt(users[0].id),
+                name: users[0].name,
+                cpf: users[0].cpf,
+              });
             }}
           >
             Entrar
