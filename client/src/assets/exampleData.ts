@@ -11,12 +11,14 @@ const users: UserType[] = [
     cpf: "123.456.789-00",
     phone: "(11) 99999-9999",
     address: "Rua das Margaridas",
+    complement: null,
     number: "123",
     neighborhood: "Jardim das Flores",
     city: "São Paulo",
     state: "SP",
     postalCode: "12345-678",
-    imgUrl: null,
+    imgUrl:
+      "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
 ];
 
@@ -86,4 +88,4 @@ const animals: AnimalType[] = [
   },
 ];
 
-export { animals };
+export { animals, users };

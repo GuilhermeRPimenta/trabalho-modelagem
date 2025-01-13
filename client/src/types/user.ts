@@ -7,6 +7,7 @@ interface UserType {
   cpf: string;
   phone: string;
   address: string;
+  complement: string | null;
   number: string;
   neighborhood: string;
   city: string;

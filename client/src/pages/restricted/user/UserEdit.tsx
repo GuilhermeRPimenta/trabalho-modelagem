@@ -4,10 +4,12 @@ import brokenImage from "../../../assets/brokenImage.png";
 import EditPhotoModal from "../../../components/user/EditPhotoModal";
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
+import { users } from "../../../assets/exampleData";
 
 const UserEdit = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const user = users[0];
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">Editar cadastro</h1>
@@ -18,7 +20,7 @@ const UserEdit = () => {
             <button onClick={() => setModalIsOpen(true)}>
               <img
                 className="w-32 h-32 rounded-md transition-all duration-300 group-hover:brightness-50"
-                src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={user.imgUrl || brokenImage}
                 alt={brokenImage}
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -28,40 +30,91 @@ const UserEdit = () => {
           </div>
 
           <label htmlFor="name">Nome completo*</label>
-          <input className="w-full" type="text" id="name" />
+          <input
+            defaultValue={user.name}
+            className="w-full"
+            type="text"
+            id="name"
+          />
           <label htmlFor="birthdate">Data de nascimento*</label>
-          <input className="w-full" id="birthdate" type="date" />
+          <input
+            defaultValue={user.birthDate}
+            className="w-full"
+            id="birthdate"
+            type="date"
+          />
           <label htmlFor="cpf">CPF*</label>
           <input
+            defaultValue={user.cpf}
             className="w-full"
             type="numeric"
             id="cpf"
             style={{ MozAppearance: "textfield" }}
           />
           <label htmlFor="email">E-mail*</label>
-          <input className="w-full" type="email" id="email" />
+          <input
+            defaultValue={user.email}
+            className="w-full"
+            type="email"
+            id="email"
+          />
           <label htmlFor="phone">Telefone*</label>
-          <input className="w-full" type="text" id="phone" />
+          <input
+            defaultValue={user.phone}
+            className="w-full"
+            type="text"
+            id="phone"
+          />
           <label htmlFor="address">Logradouro*</label>
-          <input className="w-full" type="text" id="address" />
+          <input
+            defaultValue={user.address}
+            className="w-full"
+            type="text"
+            id="address"
+          />
           <label htmlFor="addressNumber">Número*</label>
           <input
+            defaultValue={user.number}
             className="w-full"
             style={{ MozAppearance: "textfield" }}
             type="number"
             id="address"
           />
           <label htmlFor="addressComplement">Complemento</label>
-          <input className="w-full" type="text" id="addressComplement" />
+          <input
+            defaultValue={user.complement || ""}
+            className="w-full"
+            type="text"
+            id="addressComplement"
+          />
           <label htmlFor="addressNeighborhood">Bairro*</label>
-          <input className="w-full" type="text" id="addressNeighborhood" />
+          <input
+            defaultValue={user.neighborhood}
+            className="w-full"
+            type="text"
+            id="addressNeighborhood"
+          />
           <label htmlFor="addressCity">Cidade*</label>
-          <input className="w-full" type="text" id="addressCity" />
+          <input
+            defaultValue={user.city}
+            className="w-full"
+            type="text"
+            id="addressCity"
+          />
           <label htmlFor="addressState">Estado*</label>
-          <input className="w-full" type="text" id="addressState" />
+          <input
+            defaultValue={user.state}
+            className="w-full"
+            type="text"
+            id="addressState"
+          />
           <label htmlFor="addressPostalCode">CEP*</label>
-          <input className="w-full" type="text" id="addressPostalCode" />
-
+          <input
+            defaultValue={user.postalCode}
+            className="w-full"
+            type="text"
+            id="addressPostalCode"
+          />
           <label htmlFor="password">Senha*</label>
           <input className="w-full" type="password" id="password" />
           <label htmlFor="passwordConfirm">Confirme a senha*</label>

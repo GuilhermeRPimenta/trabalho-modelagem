@@ -38,7 +38,9 @@ const UserHome = () => {
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
           <h2 className="text-center text-2xl font-semibold">Cadastro</h2>
           <div className="flex sm:flex-row flex-col gap-2">
-            <Button className="w-full">Editar</Button>
+            <NavLink to="/user/edit" className="w-full">
+              Editar
+            </NavLink>
           </div>
         </div>
         <div className="justify-center flex">
