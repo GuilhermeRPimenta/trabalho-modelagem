@@ -8,6 +8,7 @@ import Animal from "./pages/public/Animal";
 import UserHome from "./pages/restricted/user/UserHome";
 import UserRegister from "./pages/public/UserRegister";
 import AnimalRegister from "./pages/restricted/user/AnimalRegister";
+import UserEdit from "./pages/restricted/user/UserEdit";
 
 const router = createBrowserRouter(
   [
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         { path: "/register", element: <UserRegister /> },
         { path: "/login", element: <Login /> },
         { path: "/user", element: <UserHome /> },
+        { path: "/user/edit", element: <UserEdit /> },
         { path: "/user/animalRegister", element: <AnimalRegister /> },
         { path: "/admin", element: <AdminLogin /> },
       ],

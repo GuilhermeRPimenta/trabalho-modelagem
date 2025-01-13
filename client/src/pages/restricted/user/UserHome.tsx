@@ -15,7 +15,7 @@ const UserHome = () => {
       <div className="flex flex-col gap-2">
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
           <h2 className="text-center text-2xl font-semibold">Meus animais</h2>
-          <div className="flex sm:flex-row flex-col gap-2">
+          <div className="flex sm:flex-row flex-col text-center gap-2">
             <Button className="w-full">Adotados</Button>
             <Button className="w-full">Doados</Button>
             <Button className="w-full">Em adoção</Button>
