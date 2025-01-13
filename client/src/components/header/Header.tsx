@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Nav from "./Nav";
 import NavLinks from "./NavLinks";
 import pawLogo from "../../assets/paw-logo.png";
@@ -7,6 +7,7 @@ import { useAuth } from "../global/useAuth";
 
 const Header = () => {
   const authContext = useAuth();
+  const location = useLocation();
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
   const handleMobileNavIsOpenChange = () => {
@@ -30,6 +31,7 @@ const Header = () => {
             authContext={authContext}
             mobileNavIsOpen={mobileNavIsOpen}
             handleMobileNavIsOpenChange={handleMobileNavIsOpenChange}
+            location={location}
           />
         </div>
       </div>
@@ -39,6 +41,7 @@ const Header = () => {
             className="text-xl"
             authContext={authContext}
             handleNavLinkClick={handleNavLinkClick}
+            location={location}
           />
         </div>
       )}

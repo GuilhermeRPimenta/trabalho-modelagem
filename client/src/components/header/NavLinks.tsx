@@ -2,11 +2,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { IoHomeSharp } from "react-icons/io5";
 import { TbDog } from "react-icons/tb";
-import { NavLink } from "react-router-dom";
+import { Location, NavLink } from "react-router-dom";
 
 const NavLinks = ({
   className,
   authContext,
+  location,
   handleNavLinkClick,
 }: {
   className?: string;
@@ -22,6 +23,7 @@ const NavLinks = ({
       } | null>
     >;
   } | null;
+  location: Location;
   handleNavLinkClick?: () => void;
 }) => {
   const baseStyle = `${className} flex items-center justify-center p-2 rounded-md font-semibold hover:bg-gray-200 hover:text-primary`;
@@ -50,9 +52,12 @@ const NavLinks = ({
       <NavLink
         onClick={handleNavLinkClick}
         to={"/login"}
-        className={({ isActive }) =>
-          `${baseStyle} ${isActive ? "text-blue-700" : "text-black"}`
-        }
+        className={`${baseStyle} ${
+          location.pathname === "/login" ||
+          location.pathname.startsWith("/user")
+            ? "text-blue-700"
+            : "text-black"
+        }`}
       >
         <FaUserAlt />
         {authContext?.auth ? authContext.auth.name.split(" ")[0] : "Entrar"}
