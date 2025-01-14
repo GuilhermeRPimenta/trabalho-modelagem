@@ -7,10 +7,17 @@ import NavLink from "../../../components/global/NavLink";
 const UserHome = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
+  console.log(authContext?.auth);
+  if (!authContext?.auth)
+    return (
+      <h1 className="text-blue-red text-center text-3xl font-dynapuff">
+        Acesso negado
+      </h1>
+    );
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Bem vindo(a), {authContext?.auth?.name}
+        Bem vindo(a), {authContext.auth.name}
       </h1>
       <div className="flex flex-col gap-2">
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
@@ -31,8 +38,13 @@ const UserHome = () => {
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
           <h2 className="text-center text-2xl font-semibold">Meus abrigos</h2>
           <div className="flex sm:flex-row flex-col gap-2 text-center">
-            <Button className="w-full">Abrigo dogs</Button>
-            <Button className="w-full">Abrigo placeholder</Button>
+            {authContext.auth.shelters.map((shelter) => {
+              return (
+                <Button key={shelter.id} className="w-full">
+                  {shelter.name}
+                </Button>
+              );
+            })}
             <NavLink to="/shelterRegister" variant="constructive">
               Cadastrar abrigo
             </NavLink>

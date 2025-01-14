@@ -2,7 +2,7 @@ import { AnimalType } from "./animal";
 import { ShelterType } from "./shelter";
 
 interface UserType {
-  id: string;
+  id: number;
   name: string;
   birthDate: string;
   email: string;

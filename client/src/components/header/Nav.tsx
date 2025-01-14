@@ -2,7 +2,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../global/Button";
 import NavLinks from "./NavLinks";
 import { Location } from "react-router-dom";
-import { AuthType } from "../../types/auth";
+import { UserType } from "../../types/user";
 
 const Nav = ({
   mobileNavIsOpen,
@@ -12,8 +12,8 @@ const Nav = ({
 }: {
   mobileNavIsOpen: boolean;
   authContext: {
-    auth: AuthType | null;
-    setAuth: React.Dispatch<React.SetStateAction<AuthType | null>>;
+    auth: UserType | null;
+    setAuth: React.Dispatch<React.SetStateAction<UserType | null>>;
   } | null;
   location: Location;
   handleMobileNavIsOpenChange: () => void;

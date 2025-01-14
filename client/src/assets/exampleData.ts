@@ -1,9 +1,10 @@
 import { AnimalType } from "../types/animal";
+import { ShelterType } from "../types/shelter";
 import { UserType } from "../types/user";
 
 const users: UserType[] = [
   {
-    id: "sha",
+    id: 1,
     name: "Guilherme Pimenta",
     birthDate: "1999-01-01",
     email: "example@gmail.com",
@@ -90,4 +91,25 @@ const animals: AnimalType[] = [
   },
 ];
 
-export { animals, users };
+const shelters: ShelterType[] = [
+  {
+    id: 1,
+    name: "Abrigo Casa do Pelo",
+    cnpj: "12. 345. 678/0001-09",
+    phone: "(12)93456-7890",
+    address: "Rua do mato",
+    complement: "Galpão 1",
+    number: "999",
+    neighborhood: "Parque das Gaivotas",
+    city: "São Paulo",
+    state: "São Paulo",
+    postalCode: "12345-67",
+    imgUrl: null,
+    users: [],
+  },
+];
+
+shelters[0].users.push(users[0]);
+users[0].shelters.push(shelters[0]);
+
+export { animals, users, shelters };

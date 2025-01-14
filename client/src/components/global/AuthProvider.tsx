@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
-import { AuthType } from "../../types/auth";
+import { UserType } from "../../types/user";
 
 const AuthContext = createContext<{
-  auth: AuthType | null;
-  setAuth: React.Dispatch<React.SetStateAction<AuthType | null>>;
+  auth: UserType | null;
+  setAuth: React.Dispatch<React.SetStateAction<UserType | null>>;
 } | null>(null);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [auth, setAuth] = useState<AuthType | null>(null);
+  const [auth, setAuth] = useState<UserType | null>(null);
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

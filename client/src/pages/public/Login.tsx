@@ -29,11 +29,7 @@ const Login = () => {
           <Button
             variant="primary"
             onClick={() => {
-              authContext?.setAuth({
-                id: parseInt(users[0].id),
-                name: users[0].name,
-                cpf: users[0].cpf,
-              });
+              authContext?.setAuth(users[0]);
             }}
           >
             Entrar

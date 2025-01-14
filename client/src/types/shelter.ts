@@ -1,6 +1,7 @@
 import { UserType } from "./user";
 
 interface ShelterType {
+  id: number;
   name: string;
   cnpj: string;
   phone: string;

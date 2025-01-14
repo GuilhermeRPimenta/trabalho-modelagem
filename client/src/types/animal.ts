@@ -1,4 +1,4 @@
-import { UserPublicData } from "./user";
+import { UserType } from "./user";
 
 type Species = "CACHORRO" | "GATO" | "OUTRO";
 type AnimalGender = "MACHO" | "FEMEA";
@@ -15,7 +15,7 @@ interface AnimalType {
   breed: string | null;
   healthCondition: string | null;
   weight: number | null;
-  user: UserPublicData;
+  user: UserType;
   imgUrl: string;
 }
 
