@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import { ChangeEvent, useState } from "react";
 import { useAuth } from "../../../components/global/useAuth";
+import { shelters } from "../../../assets/exampleData";
 
-const AnimalRegister = () => {
+const AnimalRegisterByShelter = () => {
   const navigate = useNavigate();
   const authContext = useAuth();
+  const { shelterId } = useParams<{ shelterId: string }>();
   const [isCustomSpecies, setIsCustomSpecies] = useState(false);
   const handleSpeciesChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === "OUTRO") setIsCustomSpecies(true);
@@ -13,6 +15,16 @@ const AnimalRegister = () => {
   };
   if (!authContext?.auth)
     return <h1 className="text-red-700 text-3xl">Acesso negado!</h1>;
+  const shelter = shelters.find((shelter) => shelter.id === Number(shelterId));
+  if (
+    !shelter ||
+    !shelter.users.find((user) => user.id === authContext.auth?.id)
+  )
+    return (
+      <h1 className="font-dynapuff text-3xl text-blue-500">
+        Abrigo não encontrado
+      </h1>
+    );
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
@@ -21,10 +33,10 @@ const AnimalRegister = () => {
       <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
         <div className="flex flex-col gap-2 items-center">
           <h2>
-            {`Criando anúncio de doação por `}
-            <span className="font-bold">{authContext.auth.name}</span>
+            {`Cadastrando anúncio de doação por `}
+            <span className="font-bold">{shelter.name}</span>
           </h2>
-          <p>CPF: {authContext.auth.cpf}</p>
+          <p>CNPJ: {shelter.cnpj}</p>
           <h2 className="text-2xl font-semibold">Dados do animal</h2>
           {/*Substituir div acima por form*/}
           <label htmlFor="species">Espécie*</label>
@@ -96,4 +108,4 @@ const AnimalRegister = () => {
   );
 };
 
-export default AnimalRegister;
+export default AnimalRegisterByShelter;

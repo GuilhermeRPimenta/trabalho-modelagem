@@ -7,7 +7,6 @@ import NavLink from "../../../components/global/NavLink";
 const UserHome = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
-  console.log(authContext?.auth);
   if (!authContext?.auth)
     return (
       <h1 className="text-blue-red text-center text-3xl font-dynapuff">
@@ -40,9 +39,13 @@ const UserHome = () => {
           <div className="flex sm:flex-row flex-col gap-2 text-center">
             {authContext.auth.shelters.map((shelter) => {
               return (
-                <Button key={shelter.id} className="w-full">
+                <NavLink
+                  to={`/shelters/${shelter.id}`}
+                  key={shelter.id}
+                  className="w-full"
+                >
                   {shelter.name}
-                </Button>
+                </NavLink>
               );
             })}
             <NavLink to="/shelterRegister" variant="constructive">

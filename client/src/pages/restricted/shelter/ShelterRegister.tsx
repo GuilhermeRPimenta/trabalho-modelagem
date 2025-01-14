@@ -15,7 +15,10 @@ const ShelterRegister = () => {
       <div className="flex justify-center text-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
         <div className="flex flex-col gap-2 items-center">
           {/*Substituir div acima por form*/}
-          <h2>{`Cadastrando abrigo supervisionado por ${authContext.auth.name}`}</h2>
+          <h2>
+            {`Cadastrando abrigo supervisionado por `}
+            <span className="font-bold">{authContext.auth.name}</span>
+          </h2>
           <p>CPF: {authContext.auth.cpf}</p>
           <label htmlFor="name">Nome*</label>
           <input type="text" id="name" className="w-full" />
