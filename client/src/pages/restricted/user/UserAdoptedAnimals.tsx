@@ -1,12 +1,13 @@
-import { animals } from "../../assets/exampleData";
-import { BsGenderFemale } from "react-icons/bs";
-import { BsGenderMale } from "react-icons/bs";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import { animals } from "../../../assets/exampleData";
 
-const Animals = () => {
+const UserAdoptedAnimals = () => {
   return (
-    <div className="flex flex-col w-full items-center gap-2 ">
-      <h1 className="text-blue-700 font-dynapuff text-3xl">Animais</h1>
+    <div className="flex flex-col w-full  justify-center items-center gap-2">
+      <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
+        Animais adotados
+      </h1>
       <div className="flex flex-wrap gap-2 justify-center">
         {animals.map((animal) => (
           <NavLink
@@ -36,7 +37,6 @@ const Animals = () => {
                 </>
               )}
             </div>
-            <p>{animal.description}</p>
           </NavLink>
         ))}
       </div>
@@ -44,4 +44,4 @@ const Animals = () => {
   );
 };
 
-export default Animals;
+export default UserAdoptedAnimals;

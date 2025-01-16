@@ -22,7 +22,9 @@ const UserHome = () => {
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
           <h2 className="text-center text-2xl font-semibold">Meus animais</h2>
           <div className="flex sm:flex-row flex-col text-center gap-2">
-            <Button className="w-full">Adotados</Button>
+            <NavLink to="/user/adoptedAnimals" className="w-full">
+              Adotados
+            </NavLink>
             <Button className="w-full">Doados</Button>
             <Button className="w-full">Em adoção</Button>
             <NavLink
