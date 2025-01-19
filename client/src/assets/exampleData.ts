@@ -80,8 +80,9 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Vacinado contra raiva",
     weight: 10,
-    imgUrl:
+    imgUrls: [
       "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191112123933390_COVER.jpg",
+    ],
   },
   {
     donator: users[1],
@@ -97,7 +98,7 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Vacinada",
     weight: null,
-    imgUrl: "https://images.dog.ceo/breeds/puggle/IMG_090821.jpg",
+    imgUrls: ["https://images.dog.ceo/breeds/puggle/IMG_090821.jpg"],
   },
   {
     donator: users[2],
@@ -113,8 +114,9 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: null,
-    imgUrl:
+    imgUrls: [
       "https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
   },
   {
     donator: users[2],
@@ -130,8 +132,9 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: 1.5,
-    imgUrl:
+    imgUrls: [
       "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
   },
   {
     donator: users[0],
@@ -147,8 +150,9 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: 1.5,
-    imgUrl:
+    imgUrls: [
       "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=400",
+    ],
   },
   {
     donator: users[0],
@@ -164,8 +168,9 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Tomou antirrábica",
     weight: 1,
-    imgUrl:
+    imgUrls: [
       "https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=400",
+    ],
   },
 ];
 

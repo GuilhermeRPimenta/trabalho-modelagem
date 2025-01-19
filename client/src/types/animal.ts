@@ -18,7 +18,7 @@ interface AnimalType {
   weight: number | null;
   donator: UserType | ShelterType;
   adopter: UserType | ShelterType | null;
-  imgUrl: string;
+  imgUrls: string[];
 }
 
 export { type AnimalType, type Species };
