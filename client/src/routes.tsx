@@ -16,6 +16,8 @@ import UserAdoptedAnimals from "./pages/restricted/user/UserAdoptedAnimals";
 import AdoptedAnimal from "./pages/restricted/user/AdoptedAnimal";
 import UserDonatedAnimals from "./pages/restricted/user/UserDonatedAnimals";
 import UserDonatedAnimal from "./pages/restricted/user/UserDonatedAnimal";
+import UserAnimalsInDonation from "./pages/restricted/user/UserAnimalsInDonation";
+import UserAnimalInDonation from "./pages/restricted/user/UserAnimalInDonation";
 
 const router = createBrowserRouter(
   [
@@ -40,6 +42,11 @@ const router = createBrowserRouter(
         {
           path: "user/donatedAnimals/:donatedAnimalId",
           element: <UserDonatedAnimal />,
+        },
+        { path: "/user/animalsInDonation", element: <UserAnimalsInDonation /> },
+        {
+          path: "/user/animalsInDonation/:animalInDonationId",
+          element: <UserAnimalInDonation />,
         },
         { path: "/shelterRegister", element: <ShelterRegister /> },
         { path: "/shelters/:shelterId", element: <ShelterHome /> },

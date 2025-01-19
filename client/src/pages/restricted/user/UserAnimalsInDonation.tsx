@@ -3,20 +3,19 @@ import { NavLink } from "react-router-dom";
 import { animals } from "../../../assets/exampleData";
 import { useAuth } from "../../../components/global/useAuth";
 
-const UserDonatedAnimals = () => {
+const UserAnimalsInDonation = () => {
   const authContext = useAuth();
-
-  const donatedAniamals = animals.filter(
-    (animal) => animal.donator.id === authContext?.auth?.id && animal.adopter
+  const adoptedAnimals = animals.filter(
+    (animal) => animal.donator?.id === authContext?.auth?.id && !animal.adopter
   );
 
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Animais doados
+        Animais em adoção
       </h1>
       <div className="flex flex-wrap gap-2 justify-center">
-        {donatedAniamals.map((animal) => (
+        {adoptedAnimals.map((animal) => (
           <NavLink
             to={`${animal.id}`}
             key={animal.id}
@@ -51,4 +50,4 @@ const UserDonatedAnimals = () => {
   );
 };
 
-export default UserDonatedAnimals;
+export default UserAnimalsInDonation;

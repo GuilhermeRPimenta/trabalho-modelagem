@@ -150,6 +150,23 @@ const animals: AnimalType[] = [
     imgUrl:
       "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
+  {
+    donator: users[0],
+    adopter: null,
+    id: 6,
+    name: "Bishop",
+    gender: "MACHO",
+    description: "Muito esperto",
+    birthDate: null,
+    age: 1,
+    species: "GATO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "Tomou antirrábica",
+    weight: 1,
+    imgUrl:
+      "https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=400",
+  },
 ];
 
 const shelters: ShelterType[] = [
