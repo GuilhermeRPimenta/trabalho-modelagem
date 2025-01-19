@@ -4,11 +4,13 @@ import { BsGenderMale } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
 const Animals = () => {
+  const unadoptedAnimals = animals.filter((animal) => !animal.adopter);
+
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">Animais</h1>
       <div className="flex flex-wrap gap-2 justify-center">
-        {animals.map((animal) => (
+        {unadoptedAnimals.map((animal) => (
           <NavLink
             to={`${animal.id}`}
             key={animal.id}

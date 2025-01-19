@@ -5,6 +5,7 @@ interface ShelterType {
   name: string;
   cnpj: string;
   phone: string;
+  email: string;
   address: string;
   complement: string | null;
   number: string;

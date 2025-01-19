@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import { animals } from "../../assets/exampleData";
+import { animals } from "../../../assets/exampleData";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import Button from "../../components/global/Button";
 
 const calculateAge = (birthDate: Date) => {
   const currentDate = new Date();
@@ -14,10 +13,12 @@ const calculateAge = (birthDate: Date) => {
   return `${years} anos e ${months} meses`;
 };
 
-const Animal = () => {
-  const { animalId } = useParams<{ animalId: string }>();
-  const animal = animals.find((animal) => animal.id === Number(animalId));
-  if (!animal)
+const UserDonatedAnimal = () => {
+  const { donatedAnimalId } = useParams<{ donatedAnimalId: string }>();
+  const animal = animals.find(
+    (animal) => animal.id === Number(donatedAnimalId)
+  );
+  if (!animal || !animal.adopter)
     return (
       <h1 className="font-dynapuff text-3xl text-blue-500">
         Animal não encontrado
@@ -83,14 +84,16 @@ const Animal = () => {
             <p>{animal.weight} kg</p>
           </>
         )}
-        <h2 className="text-xl font-semibold">Doador:</h2>
-        {animal.donator.name}
+        <h2 className="text-xl font-semibold">Adotante:</h2>
+        {animal.adopter.name}
         <h3 className="font-semibold">Endereço</h3>
-        {`${animal.donator.address}, ${animal.donator.number}, ${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
-        <Button>Tenho interesse</Button>
+        {`${animal.adopter.address}, ${animal.adopter.number}, ${animal.adopter.neighborhood}, ${animal.adopter.city} - ${animal.adopter.state}`}
+        <h3 className="font-semibold">Contato</h3>
+        <p>Telefone: {`${animal.adopter.phone}`}</p>
+        <span>E-mail: {`${animal.adopter.email}`}</span>
       </div>
     </div>
   );
 };
 
-export default Animal;
+export default UserDonatedAnimal;

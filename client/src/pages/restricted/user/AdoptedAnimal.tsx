@@ -68,7 +68,7 @@ const AdoptedAnimal = () => {
             <p>
               {animal?.birthDate
                 ? calculateAge(animal.birthDate)
-                : animal?.age + " anos"}
+                : animal?.age + " anos (no momento de registro)"}
             </p>
           </>
         )}
@@ -85,12 +85,12 @@ const AdoptedAnimal = () => {
           </>
         )}
         <h2 className="text-xl font-semibold">Doador:</h2>
-        {animal.user.name}
+        {animal.donator.name}
         <h3 className="font-semibold">Endereço</h3>
-        {`${animal.user.address}, ${animal.user.number}, ${animal.user.neighborhood}, ${animal.user.city} - ${animal.user.state}`}
+        {`${animal.donator.address}, ${animal.donator.number}, ${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
         <h3 className="font-semibold">Contato</h3>
-        <p>Telefone: {`${animal.user.phone}`}</p>
-        <span>E-mail: {`${animal.user.email}`}</span>
+        <p>Telefone: {`${animal.donator.phone}`}</p>
+        <span>E-mail: {`${animal.donator.email}`}</span>
       </div>
     </div>
   );

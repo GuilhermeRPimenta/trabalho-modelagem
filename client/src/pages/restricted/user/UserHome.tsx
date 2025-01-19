@@ -25,7 +25,9 @@ const UserHome = () => {
             <NavLink to="/user/adoptedAnimals" className="w-full">
               Adotados
             </NavLink>
-            <Button className="w-full">Doados</Button>
+            <NavLink to="/user/donatedAnimals" className="w-full">
+              Doados
+            </NavLink>
             <Button className="w-full">Em adoção</Button>
             <NavLink
               to="/user/animalRegister"

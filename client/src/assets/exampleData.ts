@@ -23,11 +23,52 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
   },
+  {
+    id: 2,
+    name: "Rapahel Sotto-Maior",
+    birthDate: "1990-06-08",
+    email: "example2@gmail.com",
+    password: "123456",
+    cpf: "456.456.789-99",
+    phone: "(11) 90000-9999",
+    address: "Rua das Gaivotas",
+    complement: null,
+    number: "954",
+    neighborhood: "Parque Ensolarado",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "48951-678",
+    imgUrl:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400",
+    shelters: [],
+    animals: [],
+  },
+  {
+    id: 2,
+    name: "Bruno Edson",
+    birthDate: "1995-09-10",
+    email: "example3@gmail.com",
+    password: "123456",
+    cpf: "534.456.476-99",
+    phone: "(11) 91111-7777",
+    address: "Rua dos Pinheiros",
+    complement: "Apartamento 201, bloco 3",
+    number: "546",
+    neighborhood: "São Marcos",
+    city: "Campinas",
+    state: "SP",
+    postalCode: "98517-824",
+    imgUrl:
+      "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400",
+    shelters: [],
+    animals: [],
+  },
 ];
 
 const animals: AnimalType[] = [
   {
-    user: users[0],
+    donator: users[1],
+    adopter: null,
     id: 1,
     name: "Nick",
     gender: "MACHO",
@@ -43,7 +84,8 @@ const animals: AnimalType[] = [
       "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191112123933390_COVER.jpg",
   },
   {
-    user: users[0],
+    donator: users[1],
+    adopter: null,
     id: 2,
     name: "Lucy",
     gender: "FEMEA",
@@ -58,7 +100,8 @@ const animals: AnimalType[] = [
     imgUrl: "https://images.dog.ceo/breeds/puggle/IMG_090821.jpg",
   },
   {
-    user: users[0],
+    donator: users[2],
+    adopter: null,
     id: 3,
     name: "Thor",
     gender: "MACHO",
@@ -74,7 +117,8 @@ const animals: AnimalType[] = [
       "https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    user: users[0],
+    donator: users[2],
+    adopter: users[0],
     id: 4,
     name: "Mel",
     gender: "FEMEA",
@@ -89,14 +133,32 @@ const animals: AnimalType[] = [
     imgUrl:
       "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+  {
+    donator: users[0],
+    adopter: users[1],
+    id: 5,
+    name: "Dauda",
+    gender: "MACHO",
+    description: "Dorminhoco",
+    birthDate: null,
+    age: 3,
+    species: "GATO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "",
+    weight: 1.5,
+    imgUrl:
+      "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=400",
+  },
 ];
 
 const shelters: ShelterType[] = [
   {
     id: 1,
     name: "Abrigo Casa do Pelo",
-    cnpj: "12. 345. 678/0001-09",
+    cnpj: "12.345.678/0001-09",
     phone: "(12)93456-7890",
+    email: "contato@casadopelo.com",
     address: "Rua do mato",
     complement: "Galpão 1",
     number: "999",

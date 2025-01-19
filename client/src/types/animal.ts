@@ -1,3 +1,4 @@
+import { ShelterType } from "./shelter";
 import { UserType } from "./user";
 
 type Species = "CACHORRO" | "GATO" | "OUTRO";
@@ -15,7 +16,8 @@ interface AnimalType {
   breed: string | null;
   healthCondition: string | null;
   weight: number | null;
-  user: UserType;
+  donator: UserType | ShelterType;
+  adopter: UserType | ShelterType | null;
   imgUrl: string;
 }
 
