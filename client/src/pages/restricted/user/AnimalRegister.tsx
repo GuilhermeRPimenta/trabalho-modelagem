@@ -16,9 +16,7 @@ const AnimalRegister = () => {
   };
   const handleMainImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
-    e.target.value = "";
     if (file) setMainImage(file);
-    return;
   };
   const removeMainImage = () => {
     setMainImage(undefined);

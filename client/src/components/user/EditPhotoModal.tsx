@@ -1,16 +1,18 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import Button from "../global/Button";
 import { VscError } from "react-icons/vsc";
 import LoadingIcon from "../global/LoadingIcon";
 import { FaRegCheckCircle } from "react-icons/fa";
-import brokenImage from "../../assets/brokenImage.png";
+import ImageInput from "../global/ImageInput";
 
 const EditPhotoModal = ({
   isOpen,
+  initialImage,
   setIsOpen,
 }: {
   isOpen: boolean;
+  initialImage: File | null;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [pageState, setPageState] = useState<
@@ -19,6 +21,17 @@ const EditPhotoModal = ({
 
   const resetModal = () => {
     setPageState("FORM");
+  };
+
+  const [userImage, setUserImage] = useState<File | undefined>(
+    initialImage ? initialImage : undefined
+  );
+  const handleUserImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) setUserImage(file);
+  };
+  const removeUserImage = () => {
+    setUserImage(undefined);
   };
 
   return (
@@ -45,26 +58,29 @@ const EditPhotoModal = ({
 
         {pageState === "FORM" && (
           <form className="flex justify-center items-center flex-col gap-1">
-            <img
-              className="w-32 h-32 rounded-md"
-              src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt={brokenImage}
-            />
-            <label htmlFor="userImage">Selecionar foto</label>
-            <input
-              className="w-full"
-              type="file"
-              accept="image/png, image/jpeg"
-              id="userImage"
-            />
-            <div className="justify-between flex w-full">
-              <Button variant="desctructive" className="mt-3">
-                Remover
-              </Button>
-              <Button variant="constructive" className="mt-3">
-                Atualizar
-              </Button>
-            </div>
+            {userImage && (
+              <div className="w-full flex flex-col items-center py-2">
+                <h3>Foto de perfil selecionada:</h3>
+                <div className="relative">
+                  <img
+                    src={URL.createObjectURL(userImage)}
+                    alt={`Imagem principal`}
+                    className="w-64 h-64  object-cover rounded-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={removeUserImage}
+                    className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-full"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+            )}
+            <ImageInput id="userImage" onChange={handleUserImageChange} />
+            <Button variant="constructive" className="mt-3">
+              Atualizar
+            </Button>
           </form>
         )}
         {pageState === "LOADING" && <LoadingIcon className="text-7xl w-full" />}

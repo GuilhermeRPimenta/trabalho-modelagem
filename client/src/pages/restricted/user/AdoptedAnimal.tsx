@@ -28,7 +28,10 @@ const AdoptedAnimal = () => {
     <div className="flex flex-col w-full items-center gap-2">
       <div className="bg-blue-100 flex flex-col gap-2 items-center text-center p-4 rounded-sm w-full">
         <h1 className="font-semibold text-xl">{animal?.name}</h1>
-        <img className="w-64 aspect-square rounded-md" src={animal?.imgUrls} />
+        <img
+          className="w-64 aspect-square rounded-md"
+          src={animal?.imgUrls[0]}
+        />
         <p>{animal.species ? animal.species : animal.customSpecies}</p>
         <div className="flex flex-row">
           {animal?.gender === "MACHO" ? (

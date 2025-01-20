@@ -2,13 +2,31 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import brokenImage from "../../../assets/brokenImage.png";
 import EditPhotoModal from "../../../components/user/EditPhotoModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { users } from "../../../assets/exampleData";
+import { useAuth } from "../../../components/global/useAuth";
 
 const UserEdit = () => {
   const navigate = useNavigate();
+  const authContext = useAuth();
+  const imageUrl = authContext?.auth?.imgUrl;
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const fetchImageAsFile = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const file = new File([blob], "image.jpg", { type: blob.type });
+      setImageFile(file);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(imageFile);
+  useEffect(() => {
+    if (imageUrl) fetchImageAsFile(imageUrl);
+  }, [imageUrl]);
   const user = users[0];
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
@@ -19,7 +37,7 @@ const UserEdit = () => {
           <div className="relative group">
             <button onClick={() => setModalIsOpen(true)}>
               <img
-                className="w-32 h-32 rounded-md transition-all duration-300 group-hover:brightness-50"
+                className="w-32 object-cover h-32 rounded-md transition-all duration-300 group-hover:brightness-50"
                 src={user.imgUrl || brokenImage}
                 alt={brokenImage}
               />
@@ -129,7 +147,11 @@ const UserEdit = () => {
           </Button>
         </div>
       </div>
-      <EditPhotoModal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
+      <EditPhotoModal
+        initialImage={imageFile}
+        isOpen={modalIsOpen}
+        setIsOpen={setModalIsOpen}
+      />
     </div>
   );
 };

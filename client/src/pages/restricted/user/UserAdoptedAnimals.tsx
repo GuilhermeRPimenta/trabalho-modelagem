@@ -27,7 +27,7 @@ const UserAdoptedAnimals = () => {
 
             <img
               className="w-64 aspect-square  rounded-md"
-              src={animal.imgUrl}
+              src={animal.imgUrls[0]}
             />
             <p>{animal.species ? animal.species : animal.customSpecies}</p>
             <div className="flex flex-row">
