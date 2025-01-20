@@ -30,10 +30,10 @@ const Animal = () => {
     <div className="flex flex-col w-full items-center gap-2">
       <div className=" h-full flex flex-col gap-2 items-center text-center p-4 rounded-sm w-full">
         <div className="flex flex-col w-full xl:flex-row gap-5">
-          <div className="flex flex-col xl:basis-1/2 basis-auto gap-1">
+          <div className="flex flex-col xl:basis-1/2 basis-auto gap-2">
             <div className="flex justify-center">
               <img
-                className="w-full max-w-[30rem] aspect-square xl:w-[60vh] xl:h-[60vh] object-cover rounded-lg"
+                className="w-full shadow-lg max-w-[30rem] aspect-square xl:w-[60vh] xl:h-[60vh] object-cover rounded-lg"
                 src={animal?.imgUrls[currentImageIndex]}
                 alt={`Imagem ${currentImageIndex + 1}`}
               />
@@ -121,7 +121,7 @@ const Animal = () => {
               <h2 className="text-xl font-semibold">Doador:</h2>
               {animal.donator.name}
               <h3 className="font-semibold">Endereço</h3>
-              {`${animal.donator.address}, ${animal.donator.number}, ${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
+              {`${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
             </div>
 
             <Button>Tenho interesse</Button>

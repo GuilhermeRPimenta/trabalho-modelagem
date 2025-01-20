@@ -15,7 +15,7 @@ const UserDonatedAnimals = () => {
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais doados
       </h1>
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap w-full gap-2 justify-center">
         {donatedAniamals.map((animal) => (
           <NavLink
             to={`${animal.id}`}
@@ -27,7 +27,7 @@ const UserDonatedAnimals = () => {
             </h2>
 
             <img
-              className="w-64 aspect-square  rounded-md"
+              className="w-64 aspect-square object-cover  rounded-md"
               src={animal.imgUrls[0]}
             />
             <p>{animal.species ? animal.species : animal.customSpecies}</p>

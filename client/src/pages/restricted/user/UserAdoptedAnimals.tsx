@@ -14,7 +14,7 @@ const UserAdoptedAnimals = () => {
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais adotados
       </h1>
-      <div className="flex flex-wrap gap-2 justify-center">
+      <div className="flex flex-wrap w-full gap-2 justify-center">
         {adoptedAnimals.map((animal) => (
           <NavLink
             to={`${animal.id}`}

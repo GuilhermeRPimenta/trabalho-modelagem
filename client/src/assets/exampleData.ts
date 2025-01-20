@@ -80,6 +80,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Vacinado contra raiva",
     weight: 10,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://images.dog.ceo/breeds/havanese/00100trPORTRAIT_00100_BURST20191112123933390_COVER.jpg",
     ],
@@ -98,6 +100,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Vacinada",
     weight: null,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: ["https://images.dog.ceo/breeds/puggle/IMG_090821.jpg"],
   },
   {
@@ -114,6 +118,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: null,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
@@ -132,6 +138,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: 1.5,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
@@ -150,6 +158,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "",
     weight: 1.5,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
@@ -168,6 +178,8 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Tomou antirrábica",
     weight: 1,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
@@ -188,6 +200,8 @@ const animals: AnimalType[] = [
     healthCondition:
       "Tomou antirrábica Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur",
     weight: 1,
+    userRequests: [],
+    shelterRequests: [],
     imgUrls: [
       "https://images.pexels.com/photos/30247441/pexels-photo-30247441/free-photo-of-curious-orange-cat-sitting-in-istanbul.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/30247442/pexels-photo-30247442/free-photo-of-serene-orange-cat-resting-outdoors-in-istanbul.jpeg?auto=compress&cs=tinysrgb&w=400",

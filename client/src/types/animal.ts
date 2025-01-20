@@ -18,6 +18,8 @@ interface AnimalType {
   weight: number | null;
   donator: UserType | ShelterType;
   adopter: UserType | ShelterType | null;
+  userRequests: UserType[] | null;
+  shelterRequests: ShelterType[];
   imgUrls: string[];
 }
 
