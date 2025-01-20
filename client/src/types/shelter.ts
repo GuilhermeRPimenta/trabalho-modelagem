@@ -1,3 +1,4 @@
+import { BrazilianState } from "./states";
 import { UserType } from "./user";
 
 interface ShelterType {
@@ -11,7 +12,7 @@ interface ShelterType {
   number: string;
   neighborhood: string;
   city: string;
-  state: string;
+  state: BrazilianState;
   postalCode: string;
   imgUrl: string | null;
   users: UserType[];

@@ -39,10 +39,10 @@ const AnimalInfo = ({
                   key={img}
                   src={img}
                   alt={`Miniatura ${index + 1}`}
-                  className={`w-20 h-20 object-cover rounded-md cursor-pointer ${
+                  className={`w-20 h-20 object-cover rounded-md  ${
                     currentImageIndex === index
                       ? "border-4 border-blue-500"
-                      : "border"
+                      : "border cursor-pointer"
                   }`}
                   onClick={() => setCurrentImageIndex(index)}
                 ></img>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { users } from "../../../assets/exampleData";
 import { useAuth } from "../../../components/global/useAuth";
+import { brazilianStates } from "../../../types/states";
 
 const UserEdit = () => {
   const navigate = useNavigate();
@@ -120,12 +121,17 @@ const UserEdit = () => {
             id="addressCity"
           />
           <label htmlFor="addressState">Estado*</label>
-          <input
+          <select
             defaultValue={user.state}
             className="w-full"
-            type="text"
             id="addressState"
-          />
+          >
+            {brazilianStates.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
           <label htmlFor="addressPostalCode">CEP*</label>
           <input
             defaultValue={user.postalCode}

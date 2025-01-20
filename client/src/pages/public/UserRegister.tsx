@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/global/Button";
 import ImageInput from "../../components/global/ImageInput";
 import { ChangeEvent, useState } from "react";
+import { brazilianStates } from "../../types/states";
 
 const UserRegister = () => {
   const navigate = useNavigate();
@@ -72,7 +73,11 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="addressState">
             Estado*
           </label>
-          <input className="w-full" type="text" id="addressState" />
+          {brazilianStates.map((state, index) => (
+            <option key={index} value={state}>
+              {state}
+            </option>
+          ))}
           <label className="font-semibold" htmlFor="addressPostalCode">
             CEP*
           </label>

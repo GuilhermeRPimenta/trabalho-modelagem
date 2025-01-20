@@ -223,7 +223,7 @@ const shelters: ShelterType[] = [
     number: "999",
     neighborhood: "Parque das Gaivotas",
     city: "São Paulo",
-    state: "São Paulo",
+    state: "SP",
     postalCode: "12345-67",
     imgUrl: null,
     users: [],

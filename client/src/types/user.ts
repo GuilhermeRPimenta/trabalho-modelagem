@@ -1,5 +1,6 @@
 import { AnimalType } from "./animal";
 import { ShelterType } from "./shelter";
+import { BrazilianState } from "./states";
 
 interface UserType {
   id: number;
@@ -14,7 +15,7 @@ interface UserType {
   number: string;
   neighborhood: string;
   city: string;
-  state: string;
+  state: BrazilianState;
   postalCode: string;
   imgUrl: string | null;
   shelters: ShelterType[];
@@ -28,7 +29,7 @@ interface UserPublicData {
   number: string;
   neighborhood: string;
   city: string;
-  state: string;
+  state: BrazilianState;
 }
 
 export { type UserType, type UserPublicData };
