@@ -21,7 +21,7 @@ const Animals = () => {
             </h2>
 
             <img
-              className="w-64 aspect-square  rounded-md"
+              className="w-64 object-cover aspect-square  rounded-md"
               src={animal.imgUrls[0]}
             />
             <p>{animal.species ? animal.species : animal.customSpecies}</p>
