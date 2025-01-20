@@ -1,1 +1,75 @@
-<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram id="qbLD6MvRRH6Uopje16A_" name="Página-1">
+    <mxGraphModel dx="2261" dy="884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rOPLHnwD_URoB-REVG2p-28" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-1" target="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-1" value="PF Adotante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=entityRelationEdgeStyle;curved=0;strokeColor=default;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="rOPLHnwD_URoB-REVG2p-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-29" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-2" value="Instituições Adotantes" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-8" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;curved=0;strokeColor=default;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-5" target="rOPLHnwD_URoB-REVG2p-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-30" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-5" target="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-5" value="PF Doadora" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="280" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-9" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;curved=0;strokeColor=default;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="rOPLHnwD_URoB-REVG2p-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-11" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;curved=0;strokeColor=default;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="rOPLHnwD_URoB-REVG2p-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-31" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-6" value="Instituições Doadoras" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="630" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-7" value="Cadastro de Animal para Adoção" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="275" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-10" value="Cadastro de Funcionários" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="415" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-19" value="" style="shape=ellipse;container=1;horizontal=1;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;html=1;dashed=0;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="120" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-20" value="Fazer Login" style="html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rotatable=0;whiteSpace=wrap;" vertex="1" parent="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry x="9" y="10" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-21" value="" style="line;strokeWidth=1;fillColor=none;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;dashed=0;resizeWidth=1;" vertex="1" parent="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry x="9" y="30" width="162" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-22" value="extension points" style="text;html=1;align=center;verticalAlign=middle;rotatable=0;fillColor=none;strokeColor=none;whiteSpace=wrap;" vertex="1" parent="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry y="40" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-23" value="Fazer Cadastro" style="text;html=1;align=left;verticalAlign=middle;rotatable=0;spacingLeft=25;fillColor=none;strokeColor=none;whiteSpace=wrap;" vertex="1" parent="rOPLHnwD_URoB-REVG2p-19">
+          <mxGeometry x="20" y="60" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-25" value="Verificar cadastro" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="80" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-27" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;elbow=vertical;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-19" target="rOPLHnwD_URoB-REVG2p-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
