@@ -1,6 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
-import LandingPage from "./pages/public/LandingPage";
 import Animals from "./pages/public/Animals";
 import Login from "./pages/public/Login";
 import AdminLogin from "./pages/public/AdminLogin";
@@ -18,6 +21,8 @@ import UserDonatedAnimals from "./pages/restricted/user/UserDonatedAnimals";
 import UserDonatedAnimal from "./pages/restricted/user/UserDonatedAnimal";
 import UserAnimalsInDonation from "./pages/restricted/user/UserAnimalsInDonation";
 import UserAnimalInDonation from "./pages/restricted/user/UserAnimalInDonation";
+import About from "./pages/public/About";
+import Donations from "./pages/public/Donations";
 
 const router = createBrowserRouter(
   [
@@ -25,7 +30,9 @@ const router = createBrowserRouter(
       path: "/",
       element: <MainLayout />,
       children: [
-        { path: "/", element: <LandingPage /> },
+        { index: true, element: <Navigate to="/animals" replace /> },
+        { path: "/about", element: <About /> },
+        { path: "/donations", element: <Donations /> },
         { path: "/animals", element: <Animals /> },
         { path: "/animals/:animalId", element: <Animal /> },
         { path: "/register", element: <UserRegister /> },
