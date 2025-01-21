@@ -1,12 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/global/Button";
 import ImageInput from "../../components/global/ImageInput";
-import { ChangeEvent, useState } from "react";
-import { brazilianStates } from "../../types/states";
+import { ChangeEvent, useEffect, useState } from "react";
+import { BrazilianState, brazilianStates } from "../../types/states";
 
 const UserRegister = () => {
   const navigate = useNavigate();
   const [userImage, setUserImage] = useState<File>();
+  const [cities, setCities] = useState<string[]>([]);
+  const fetchStateCities = async (state: BrazilianState) => {
+    try {
+      const fetchedCities = await fetch(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`,
+        { method: "GET" }
+      );
+      const citiesData: { nome: string }[] = await fetchedCities.json();
+
+      setCities(citiesData.map((city) => city.nome));
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const handleUserImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
     if (file) setUserImage(file);
@@ -14,6 +28,12 @@ const UserRegister = () => {
   const removeUserImage = () => {
     setUserImage(undefined);
   };
+  const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    void fetchStateCities(e.target.value as BrazilianState);
+  };
+  useEffect(() => {
+    void fetchStateCities("AC");
+  }, []);
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">Cadastrar</h1>
@@ -45,6 +65,31 @@ const UserRegister = () => {
             Telefone*
           </label>
           <input className="w-full" type="text" id="phone" />
+          <label className="font-semibold" htmlFor="addressState">
+            Estado*
+          </label>
+          <select
+            className="w-full bg-white"
+            onChange={handleStateChange}
+            name="state"
+            id="state"
+          >
+            {brazilianStates.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          <label className="font-semibold" htmlFor="addressCity">
+            Cidade*
+          </label>
+          <select className="w-full bg-white" id="addressCity">
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
           <label className="font-semibold" htmlFor="address">
             Logradouro*
           </label>
@@ -66,18 +111,7 @@ const UserRegister = () => {
             Bairro*
           </label>
           <input className="w-full" type="text" id="addressNeighborhood" />
-          <label className="font-semibold" htmlFor="addressCity">
-            Cidade*
-          </label>
-          <input className="w-full" type="text" id="addressCity" />
-          <label className="font-semibold" htmlFor="addressState">
-            Estado*
-          </label>
-          {brazilianStates.map((state, index) => (
-            <option key={index} value={state}>
-              {state}
-            </option>
-          ))}
+
           <label className="font-semibold" htmlFor="addressPostalCode">
             CEP*
           </label>

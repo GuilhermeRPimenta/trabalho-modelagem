@@ -2,17 +2,19 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import brokenImage from "../../../assets/brokenImage.png";
 import EditPhotoModal from "../../../components/user/EditPhotoModal";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { users } from "../../../assets/exampleData";
 import { useAuth } from "../../../components/global/useAuth";
-import { brazilianStates } from "../../../types/states";
+import { BrazilianState, brazilianStates } from "../../../types/states";
 
 const UserEdit = () => {
+  const user = users[0];
   const navigate = useNavigate();
   const authContext = useAuth();
   const imageUrl = authContext?.auth?.imgUrl;
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<string>();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const fetchImageAsFile = async (url: string) => {
     try {
@@ -24,11 +26,36 @@ const UserEdit = () => {
       console.log(error);
     }
   };
-  console.log(imageFile);
+  const [cities, setCities] = useState<string[]>([]);
+  const fetchStateCities = async (state: BrazilianState) => {
+    try {
+      const fetchedCities = await fetch(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`,
+        { method: "GET" }
+      );
+      const citiesData: { nome: string }[] = await fetchedCities.json();
+
+      setCities(citiesData.map((city) => city.nome));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    void fetchStateCities(e.target.value as BrazilianState);
+  };
+  const handleCityChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(e.target.value);
+  };
+  useEffect(() => {
+    void fetchStateCities(user.state);
+  }, [user.state]);
+  useEffect(() => {
+    setSelectedCity(cities.includes(user.city) ? user.city : cities[0]);
+  }, [user.city, cities]);
   useEffect(() => {
     if (imageUrl) fetchImageAsFile(imageUrl);
   }, [imageUrl]);
-  const user = users[0];
+
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">Editar cadastro</h1>
@@ -84,6 +111,33 @@ const UserEdit = () => {
             type="text"
             id="phone"
           />
+          <label htmlFor="addressState">Estado*</label>
+          <select
+            onChange={handleStateChange}
+            defaultValue={user.state}
+            className="w-full bg-white"
+            id="addressState"
+          >
+            {brazilianStates.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="addressCity">Cidade*</label>
+          <select
+            onChange={handleCityChange}
+            value={selectedCity}
+            className="w-full bg-white"
+            id="addressCity"
+          >
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+
           <label htmlFor="address">Logradouro*</label>
           <input
             defaultValue={user.address}
@@ -113,25 +167,7 @@ const UserEdit = () => {
             type="text"
             id="addressNeighborhood"
           />
-          <label htmlFor="addressCity">Cidade*</label>
-          <input
-            defaultValue={user.city}
-            className="w-full"
-            type="text"
-            id="addressCity"
-          />
-          <label htmlFor="addressState">Estado*</label>
-          <select
-            defaultValue={user.state}
-            className="w-full"
-            id="addressState"
-          >
-            {brazilianStates.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
+
           <label htmlFor="addressPostalCode">CEP*</label>
           <input
             defaultValue={user.postalCode}
