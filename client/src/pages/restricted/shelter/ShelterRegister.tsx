@@ -1,12 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/global/Button";
 import { useAuth } from "../../../components/global/useAuth";
+import { ChangeEvent, useEffect, useState } from "react";
+import { BrazilianState, brazilianStates } from "../../../types/states";
 
 const ShelterRegister = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
+  const [cities, setCities] = useState<string[]>([]);
+  const fetchStateCities = async (state: BrazilianState) => {
+    try {
+      const fetchedCities = await fetch(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`,
+        { method: "GET" }
+      );
+      const citiesData: { nome: string }[] = await fetchedCities.json();
+
+      setCities(citiesData.map((city) => city.nome));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    void fetchStateCities("AC");
+  }, []);
   if (!authContext?.auth)
     return <h1 className="text-red-700 text-3xl">Acesso negado!</h1>;
+
+  const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    void fetchStateCities(e.target.value as BrazilianState);
+  };
+
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">
@@ -28,6 +52,31 @@ const ShelterRegister = () => {
           <input className="w-full" type="email" id="email" />
           <label htmlFor="phone">Telefone*</label>
           <input className="w-full" type="text" id="phone" />
+          <label className="font-semibold" htmlFor="addressState">
+            Estado*
+          </label>
+          <select
+            className="w-full bg-white"
+            onChange={handleStateChange}
+            name="state"
+            id="state"
+          >
+            {brazilianStates.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          <label className="font-semibold" htmlFor="addressCity">
+            Cidade*
+          </label>
+          <select className="w-full bg-white" id="addressCity">
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
           <label htmlFor="address">Logradouro*</label>
           <input className="w-full" type="text" id="address" />
           <label htmlFor="addressNumber">Número*</label>
@@ -41,10 +90,6 @@ const ShelterRegister = () => {
           <input className="w-full" type="text" id="addressComplement" />
           <label htmlFor="addressNeighborhood">Bairro*</label>
           <input className="w-full" type="text" id="addressNeighborhood" />
-          <label htmlFor="addressCity">Cidade*</label>
-          <input className="w-full" type="text" id="addressCity" />
-          <label htmlFor="addressState">Estado*</label>
-          <input className="w-full" type="text" id="addressState" />
           <label htmlFor="addressPostalCode">CEP*</label>
           <input className="w-full" type="text" id="addressPostalCode" />
           <label htmlFor="userImage">Foto</label>
