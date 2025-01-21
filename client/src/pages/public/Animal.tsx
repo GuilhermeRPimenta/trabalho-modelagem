@@ -2,9 +2,12 @@ import { useParams } from "react-router-dom";
 import { animals } from "../../assets/exampleData";
 import Button from "../../components/global/Button";
 import AnimalInfo from "../../components/global/AnimalInfo";
+import { useState } from "react";
+import UserInterestModal from "../../components/user/UserInterestModal";
 
 const Animal = () => {
   const { animalId } = useParams<{ animalId: string }>();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const animal = animals.find((animal) => animal.id === Number(animalId));
   if (!animal)
     return (
@@ -23,8 +26,9 @@ const Animal = () => {
           {`${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
         </div>
 
-        <Button>Tenho interesse</Button>
+        <Button onClick={() => setModalIsOpen(true)}>Tenho interesse</Button>
       </AnimalInfo>
+      <UserInterestModal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
     </div>
   );
 };
