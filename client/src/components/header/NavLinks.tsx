@@ -37,7 +37,8 @@ const NavLinks = ({
         to={"/login"}
         className={`${baseStyle} ${
           location.pathname === "/login" ||
-          location.pathname.startsWith("/user")
+          location.pathname.startsWith("/user") ||
+          location.pathname.startsWith("/shelters")
             ? "text-blue-700"
             : "text-black"
         }`}

@@ -310,6 +310,28 @@ const animals: AnimalType[] = [
       "https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
   },
+  {
+    donator: shelters[0],
+    adopter: null,
+    donatorType: "SHELTER",
+    adopterType: null,
+    id: 11,
+    name: "Joy",
+    gender: "FEMEA",
+    description: "Ótima companhia para a família!",
+    birthDate: null,
+    age: 8,
+    species: "CACHORRO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "Tomou antirrábica",
+    weight: 7.8,
+    userRequests: [],
+    shelterRequests: [],
+    imgUrls: [
+      "https://images.pexels.com/photos/1189673/pexels-photo-1189673.jpeg?auto=compress&cs=tinysrgb&w=400",
+    ],
+  },
 ];
 
 shelters[0].users.push(users[0]);

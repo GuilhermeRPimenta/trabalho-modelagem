@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../components/global/useAuth";
 import { shelters } from "../../../assets/exampleData";
-import Button from "../../../components/global/Button";
 import NavLink from "../../../components/global/NavLink";
 
 const ShelterHome = () => {
@@ -36,7 +35,9 @@ const ShelterHome = () => {
             <NavLink to="donatedAnimals" className="w-full">
               Doados
             </NavLink>
-            <Button className="w-full">Em adoção</Button>
+            <NavLink to="animalsInDonation" className="w-full">
+              Em adoção
+            </NavLink>
             <NavLink
               to={`/shelters/${shelterId}/animalRegister`}
               variant="constructive"
