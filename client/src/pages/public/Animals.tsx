@@ -26,7 +26,7 @@ const Animals = () => {
       setFilter((prev) => ({
         ...prev,
         state: state,
-        city: filteredCities[0].nome || null,
+        city: filteredCities[0]?.nome || null,
       }));
     } catch (e) {
       console.log(e);
