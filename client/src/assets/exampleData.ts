@@ -209,6 +209,27 @@ const animals: AnimalType[] = [
       "https://images.pexels.com/photos/1552613/pexels-photo-1552613.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
   },
+  {
+    donator: users[0],
+    adopter: null,
+    id: 8,
+    name: "Rambo",
+    gender: "MACHO",
+    description: "Canta muito bem",
+    birthDate: null,
+    age: 3,
+    species: null,
+    customSpecies: "GALO",
+    breed: null,
+    healthCondition: null,
+    weight: 3,
+    userRequests: [],
+    shelterRequests: [],
+    imgUrls: [
+      "https://cdn.pixabay.com/photo/2016/07/10/17/15/cock-1508032_640.jpg",
+      "https://cdn.pixabay.com/photo/2017/02/24/07/18/chicken-2094115_640.jpg",
+    ],
+  },
 ];
 
 const shelters: ShelterType[] = [
