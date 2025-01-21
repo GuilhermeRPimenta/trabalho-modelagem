@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../../components/global/useAuth";
 import { animals, shelters } from "../../../assets/exampleData";
 import AnimalInfo from "../../../components/global/AnimalInfo";
-import { useAuth } from "../../../components/global/useAuth";
 
-const ShelterAdoptedAnimal = () => {
+const ShelterDonatedAnimal = () => {
   const authContext = useAuth();
   const { shelterId } = useParams<{ shelterId: string }>();
-  const { adoptedAnimalId } = useParams<{ adoptedAnimalId: string }>();
+  const { donatedAnimalId } = useParams<{ donatedAnimalId: string }>();
   const animal = animals.find(
-    (animal) => animal.id === Number(adoptedAnimalId)
+    (animal) => animal.id === Number(donatedAnimalId)
   );
 
   if (!authContext?.auth)
@@ -36,17 +36,17 @@ const ShelterAdoptedAnimal = () => {
       </h1>
       <AnimalInfo animal={animal}>
         <div className="flex flex-col gap-1">
-          <h2 className="text-xl font-semibold">Doador:</h2>
-          {animal.donator.name}
+          <h2 className="text-xl font-semibold">Adotante:</h2>
+          {animal.adopter?.name}
           <h3 className="font-semibold">Endereço</h3>
-          {`${animal.donator.address}, ${animal.donator.number}, ${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
+          {`${animal.adopter?.address}, ${animal.adopter?.number}, ${animal.adopter?.neighborhood}, ${animal.adopter?.city} - ${animal.adopter?.state}`}
           <h3 className="font-semibold">Contato</h3>
-          <p>Telefone: {`${animal.donator.phone}`}</p>
-          <span>E-mail: {`${animal.donator.email}`}</span>
+          <p>Telefone: {`${animal.adopter?.phone}`}</p>
+          <span>E-mail: {`${animal.adopter?.email}`}</span>
         </div>
       </AnimalInfo>
     </div>
   );
 };
 
-export default ShelterAdoptedAnimal;
+export default ShelterDonatedAnimal;

@@ -33,7 +33,9 @@ const ShelterHome = () => {
             <NavLink to="adoptedAnimals" className="w-full">
               Adotados
             </NavLink>
-            <Button className="w-full">Doados</Button>
+            <NavLink to="donatedAnimals" className="w-full">
+              Doados
+            </NavLink>
             <Button className="w-full">Em adoção</Button>
             <NavLink
               to={`/shelters/${shelterId}/animalRegister`}

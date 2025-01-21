@@ -288,6 +288,28 @@ const animals: AnimalType[] = [
       "https://images.pexels.com/photos/6588925/pexels-photo-6588925.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
   },
+  {
+    donator: shelters[0],
+    adopter: users[2],
+    donatorType: "SHELTER",
+    adopterType: "USER",
+    id: 10,
+    name: "Ulf",
+    gender: "MACHO",
+    description: "Se dá muito bem com crianças",
+    birthDate: null,
+    age: 6,
+    species: "CACHORRO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "Tomou antirrábica",
+    weight: 8.5,
+    userRequests: [],
+    shelterRequests: [],
+    imgUrls: [
+      "https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg?auto=compress&cs=tinysrgb&w=400",
+    ],
+  },
 ];
 
 shelters[0].users.push(users[0]);
