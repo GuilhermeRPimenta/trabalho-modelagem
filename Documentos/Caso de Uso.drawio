@@ -7,6 +7,12 @@
         <mxCell id="rOPLHnwD_URoB-REVG2p-28" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-1" target="rOPLHnwD_URoB-REVG2p-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-25" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" parent="1" source="rOPLHnwD_URoB-REVG2p-1" target="YUd78-qt3cvMNxqhrN3Y-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-29" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" parent="1" source="rOPLHnwD_URoB-REVG2p-1" target="YUd78-qt3cvMNxqhrN3Y-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-1" value="PF Adotante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="-330" y="640" width="30" height="60" as="geometry" />
         </mxCell>
@@ -18,8 +24,18 @@
             <mxPoint x="-130" y="620" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-9" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="YUd78-qt3cvMNxqhrN3Y-8">
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-9" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="YUd78-qt3cvMNxqhrN3Y-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-26" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="YUd78-qt3cvMNxqhrN3Y-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-90" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-30" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-2" target="YUd78-qt3cvMNxqhrN3Y-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-90" y="740" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-2" value="Administrador Instituição Adotante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="-330" y="780" width="30" height="60" as="geometry" />
@@ -30,7 +46,7 @@
         <mxCell id="rOPLHnwD_URoB-REVG2p-30" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-5" target="rOPLHnwD_URoB-REVG2p-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-11" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-5" target="YUd78-qt3cvMNxqhrN3Y-1">
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-11" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-5" target="YUd78-qt3cvMNxqhrN3Y-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-5" value="PF Doadora" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
@@ -45,10 +61,10 @@
         <mxCell id="rOPLHnwD_URoB-REVG2p-31" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="rOPLHnwD_URoB-REVG2p-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-10" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="YUd78-qt3cvMNxqhrN3Y-8">
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-10" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="YUd78-qt3cvMNxqhrN3Y-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-12" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="YUd78-qt3cvMNxqhrN3Y-1">
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-12" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-6" target="YUd78-qt3cvMNxqhrN3Y-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="150" y="1040" as="targetPoint" />
           </mxGeometry>
@@ -57,13 +73,70 @@
           <mxGeometry x="340" y="775" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-7" value="Cadastro de Animal para Adoção" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-80" y="635" width="140" height="70" as="geometry" />
+          <mxGeometry x="-90" y="560" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-10" value="Cadastro de Funcionários" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-90" y="775" width="140" height="70" as="geometry" />
+          <mxGeometry x="-90" y="810" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="rOPLHnwD_URoB-REVG2p-19" value="" style="shape=ellipse;container=1;horizontal=1;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;html=1;dashed=0;collapsible=0;" parent="1" vertex="1">
-          <mxGeometry x="-100" y="480" width="180" height="120" as="geometry" />
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-5" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-6" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-7" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="P6qWsmmQiO2mp8JgbSfQ-1" value="Administrador Sistema" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="-330" y="1080" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-1" value="Excluir anúncio" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="990" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-2" value="Excluir contas" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="1070" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-3" value="Excluir instituições" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="1150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-8" value="Exclusão de Funcionários" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-90" y="890" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-17" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="rOPLHnwD_URoB-REVG2p-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-19" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="YUd78-qt3cvMNxqhrN3Y-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-20" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="rOPLHnwD_URoB-REVG2p-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-13" value="Funcionário Instituição Doadora" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="340" y="900" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-16" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-14" target="rOPLHnwD_URoB-REVG2p-19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-120" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-27" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-14" target="YUd78-qt3cvMNxqhrN3Y-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-90" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-31" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="YUd78-qt3cvMNxqhrN3Y-14" target="YUd78-qt3cvMNxqhrN3Y-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-90" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-14" value="Funcionário Instituição Adotante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+          <mxGeometry x="-330" y="910" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-22" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-110" y="340" width="310" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="rOPLHnwD_URoB-REVG2p-19" value="" style="shape=ellipse;container=1;horizontal=1;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;html=1;dashed=0;collapsible=0;" parent="YUd78-qt3cvMNxqhrN3Y-22" vertex="1">
+          <mxGeometry y="70" width="180" height="120" as="geometry" />
         </mxCell>
         <mxCell id="rOPLHnwD_URoB-REVG2p-20" value="Fazer Login" style="html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rotatable=0;whiteSpace=wrap;" parent="rOPLHnwD_URoB-REVG2p-19" vertex="1">
           <mxGeometry x="9" y="10" width="180" height="30" as="geometry" />
@@ -77,55 +150,17 @@
         <mxCell id="rOPLHnwD_URoB-REVG2p-23" value="Fazer Cadastro" style="text;html=1;align=left;verticalAlign=middle;rotatable=0;spacingLeft=25;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="rOPLHnwD_URoB-REVG2p-19" vertex="1">
           <mxGeometry x="20" y="60" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="rOPLHnwD_URoB-REVG2p-25" value="Verificar cadastro" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="160" y="440" width="140" height="70" as="geometry" />
+        <mxCell id="rOPLHnwD_URoB-REVG2p-25" value="Verificar cadastro" style="ellipse;whiteSpace=wrap;html=1;" parent="YUd78-qt3cvMNxqhrN3Y-22" vertex="1">
+          <mxGeometry x="170" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="rOPLHnwD_URoB-REVG2p-27" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;elbow=vertical;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="rOPLHnwD_URoB-REVG2p-19" target="rOPLHnwD_URoB-REVG2p-25" edge="1">
+        <mxCell id="rOPLHnwD_URoB-REVG2p-27" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;elbow=vertical;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="YUd78-qt3cvMNxqhrN3Y-22" source="rOPLHnwD_URoB-REVG2p-19" target="rOPLHnwD_URoB-REVG2p-25" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-5" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-24" value="Lista de Animais para adoção" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-90" y="640" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-6" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-2">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-7" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="P6qWsmmQiO2mp8JgbSfQ-1" target="YUd78-qt3cvMNxqhrN3Y-3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="P6qWsmmQiO2mp8JgbSfQ-1" value="Administrador Sistema" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
-          <mxGeometry x="-330" y="1080" width="30" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-1" value="Excluir anúncio" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="990" width="140" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-2" value="Excluir contas" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="1070" width="140" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-3" value="Excluir instituições" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="1150" width="140" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-8" value="Exclusão de Funcionários" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-90" y="860" width="140" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-17" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="rOPLHnwD_URoB-REVG2p-19">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-19" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="YUd78-qt3cvMNxqhrN3Y-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-20" style="edgeStyle=entityRelationEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="YUd78-qt3cvMNxqhrN3Y-13" target="rOPLHnwD_URoB-REVG2p-7">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-13" value="Funcionário Instituição Doadora" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="900" width="30" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-16" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YUd78-qt3cvMNxqhrN3Y-14" target="rOPLHnwD_URoB-REVG2p-19">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-120" y="610" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="YUd78-qt3cvMNxqhrN3Y-14" value="Funcionário Instituição Adotante" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="-330" y="910" width="30" height="60" as="geometry" />
+        <mxCell id="YUd78-qt3cvMNxqhrN3Y-28" value="Dados do Animal" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-90" y="730" width="140" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
