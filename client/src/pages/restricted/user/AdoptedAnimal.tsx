@@ -21,7 +21,6 @@ const AdoptedAnimal = () => {
           <h2 className="text-xl font-semibold">Doador:</h2>
           {animal.donator.name}
           <h3 className="font-semibold">Endereço</h3>
-          <h3 className="font-semibold">Endereço</h3>
           {`${animal.donator.address}, ${animal.donator.number}, ${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
           <h3 className="font-semibold">Contato</h3>
           <p>Telefone: {`${animal.donator.phone}`}</p>
