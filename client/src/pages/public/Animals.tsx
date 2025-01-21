@@ -8,10 +8,10 @@ const Animals = () => {
   const [unadoptedAnimals, setUnadoptedAnimals] = useState<AnimalType[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   const [filter, setFilter] = useState<{
-    species: string | null;
+    species: string;
     state: BrazilianState | null;
     city: string | null;
-  }>({ species: null, state: null, city: null });
+  }>({ species: "TODAS", state: null, city: null });
   const fetchStateCities = async (state: BrazilianState) => {
     try {
       const fetchedCities = await fetch(
@@ -26,14 +26,14 @@ const Animals = () => {
       setFilter((prev) => ({
         ...prev,
         state: state,
-        city: citiesData[0].nome || null,
+        city: filteredCities[0].nome || null,
       }));
     } catch (e) {
       console.log(e);
     }
   };
   const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    fetchStateCities(e.target.value as BrazilianState);
+    void fetchStateCities(e.target.value as BrazilianState);
   };
   const handleCityChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilter((prev) => ({ ...prev, city: e.target.value }));
@@ -59,6 +59,7 @@ const Animals = () => {
       )
     );
   }, [filter]);
+  console.log(filter);
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">Animais</h1>
