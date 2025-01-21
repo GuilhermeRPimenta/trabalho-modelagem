@@ -1,3 +1,4 @@
+import { Person } from "./person";
 import { ShelterType } from "./shelter";
 import { UserType } from "./user";
 
@@ -18,6 +19,8 @@ interface AnimalType {
   weight: number | null;
   donator: UserType | ShelterType;
   adopter: UserType | ShelterType | null;
+  donatorType: Person;
+  adopterType: Person | null;
   userRequests: UserType[] | null;
   shelterRequests: ShelterType[];
   imgUrls: string[];

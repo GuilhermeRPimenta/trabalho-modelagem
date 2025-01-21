@@ -6,7 +6,10 @@ const UserDonatedAnimals = () => {
   const authContext = useAuth();
 
   const donatedAniamals = animals.filter(
-    (animal) => animal.donator.id === authContext?.auth?.id && animal.adopter
+    (animal) =>
+      animal.donator.id === authContext?.auth?.id &&
+      animal.adopter &&
+      animal.donatorType === "USER"
   );
 
   return (

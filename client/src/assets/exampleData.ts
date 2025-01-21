@@ -65,10 +65,31 @@ const users: UserType[] = [
   },
 ];
 
+const shelters: ShelterType[] = [
+  {
+    id: 1,
+    name: "Abrigo Casa do Pelo",
+    cnpj: "12.345.678/0001-09",
+    phone: "(12)93456-7890",
+    email: "contato@casadopelo.com",
+    address: "Rua do mato",
+    complement: "Galpão 1",
+    number: "999",
+    neighborhood: "Parque das Gaivotas",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "12345-67",
+    imgUrl: null,
+    users: [],
+  },
+];
+
 const animals: AnimalType[] = [
   {
     donator: users[1],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 1,
     name: "Nick",
     gender: "MACHO",
@@ -89,6 +110,8 @@ const animals: AnimalType[] = [
   {
     donator: users[1],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 2,
     name: "Lucy",
     gender: "FEMEA",
@@ -107,6 +130,8 @@ const animals: AnimalType[] = [
   {
     donator: users[2],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 3,
     name: "Thor",
     gender: "MACHO",
@@ -127,6 +152,8 @@ const animals: AnimalType[] = [
   {
     donator: users[2],
     adopter: users[0],
+    donatorType: "USER",
+    adopterType: "USER",
     id: 4,
     name: "Mel",
     gender: "FEMEA",
@@ -147,6 +174,8 @@ const animals: AnimalType[] = [
   {
     donator: users[0],
     adopter: users[1],
+    donatorType: "USER",
+    adopterType: "USER",
     id: 5,
     name: "Dauda",
     gender: "MACHO",
@@ -167,6 +196,8 @@ const animals: AnimalType[] = [
   {
     donator: users[0],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 6,
     name: "Bishop",
     gender: "MACHO",
@@ -187,6 +218,8 @@ const animals: AnimalType[] = [
   {
     donator: users[0],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 7,
     name: "Hackett",
     gender: "MACHO",
@@ -212,6 +245,8 @@ const animals: AnimalType[] = [
   {
     donator: users[0],
     adopter: null,
+    donatorType: "USER",
+    adopterType: null,
     id: 8,
     name: "Rambo",
     gender: "MACHO",
@@ -230,24 +265,28 @@ const animals: AnimalType[] = [
       "https://cdn.pixabay.com/photo/2017/02/24/07/18/chicken-2094115_640.jpg",
     ],
   },
-];
-
-const shelters: ShelterType[] = [
   {
-    id: 1,
-    name: "Abrigo Casa do Pelo",
-    cnpj: "12.345.678/0001-09",
-    phone: "(12)93456-7890",
-    email: "contato@casadopelo.com",
-    address: "Rua do mato",
-    complement: "Galpão 1",
-    number: "999",
-    neighborhood: "Parque das Gaivotas",
-    city: "São Paulo",
-    state: "SP",
-    postalCode: "12345-67",
-    imgUrl: null,
-    users: [],
+    donator: users[0],
+    adopter: shelters[0],
+    donatorType: "USER",
+    adopterType: "SHELTER",
+    id: 9,
+    name: "Doge",
+    gender: "MACHO",
+    description: "",
+    birthDate: null,
+    age: 5,
+    species: "CACHORRO",
+    customSpecies: null,
+    breed: "Shiba Inu",
+    healthCondition: "Tomou antirrábica",
+    weight: 9,
+    userRequests: [],
+    shelterRequests: [],
+    imgUrls: [
+      "https://images.pexels.com/photos/8528933/pexels-photo-8528933.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://images.pexels.com/photos/6588925/pexels-photo-6588925.jpeg?auto=compress&cs=tinysrgb&w=400",
+    ],
   },
 ];
 

@@ -23,6 +23,8 @@ import UserAnimalsInDonation from "./pages/restricted/user/UserAnimalsInDonation
 import UserAnimalInDonation from "./pages/restricted/user/UserAnimalInDonation";
 import About from "./pages/public/About";
 import Donations from "./pages/public/Donations";
+import ShelterAdoptedAnimals from "./pages/restricted/shelter/ShelterAdoptedAnimals";
+import ShelterAdoptedAnimal from "./pages/restricted/shelter/ShelterAdoptedAnimal";
 
 const router = createBrowserRouter(
   [
@@ -60,6 +62,14 @@ const router = createBrowserRouter(
         {
           path: "/shelters/:shelterId/animalRegister",
           element: <AnimalRegisterByShelter />,
+        },
+        {
+          path: "/shelters/:shelterId/adoptedAnimals",
+          element: <ShelterAdoptedAnimals />,
+        },
+        {
+          path: "/shelters/:shelterId/adoptedAnimals/:adoptedAnimalId",
+          element: <ShelterAdoptedAnimal />,
         },
         { path: "/admin", element: <AdminLogin /> },
       ],

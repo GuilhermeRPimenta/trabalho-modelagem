@@ -30,7 +30,9 @@ const ShelterHome = () => {
           {/*Substituir div acima por form*/}
           <h2 className="text-2xl font-semibold">Animais do abrigo</h2>
           <div className="flex sm:flex-row flex-col text-center gap-2 w-full">
-            <Button className="w-full">Adotados</Button>
+            <NavLink to="adoptedAnimals" className="w-full">
+              Adotados
+            </NavLink>
             <Button className="w-full">Doados</Button>
             <Button className="w-full">Em adoção</Button>
             <NavLink

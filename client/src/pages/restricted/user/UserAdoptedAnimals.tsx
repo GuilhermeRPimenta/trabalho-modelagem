@@ -5,7 +5,9 @@ import AnimalCardList from "../../../components/global/AnimalCardList";
 const UserAdoptedAnimals = () => {
   const authContext = useAuth();
   const adoptedAnimals = animals.filter(
-    (animal) => animal.adopter?.id === authContext?.auth?.id
+    (animal) =>
+      animal.adopter?.id === authContext?.auth?.id &&
+      animal.adopterType === "USER"
   );
 
   return (

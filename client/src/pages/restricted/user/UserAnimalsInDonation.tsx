@@ -5,7 +5,10 @@ import AnimalCardList from "../../../components/global/AnimalCardList";
 const UserAnimalsInDonation = () => {
   const authContext = useAuth();
   const animalsInDonation = animals.filter(
-    (animal) => animal.donator?.id === authContext?.auth?.id && !animal.adopter
+    (animal) =>
+      animal.donator?.id === authContext?.auth?.id &&
+      !animal.adopter &&
+      animal.donatorType === "USER"
   );
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
