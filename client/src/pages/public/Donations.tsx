@@ -7,7 +7,7 @@ const Index = () => {
         <section className="container mx-auto px-4 py-12">
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">Quero Ajudar</h1>
           <p className="text-lg mb-4">
-            O Adote é a <span className="font-bold">maior plataforma de adoção de pets</span> do Brasil.
+            O Adote Aqui é a <span className="font-bold">maior plataforma de adoção de pets</span> do Brasil.
           </p>
           <p className="text-lg mb-8">
             Nosso objetivo é dar visibilidade aos cães e gatos que estão em abrigos de todo o país ao conectá-los com pessoas que querem ter um bichinho. Ao fazer sua doação, você nos ajuda a continuar este trabalho!
