@@ -45,17 +45,20 @@ const User = () => {
       <h1 className="text-blue-700 text-3xl font-dynapuff">
         Administrar usuários
       </h1>
-      <div className="flex flex-col sm:flex-row gap-2 sm:items-start items-center">
+      <div className="flex flex-col lg:flex-row gap-2 lg:items-start items-center">
         <img
           src={`${user.imgUrl}`}
           alt="Imagem do usuário"
-          className=" aspect-square h-full max-h-[204px] object-cover rounded-lg"
+          className=" aspect-square h-full max-h-[300px] object-cover rounded-lg"
         />
 
         <div>
           <h2 className="text-3xl font-semibold">{user.name}</h2>
-          <p className="flex items-center text-lg">
-            <CiLocationOn />
+          <p className="flex items-center text-lg">Id: {user.id}</p>
+          <p className="flex items-start text-lg">
+            <span className="flex items-center mt-1 mr-1">
+              <CiLocationOn />
+            </span>
             {user.address}, {user.number}
             {user.complement && " | " + `${user.complement}`},{" "}
             {user.neighborhood}, {user.city} - {user.state}
@@ -63,18 +66,22 @@ const User = () => {
           <p className="flex items-center text-lg">CEP: {user.postalCode}</p>
           <p className="flex items-center text-lg">CPF: {user.cpf}</p>
           <p className="flex items-center text-lg">
-            <MdOutlineMail />
+            <span className="flex items-start mt-1 mr-1">
+              <MdOutlineMail />
+            </span>
             {user.email}
           </p>
 
-          <p className="flex items-center text-lg">
-            <FaWhatsapp />
+          <p className="flex items-start text-lg">
+            <span className="flex items-center mt-1 mr-1">
+              <FaWhatsapp />
+            </span>
             {user.phone}
           </p>
-          <p className="flex items-center text-lg">
+          <p className="flex items-start text-lg">
             Data de nascimento: {user.birthDate}
           </p>
-          <p className="flex items-center text-lg">
+          <p className="flex items-start text-lg">
             Registrado em:{" "}
             {user.createdAt.toLocaleString("pt-BR", {
               day: "2-digit",
@@ -85,7 +92,7 @@ const User = () => {
               second: "2-digit",
             })}
           </p>
-          <div className="flex justify-center sm:justify-start">
+          <div className="flex justify-center lg:justify-start">
             <Button variant="desctructive">Exluir usuário</Button>
           </div>
         </div>
