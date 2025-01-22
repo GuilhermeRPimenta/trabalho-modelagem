@@ -71,7 +71,9 @@ const NavLinks = ({
         to={"/adminLogin"}
         className={({ isActive }) =>
           `${baseStyle} ${baseStyle} ${
-            isActive ? "text-blue-700" : "text-black"
+            isActive || location.pathname.startsWith("/admin")
+              ? "text-blue-700"
+              : "text-black"
           }`
         }
       >
