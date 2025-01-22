@@ -5,15 +5,17 @@ import { NavLink } from "react-router-dom";
 const AnimalCardList = ({
   animals,
   showDonatorAddress,
+  customBaseUrl,
 }: {
   animals: AnimalType[];
   showDonatorAddress?: boolean;
+  customBaseUrl?: string;
 }) => {
   return (
     <div className="flex flex-wrap w-full gap-2 justify-center">
       {animals.map((animal) => (
         <NavLink
-          to={`${animal.id}`}
+          to={`${customBaseUrl ? customBaseUrl + "/" + animal.id : animal.id}`}
           key={animal.id}
           style={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.45)" }}
           className="flex flex-col gap-2 items-center text-center p-1 rounded-sm transition-all duration-75 hover:bg-blue-100 hover:cursor-pointer w-full max-w-64 group"

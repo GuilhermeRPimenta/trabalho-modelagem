@@ -91,11 +91,14 @@ const User = () => {
         </div>
       </div>
       <h3 className="text-2xl font-semibold">Animais em adoção: </h3>
-      <AnimalCardList animals={animalsInDonation} />
+      <AnimalCardList
+        customBaseUrl="/admin/animals"
+        animals={animalsInDonation}
+      />
       <h3 className="text-2xl font-semibold">Animais doados:</h3>
-      <AnimalCardList animals={donatedAnimals} />
+      <AnimalCardList customBaseUrl="/admin/animals" animals={donatedAnimals} />
       <h3 className="text-2xl font-semibold">Animais adotados:</h3>
-      <AnimalCardList animals={adoptedAnimals} />
+      <AnimalCardList customBaseUrl="/admin/animals" animals={adoptedAnimals} />
 
       <h3 className="text-2xl font-semibold">Abrigos: </h3>
       {user.shelters.map((shelter) => (
