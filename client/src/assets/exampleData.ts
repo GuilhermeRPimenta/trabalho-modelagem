@@ -22,6 +22,8 @@ const users: UserType[] = [
       "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     shelters: [],
     animals: [],
+    adoptedAnimals: [],
+    createdAt: new Date(),
   },
   {
     id: 2,
@@ -42,9 +44,11 @@ const users: UserType[] = [
       "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400",
     shelters: [],
     animals: [],
+    adoptedAnimals: [],
+    createdAt: new Date(),
   },
   {
-    id: 2,
+    id: 3,
     name: "Bruno Edson",
     birthDate: "1995-09-10",
     email: "example3@gmail.com",
@@ -62,6 +66,8 @@ const users: UserType[] = [
       "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400",
     shelters: [],
     animals: [],
+    adoptedAnimals: [],
+    createdAt: new Date(),
   },
 ];
 

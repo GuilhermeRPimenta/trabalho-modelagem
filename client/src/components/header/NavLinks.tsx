@@ -68,7 +68,7 @@ const NavLinks = ({
       </NavLink>
       <NavLink
         onClick={handleNavLinkClick}
-        to={"/admin"}
+        to={"/adminLogin"}
         className={({ isActive }) =>
           `${baseStyle} ${baseStyle} ${
             isActive ? "text-blue-700" : "text-black"

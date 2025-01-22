@@ -5,7 +5,7 @@ import AnimalCardList from "../../../components/global/AnimalCardList";
 const UserDonatedAnimals = () => {
   const authContext = useAuth();
 
-  const donatedAniamals = animals.filter(
+  const donatedAnimals = animals.filter(
     (animal) =>
       animal.donator.id === authContext?.auth?.id &&
       animal.adopter &&
@@ -17,7 +17,7 @@ const UserDonatedAnimals = () => {
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais doados
       </h1>
-      <AnimalCardList animals={donatedAniamals} />
+      <AnimalCardList animals={donatedAnimals} />
     </div>
   );
 };

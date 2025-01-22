@@ -20,6 +20,8 @@ interface UserType {
   imgUrl: string | null;
   shelters: ShelterType[];
   animals: AnimalType[];
+  adoptedAnimals: AnimalType[];
+  createdAt: Date;
 }
 
 interface UserPublicData {
