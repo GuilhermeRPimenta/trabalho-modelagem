@@ -59,7 +59,7 @@ const users: UserType[] = [
     complement: "Apartamento 201, bloco 3",
     number: "546",
     neighborhood: "São Marcos",
-    city: "Campinas",
+    city: "São Paulo",
     state: "SP",
     postalCode: "98517-824",
     imgUrl:
