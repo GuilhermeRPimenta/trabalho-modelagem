@@ -34,6 +34,7 @@ import Users from "./pages/restricted/admin/Users";
 import User from "./pages/restricted/admin/User";
 import AdminAnimal from "./pages/restricted/admin/AdminAnimal";
 import AdminAnimals from "./pages/restricted/admin/AdminAnimals";
+import AdminShelters from "./pages/restricted/admin/AdminShelters";
 
 const router = createBrowserRouter(
   [
@@ -102,6 +103,7 @@ const router = createBrowserRouter(
         { path: "/admin/users/:userId", element: <User /> },
         { path: "/admin/animals", element: <AdminAnimals /> },
         { path: "/admin/animals/:animalId", element: <AdminAnimal /> },
+        { path: "/admin/shelters", element: <AdminShelters /> },
       ],
     },
   ],
