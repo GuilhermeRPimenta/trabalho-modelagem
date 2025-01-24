@@ -1,6 +1,8 @@
 import { BrazilianState } from "./states";
 import { UserType } from "./user";
 
+type UserRoleInShelter = "ADMINISTRATOR" | "COLLABORATOR";
+
 interface ShelterType {
   id: number;
   name: string;
@@ -15,7 +17,9 @@ interface ShelterType {
   state: BrazilianState;
   postalCode: string;
   imgUrl: string | null;
-  users: UserType[];
+  users: { user: UserType; role: UserRoleInShelter }[];
+  foundationDate: Date;
+  createdAt: Date;
 }
 
 export { type ShelterType };

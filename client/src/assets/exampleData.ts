@@ -69,6 +69,27 @@ const users: UserType[] = [
     adoptedAnimals: [],
     createdAt: new Date(),
   },
+  {
+    id: 4,
+    name: "Francisco de Santa",
+    birthDate: "1975-10-10",
+    email: "example4@gmail.com",
+    password: "123456",
+    cpf: "534.545.476-99",
+    phone: "(11) 92222-7777",
+    address: "Rua Água Rasa",
+    complement: "Apartamento 205, bloco 1",
+    number: "1005",
+    neighborhood: "São Caetano",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "12478-824",
+    imgUrl: null,
+    shelters: [],
+    animals: [],
+    adoptedAnimals: [],
+    createdAt: new Date(),
+  },
 ];
 
 const shelters: ShelterType[] = [
@@ -85,8 +106,28 @@ const shelters: ShelterType[] = [
     city: "São Paulo",
     state: "SP",
     postalCode: "12345-67",
-    imgUrl: null,
+    imgUrl: "https://cdn-icons-png.flaticon.com/512/8454/8454352.png",
     users: [],
+    foundationDate: new Date(953799656368),
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    name: "Instituto Atacauda",
+    cnpj: "78.345.475/0001-09",
+    phone: "(12)75555-7890",
+    email: "contato@institutoatacauda.com",
+    address: "Rua Barbosa",
+    complement: null,
+    number: "584",
+    neighborhood: "Parque Solar",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "12845-67",
+    imgUrl: "https://cdn-icons-png.flaticon.com/512/1491/1491099.png",
+    users: [],
+    foundationDate: new Date(753799656368),
+    createdAt: new Date(),
   },
 ];
 
@@ -340,7 +381,9 @@ const animals: AnimalType[] = [
   },
 ];
 
-shelters[0].users.push(users[0]);
+shelters[0].users.push({ user: users[0], role: "ADMINISTRATOR" });
+shelters[0].users.push({ user: users[3], role: "COLLABORATOR" });
 users[0].shelters.push(shelters[0]);
+users[3].shelters.push(shelters[0]);
 
 export { animals, users, shelters };

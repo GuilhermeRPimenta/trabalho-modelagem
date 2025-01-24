@@ -24,14 +24,12 @@ const AdminAnimals = () => {
         { method: "GET" }
       );
       const citiesData: { nome: string }[] = await fetchedCities.json();
-      const filteredCities = citiesData.filter((city) =>
-        animals.some((animal) => animal.donator.city === city.nome)
-      );
-      setCities(filteredCities.map((city) => city.nome));
+
+      setCities(citiesData.map((city) => city.nome));
       setFilter((prev) => ({
         ...prev,
         state: state,
-        city: filteredCities[0]?.nome || null,
+        city: null,
       }));
     } catch (e) {
       console.log(e);
@@ -41,7 +39,11 @@ const AdminAnimals = () => {
     void fetchStateCities(e.target.value as BrazilianState);
   };
   const handleCityChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilter((prev) => ({ ...prev, city: e.target.value }));
+    const val = e.target.value;
+    setFilter((prev) => ({
+      ...prev,
+      city: val === "%ALL" ? null : e.target.value,
+    }));
   };
   const handleSpeciesChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilter((prev) => ({ ...prev, species: e.target.value }));
@@ -66,7 +68,7 @@ const AdminAnimals = () => {
             ? true
             : filter.species === animal.species) &&
           animal.donator.state === filter.state &&
-          animal.donator.city === filter.city
+          (filter.city === null || animal.donator.city === filter.city)
       )
     );
     setAdoptedAnimals(
@@ -79,7 +81,7 @@ const AdminAnimals = () => {
             ? true
             : filter.species === animal.species) &&
           animal.donator.state === filter.state &&
-          animal.donator.city === filter.city
+          (filter.city === null || animal.donator.city === filter.city)
       )
     );
   }, [filter]);
@@ -127,12 +129,18 @@ const AdminAnimals = () => {
           id="city"
           className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
         >
+          <option value="%ALL">Todas as cidades</option>
           {cities.map((city, index) => (
             <option key={index} value={city}>
               {city}
             </option>
           ))}
         </select>
+        <input
+          type="text"
+          className="outline outline-1 outline-blue-700 rounded-lg p-2"
+          placeholder="Pesquisar nome..."
+        />
       </div>
 
       <AnimalCardList
@@ -144,6 +152,7 @@ const AdminAnimals = () => {
             : unadoptedAnimals
         }
         showDonatorAddress
+        showDonationStatus
       />
     </div>
   );

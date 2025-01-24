@@ -17,6 +17,11 @@ const UserDonatedAnimals = () => {
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais doados
       </h1>
+      <input
+        type="text"
+        className="outline outline-1 outline-blue-700 rounded-lg p-2"
+        placeholder="Pesquisar nome..."
+      />
       <AnimalCardList animals={donatedAnimals} />
     </div>
   );

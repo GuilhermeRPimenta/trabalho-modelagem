@@ -1,15 +1,18 @@
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { AnimalType } from "../../types/animal";
 import { NavLink } from "react-router-dom";
+import { FaCheckCircle } from "react-icons/fa";
 
 const AnimalCardList = ({
   animals,
   showDonatorAddress,
+  showDonationStatus,
   customBaseUrl,
 }: {
   animals: AnimalType[];
   showDonatorAddress?: boolean;
   customBaseUrl?: string;
+  showDonationStatus?: boolean;
 }) => {
   return (
     <div className="flex flex-wrap w-full gap-2 justify-center">
@@ -46,6 +49,16 @@ const AnimalCardList = ({
             <p>
               {animal.donator.neighborhood}, {animal.donator.city} -
               {animal.donator.state}
+            </p>
+          )}
+          {showDonationStatus && (
+            <p className="mt-auto flex items-center text-green-600">
+              {animal.adopter && (
+                <>
+                  <FaCheckCircle />
+                  ADOTADO!
+                </>
+              )}
             </p>
           )}
         </NavLink>
