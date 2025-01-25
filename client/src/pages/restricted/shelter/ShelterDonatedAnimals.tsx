@@ -9,7 +9,8 @@ const ShelterDonatedAnimals = () => {
   const adoptedAnimals = animals.filter(
     (animal) =>
       animal.donator?.id === Number(shelterId) &&
-      animal.donatorType === "SHELTER"
+      animal.donatorType === "SHELTER" &&
+      animal.adopter
   );
   if (!authContext?.auth)
     return <h1 className="text-red-700 text-3xl">Acesso negado!</h1>;

@@ -418,8 +418,14 @@ shelters[1].users.push({
   role: "ADMINISTRATOR",
   addedAt: new Date(1730231111000),
 });
+shelters[1].users.push({
+  user: users[0],
+  role: "COLLABORATOR",
+  addedAt: new Date(1730231101000),
+});
 users[0].shelters.push(shelters[0]);
 users[3].shelters.push(shelters[0]);
 users[4].shelters.push(shelters[1]);
+users[0].shelters.push(shelters[1]);
 
 export { animals, users, shelters };

@@ -44,10 +44,13 @@ const ShelterHome = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
-        <h2 className="text-2xl font-semibold">Área de administrador</h2>
-        <NavLink to={`/shelters/${shelterId}/admin`}>Admin</NavLink>
-      </div>
+      {shelter.users.find((user) => user.role === "ADMINISTRATOR")?.user.id ===
+        authContext.auth.id && (
+        <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
+          <h2 className="text-2xl font-semibold">Área de administrador</h2>
+          <NavLink to={`/shelters/${shelterId}/admin`}>Admin</NavLink>
+        </div>
+      )}
     </div>
   );
 };
