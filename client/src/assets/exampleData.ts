@@ -403,9 +403,21 @@ const animals: AnimalType[] = [
   },
 ];
 
-shelters[0].users.push({ user: users[0], role: "ADMINISTRATOR" });
-shelters[0].users.push({ user: users[3], role: "COLLABORATOR" });
-shelters[1].users.push({ user: users[4], role: "ADMINISTRATOR" });
+shelters[0].users.push({
+  user: users[0],
+  role: "ADMINISTRATOR",
+  addedAt: new Date(1676484730000),
+});
+shelters[0].users.push({
+  user: users[3],
+  role: "COLLABORATOR",
+  addedAt: new Date(1685034107000),
+});
+shelters[1].users.push({
+  user: users[4],
+  role: "ADMINISTRATOR",
+  addedAt: new Date(1730231111000),
+});
 users[0].shelters.push(shelters[0]);
 users[3].shelters.push(shelters[0]);
 users[4].shelters.push(shelters[1]);

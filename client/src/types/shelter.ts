@@ -17,7 +17,7 @@ interface ShelterType {
   state: BrazilianState;
   postalCode: string;
   imgUrl: string | null;
-  users: { user: UserType; role: UserRoleInShelter }[];
+  users: { user: UserType; role: UserRoleInShelter; addedAt: Date }[];
   foundationDate: Date;
   createdAt: Date;
 }
