@@ -3,6 +3,7 @@ import { animals } from "../../../assets/exampleData";
 import AnimalInfo from "../../../components/global/AnimalInfo";
 import { personTranslationMap } from "../../../translations/PersonTranslation";
 import Button from "../../../components/global/Button";
+import { NavLink } from "react-router-dom";
 
 const AdminAnimal = () => {
   const { animalId } = useParams<{ animalId: string }>();
@@ -19,7 +20,15 @@ const AdminAnimal = () => {
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">Doador:</h2>
           <p>Tipo: {personTranslationMap.get(animal.donatorType)}</p>
-          {animal.donator.name}
+          <NavLink
+            className={"underline text-blue-500"}
+            to={`/admin/${
+              animal.donatorType === "SHELTER" ? "shelters" : "users"
+            }/${animal.donator.id}`}
+          >
+            {animal.donator.name}
+          </NavLink>
+
           <p>{"Id: " + animal.donator.id}</p>
 
           <h3 className="font-semibold">Endereço</h3>
@@ -35,7 +44,15 @@ const AdminAnimal = () => {
                 {animal.adopterType &&
                   personTranslationMap.get(animal.adopterType)}
               </p>
-              {animal.adopter.name}
+              <NavLink
+                className={"underline text-blue-500"}
+                to={`/admin/${
+                  animal.adopterType === "SHELTER" ? "shelters" : "users"
+                }/${animal.adopter.id}`}
+              >
+                {animal.adopter.name}
+              </NavLink>
+
               <p>{"Id: " + animal.adopter.id}</p>
               <h3 className="font-semibold">Endereço</h3>
               {`${animal.adopter.neighborhood}, ${animal.adopter.city} - ${animal.adopter.state}`}

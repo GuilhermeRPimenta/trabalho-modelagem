@@ -1,13 +1,18 @@
 import { NavLink } from "react-router-dom";
 import brokenImage from "../../assets/brokenImage.png";
 import { ShelterType } from "../../types/shelter";
+import { UserType } from "../../types/user";
 
 const SheltersCardList = ({
   shelters,
   customBaseUrl,
+  showUserAdminRole,
+  user,
 }: {
   shelters: ShelterType[];
   customBaseUrl?: string;
+  showUserAdminRole?: boolean;
+  user?: UserType;
 }) => {
   return (
     <div className="flex flex-wrap w-full gap-2 justify-center">
@@ -32,6 +37,11 @@ const SheltersCardList = ({
           <p>
             {shelter.neighborhood}, {shelter.city} -{shelter.state}
           </p>
+          {showUserAdminRole &&
+            shelter.users.find((user) => user.role === "ADMINISTRATOR")?.user
+              .id === user?.id && (
+              <p className="text-yellow-600">Administrador</p>
+            )}
         </NavLink>
       ))}
     </div>

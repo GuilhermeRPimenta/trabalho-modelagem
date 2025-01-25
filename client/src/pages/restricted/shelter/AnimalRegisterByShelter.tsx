@@ -18,13 +18,9 @@ const AnimalRegisterByShelter = () => {
   const shelter = shelters.find((shelter) => shelter.id === Number(shelterId));
   if (
     !shelter ||
-    !shelter.users.find((user) => user.id === authContext.auth?.id)
+    !shelter.users.find((user) => user.user.id === authContext.auth?.id)
   )
-    return (
-      <h1 className="font-dynapuff text-3xl text-blue-500">
-        Abrigo não encontrado
-      </h1>
-    );
+    return <h1 className="text-red-700 text-3xl">Acesso negado!</h1>;
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">

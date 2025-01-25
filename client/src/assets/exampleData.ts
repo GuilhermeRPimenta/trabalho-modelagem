@@ -90,6 +90,28 @@ const users: UserType[] = [
     adoptedAnimals: [],
     createdAt: new Date(),
   },
+  {
+    id: 5,
+    name: "Walter Santos",
+    birthDate: "1984-12-09",
+    email: "example5@gmail.com",
+    password: "123456",
+    cpf: "821.781.151-77",
+    phone: "(11) 92222-1110",
+    address: "Rua Dom Pedro",
+    complement: null,
+    number: "14",
+    neighborhood: "São João",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "54269-824",
+    imgUrl:
+      "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=400",
+    shelters: [],
+    animals: [],
+    adoptedAnimals: [],
+    createdAt: new Date(),
+  },
 ];
 
 const shelters: ShelterType[] = [
@@ -126,7 +148,7 @@ const shelters: ShelterType[] = [
     postalCode: "12845-67",
     imgUrl: "https://cdn-icons-png.flaticon.com/512/1491/1491099.png",
     users: [],
-    foundationDate: new Date(753799656368),
+    foundationDate: new Date(753799646368),
     createdAt: new Date(),
   },
 ];
@@ -383,7 +405,9 @@ const animals: AnimalType[] = [
 
 shelters[0].users.push({ user: users[0], role: "ADMINISTRATOR" });
 shelters[0].users.push({ user: users[3], role: "COLLABORATOR" });
+shelters[1].users.push({ user: users[4], role: "ADMINISTRATOR" });
 users[0].shelters.push(shelters[0]);
 users[3].shelters.push(shelters[0]);
+users[4].shelters.push(shelters[1]);
 
 export { animals, users, shelters };
