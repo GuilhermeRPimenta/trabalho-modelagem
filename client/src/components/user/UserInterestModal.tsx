@@ -92,7 +92,7 @@ const UserInterestModal = ({
         ) : (
           <>
             {pageState === "FORM" && (
-              <form className="flex overflow-auto items-center flex-col gap-1">
+              <form className="flex px-1 overflow-auto items-center flex-col gap-1">
                 {authContext &&
                   authContext.auth &&
                   authContext.auth.shelters.length > 0 && (
