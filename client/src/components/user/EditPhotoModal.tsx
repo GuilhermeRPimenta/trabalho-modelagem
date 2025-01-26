@@ -40,7 +40,7 @@ const EditPhotoModal = ({
         !isOpen && "hidden"
       }`}
     >
-      <div className=" flex flex-col bg-white gap-4 rounded-lg p-5">
+      <div className=" flex flex-col bg-white gap-4 max-h-[90vh] rounded-lg p-5">
         <div className="flex items-center  w-full">
           <h1 className="font-dynapuff  text-blue-700 text-xl">
             Atualizar foto
@@ -57,7 +57,7 @@ const EditPhotoModal = ({
         </div>
 
         {pageState === "FORM" && (
-          <form className="flex justify-center items-center flex-col gap-1">
+          <form className="flex overflow-auto items-center flex-col gap-1">
             {userImage && (
               <div className="w-full flex flex-col items-center py-2">
                 <h3>Foto de perfil selecionada:</h3>
@@ -85,7 +85,7 @@ const EditPhotoModal = ({
         )}
         {pageState === "LOADING" && <LoadingIcon className="text-7xl w-full" />}
         {pageState === "SUCCESS" && (
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col overflow-auto">
             <FaRegCheckCircle className="text-7xl w-full text-green-300 mb-5" />
             <p className="font-bold text-2xl">Foto de perfil atualizada!</p>
             <Button className="mt-2" onClick={resetModal}>
@@ -94,7 +94,7 @@ const EditPhotoModal = ({
           </div>
         )}
         {pageState === "ERROR" && (
-          <div className="flex flex-col text-center justify-center">
+          <div className="flex flex-col text-center overflow-auto">
             <VscError className="text-7xl w-full text-red-500 mb-5" />
             Algo deu errado!
             <div className="flex justify-center">

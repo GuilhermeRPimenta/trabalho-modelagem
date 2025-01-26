@@ -25,7 +25,7 @@ const AddCollaboratorModal = ({
         !isOpen && "hidden"
       }`}
     >
-      <div className=" flex flex-col bg-white gap-4 rounded-lg p-5">
+      <div className=" flex flex-col bg-white gap-4 max-h-[90vh] rounded-lg p-5">
         <div className="flex items-center  w-full">
           <h1 className="font-dynapuff  text-blue-700 text-xl">
             Adicionar colaborador
@@ -42,7 +42,7 @@ const AddCollaboratorModal = ({
         </div>
 
         {pageState === "FORM" && (
-          <form className="flex justify-center items-center flex-col gap-1">
+          <form className="flex overflow-auto items-center flex-col gap-1">
             <label htmlFor="justification">CPF do colaborador</label>
             <input
               className="w-full outline outline-1 outline-blue-700"
@@ -61,7 +61,7 @@ const AddCollaboratorModal = ({
         )}
         {pageState === "LOADING" && <LoadingIcon className="text-7xl w-full" />}
         {pageState === "SUCCESS" && (
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col overflow-auto">
             <FaRegCheckCircle className="text-7xl w-full text-green-300 mb-5" />
             <p className="font-bold text-2xl">Colaborador adicionado!</p>
             <Button className="mt-2" onClick={resetModal}>
@@ -70,7 +70,7 @@ const AddCollaboratorModal = ({
           </div>
         )}
         {pageState === "ERROR" && (
-          <div className="flex flex-col text-center justify-center">
+          <div className="flex flex-col text-center overflow-auto">
             <VscError className="text-7xl w-full text-red-500 mb-5" />
             Algo deu errado!
             <div className="flex justify-center">
