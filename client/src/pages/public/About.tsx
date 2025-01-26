@@ -11,9 +11,6 @@ const About = () => {
         <p className="text-md text-justify">
           O "Adote Aqui" é uma das maiores plataformas online para adoção de animais no Brasil. Acreditamos que todo animal de rua merece um lar e nos dedicamos a conectar cães e gatos em abrigos com pessoas dispostas a adotá-los.
         </p>
-        <div className="flex justify-center">
-        
-        </div>
         <h3 className="text-xl font-bold mt-4 ">Como funciona</h3>
         <p className="text-md text-justify">
           Nós não temos abrigos, e nem fazemos resgates de animais! Nosso trabalho é 100% online, oferecendo visibilidade aos animaizinhos que precisam de um lar. Funciona assim:
