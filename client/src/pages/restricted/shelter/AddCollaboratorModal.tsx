@@ -42,7 +42,8 @@ const AddCollaboratorModal = ({
         </div>
 
         {pageState === "FORM" && (
-          <form className="flex overflow-auto items-center flex-col gap-1">
+          <div className="flex overflow-auto items-center flex-col px-1 gap-1">
+            {/*Trocar div acima por form*/}
             <label htmlFor="justification">CPF do colaborador</label>
             <input
               className="w-full outline outline-1 outline-blue-700"
@@ -57,7 +58,7 @@ const AddCollaboratorModal = ({
             <Button variant="constructive" className="mt-3">
               Adicionar
             </Button>
-          </form>
+          </div>
         )}
         {pageState === "LOADING" && <LoadingIcon className="text-7xl w-full" />}
         {pageState === "SUCCESS" && (

@@ -97,7 +97,7 @@ const users: UserType[] = [
   {
     id: 5,
     name: "Walter Santos",
-    birthDate: "1984-12-09",
+    birthDate: "1954-12-09",
     email: "example5@gmail.com",
     password: "123456",
     cpf: "821.781.151-77",
@@ -118,7 +118,7 @@ const users: UserType[] = [
     createdAt: new Date(),
   },
   {
-    id: 1,
+    id: 6,
     name: "Manoel Carvalho",
     birthDate: "1989-05-11",
     email: "example6@gmail.com",

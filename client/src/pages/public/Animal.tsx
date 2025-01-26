@@ -4,6 +4,7 @@ import Button from "../../components/global/Button";
 import AnimalInfo from "../../components/global/AnimalInfo";
 import { useState } from "react";
 import UserInterestModal from "../../components/user/UserInterestModal";
+import { NavLink } from "react-router-dom";
 
 const Animal = () => {
   const { animalId } = useParams<{ animalId: string }>();
@@ -21,7 +22,17 @@ const Animal = () => {
       <AnimalInfo animal={animal}>
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">Doador:</h2>
-          {animal.donator.name}
+          <NavLink
+            to={
+              animal.donatorType === "USER"
+                ? `/users/${animal.donator.id}`
+                : `/sheltersProfiles/${animal.donator.id}`
+            }
+            className={"underline text-blue-500"}
+          >
+            {animal.donator.name}
+          </NavLink>
+
           <h3 className="font-semibold">Endereço</h3>
           {`${animal.donator.neighborhood}, ${animal.donator.city} - ${animal.donator.state}`}
         </div>

@@ -92,7 +92,8 @@ const UserInterestModal = ({
         ) : (
           <>
             {pageState === "FORM" && (
-              <form className="flex px-1 overflow-auto items-center flex-col gap-1">
+              <div className="flex px-1 overflow-auto items-center flex-col gap-1">
+                {/*Trocar div acima por form*/}
                 {authContext &&
                   authContext.auth &&
                   authContext.auth.shelters.length > 0 && (
@@ -142,7 +143,7 @@ const UserInterestModal = ({
                 <Button variant="constructive" className="mt-3">
                   Enviar
                 </Button>
-              </form>
+              </div>
             )}
             {pageState === "LOADING" && (
               <LoadingIcon className="text-7xl w-full" />

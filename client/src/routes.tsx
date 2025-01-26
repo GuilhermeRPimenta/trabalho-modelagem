@@ -42,6 +42,8 @@ import UserEditAnimal from "./pages/restricted/user/UserEditAnimal";
 import ShelterEditAnimal from "./pages/restricted/shelter/ShelterEditAnimal";
 import UserRequests from "./pages/restricted/user/UserRequests";
 import ShelterRequests from "./pages/restricted/shelter/ShelterRequests";
+import UserProfile from "./pages/public/UserProfile";
+import ShelterProfile from "./pages/public/ShelterProfile";
 
 const router = createBrowserRouter(
   [
@@ -57,6 +59,8 @@ const router = createBrowserRouter(
         { path: "/register", element: <UserRegister /> },
         { path: "/login", element: <Login /> },
         { path: "/user", element: <UserHome /> },
+        { path: "/users/:userId", element: <UserProfile /> },
+        { path: "/sheltersProfiles/:shelterId", element: <ShelterProfile /> },
         { path: "/user/edit", element: <UserEdit /> },
         { path: "/user/animalRegister", element: <AnimalRegister /> },
         { path: "/user/adoptedAnimals", element: <UserAdoptedAnimals /> },

@@ -47,7 +47,7 @@ const User = () => {
       </h1>
       <div className="flex flex-col lg:flex-row gap-2 lg:items-start items-center">
         <img
-          src={`${user.imgUrl}`}
+          src={`${user.imgUrl || brokenImage}`}
           alt="Imagem do usuário"
           className=" aspect-square h-full max-h-[300px] object-cover rounded-lg"
         />
