@@ -29,7 +29,7 @@ const ShelterAnimalsInDonation = () => {
       <h2 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais em adoção
       </h2>
-      <AnimalCardList animals={adoptedAnimals} />
+      <AnimalCardList animals={adoptedAnimals} showRequestsInfo />
     </div>
   );
 };

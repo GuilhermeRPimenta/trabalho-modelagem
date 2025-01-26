@@ -407,7 +407,13 @@ const animals: AnimalType[] = [
     breed: null,
     healthCondition: "Tomou antirrábica",
     weight: 7.8,
-    userRequests: [],
+    userRequests: [
+      {
+        createdAt: new Date(1737858234000),
+        justification: "Meu filho quer um cachorro e se encantou com a Joy",
+        user: users[4],
+      },
+    ],
     shelterRequests: [],
     imgUrls: [
       "https://images.pexels.com/photos/1189673/pexels-photo-1189673.jpeg?auto=compress&cs=tinysrgb&w=400",

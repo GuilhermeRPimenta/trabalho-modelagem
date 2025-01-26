@@ -3,7 +3,7 @@ import { animals } from "../../../assets/exampleData";
 import NavLink from "../../../components/global/NavLink";
 import Button from "../../../components/global/Button";
 import AnimalInfo from "../../../components/global/AnimalInfo";
-import AdoptionRequestsModal from "./AdoptionRequestsModal";
+import AdoptionRequestsModal from "../../../components/global/AdoptionRequestsModal";
 import { useState } from "react";
 import { LuMessageCircleWarning } from "react-icons/lu";
 

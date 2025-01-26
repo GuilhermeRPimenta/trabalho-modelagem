@@ -4,10 +4,10 @@ import { IoIosClose } from "react-icons/io";
 import { VscError } from "react-icons/vsc";
 
 import { FaRegCheckCircle } from "react-icons/fa";
-import Button from "../../../components/global/Button";
-import LoadingIcon from "../../../components/global/LoadingIcon";
-import { AnimalType, RequestType } from "../../../types/animal";
-import { personTranslationMap } from "../../../translations/PersonTranslation";
+import Button from "./Button";
+import LoadingIcon from "./LoadingIcon";
+import { AnimalType, RequestType } from "../../types/animal";
+import { personTranslationMap } from "../../translations/PersonTranslation";
 
 const AdoptionRequestsModal = ({
   isOpen,

@@ -24,7 +24,7 @@ const AnimalInfo = ({
   return (
     <div className=" h-full flex flex-col gap-2 items-center text-center p-4 rounded-sm w-full">
       <div className="flex flex-col w-full xl:flex-row gap-5">
-        <div className="flex flex-col xl:basis-1/2 basis-auto gap-2">
+        <div className="flex flex-col xl:basis-1/2 gap-2">
           <div className="flex justify-center">
             <img
               className="w-full shadow-lg max-w-[30rem] aspect-square xl:w-[60vh] xl:h-[60vh] object-cover rounded-lg"
@@ -51,7 +51,7 @@ const AnimalInfo = ({
           </div>
         </div>
 
-        <div className="flex flex-col xl:basis-1/2 basis-auto justify-center gap-1 min-h-[60vh]">
+        <div className="flex flex-col xl:basis-1/2  justify-center gap-1 xl:min-h-[60vh] min-h-[0vh]">
           <div className="flex flex-col gap-1">
             <h1 className="font-semibold text-xl">{animal?.name}</h1>
             <p>{animal.species ? animal.species : animal.customSpecies}</p>
