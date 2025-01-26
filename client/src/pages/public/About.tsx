@@ -38,10 +38,6 @@ const About = () => {
         <p className="text-md text-justify">
           Tem vários jeitos de contribuir com o Adote Aqui, seja como pessoa física ou como empresa parceira.
         </p>
-        <h3 className="text-xl font-bold mt-4 ">Siga o Amigo nas redes:</h3>
-        <p className="text-md text-justify">
-          Nossos perfis no <a href="#" className="text-blue-500 underline">Instagram</a>!! Segue a gente lá!
-        </p>
       </div>
     </div>
   );
