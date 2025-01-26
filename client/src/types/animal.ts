@@ -1,5 +1,6 @@
 import { Person } from "./person";
 import { ShelterType } from "./shelter";
+import { BrazilianState } from "./states";
 import { UserType } from "./user";
 
 type Species = "CACHORRO" | "GATO" | "OUTRO";
@@ -21,9 +22,29 @@ interface AnimalType {
   adopter: UserType | ShelterType | null;
   donatorType: Person;
   adopterType: Person | null;
-  userRequests: UserType[] | null;
-  shelterRequests: ShelterType[];
+  userRequests: {
+    createdAt: Date;
+    justification: string | null;
+    user: UserType;
+  }[];
+  shelterRequests: {
+    createdAt: Date;
+    justification: string | null;
+    shelter: ShelterType;
+  }[];
   imgUrls: string[];
 }
 
-export { type AnimalType, type Species };
+interface RequestType {
+  name: string;
+  personType: Person;
+  phone: string;
+  email: string;
+  neighborhood: string;
+  city: string;
+  state: BrazilianState;
+  createdAt: Date;
+  justification: string | null;
+}
+
+export { type AnimalType, type Species, type RequestType };

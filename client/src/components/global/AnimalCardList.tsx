@@ -7,12 +7,14 @@ const AnimalCardList = ({
   animals,
   showDonatorAddress,
   showDonationStatus,
+  showRequestsInfo,
   customBaseUrl,
 }: {
   animals: AnimalType[];
   showDonatorAddress?: boolean;
   customBaseUrl?: string;
   showDonationStatus?: boolean;
+  showRequestsInfo?: boolean;
 }) => {
   return (
     <div className="flex flex-wrap w-full gap-2 justify-center">
@@ -61,6 +63,13 @@ const AnimalCardList = ({
               )}
             </p>
           )}
+          {showRequestsInfo &&
+            (animal.userRequests.length > 0 ||
+              animal.shelterRequests.length > 0) && (
+              <p className="mt-auto flex items-center text-green-600">
+                <strong>Há solicitações!</strong>
+              </p>
+            )}
         </NavLink>
       ))}
     </div>
