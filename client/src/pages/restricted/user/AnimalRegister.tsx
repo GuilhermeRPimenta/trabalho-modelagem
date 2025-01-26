@@ -129,7 +129,7 @@ const AnimalRegister = () => {
                 <img
                   src={URL.createObjectURL(mainImage)}
                   alt={`Imagem principal`}
-                  className="w-full max-w-64 object-cover rounded-lg"
+                  className="w-full max-w-64 object-cover aspect-square rounded-lg"
                 />
                 <button
                   type="button"

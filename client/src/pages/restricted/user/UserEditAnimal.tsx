@@ -208,7 +208,7 @@ const UserEditAnimal = () => {
                       : URL.createObjectURL(mainImage)
                   }
                   alt={`Imagem principal`}
-                  className="w-full max-w-64 object-cover rounded-lg"
+                  className="w-full max-w-64 aspect-square object-cover rounded-lg"
                 />
                 <button
                   type="button"

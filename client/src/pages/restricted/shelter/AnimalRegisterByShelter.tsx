@@ -3,15 +3,36 @@ import Button from "../../../components/global/Button";
 import { ChangeEvent, useState } from "react";
 import { useAuth } from "../../../components/global/useAuth";
 import { shelters } from "../../../assets/exampleData";
+import ImageInput from "../../../components/global/ImageInput";
 
 const AnimalRegisterByShelter = () => {
   const navigate = useNavigate();
   const authContext = useAuth();
   const { shelterId } = useParams<{ shelterId: string }>();
   const [isCustomSpecies, setIsCustomSpecies] = useState(false);
+  const [mainImage, setMainImage] = useState<File>();
+  const [extraImages, setExtraImages] = useState<File[]>([]);
   const handleSpeciesChange = (e: ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === "OUTRO") setIsCustomSpecies(true);
     else setIsCustomSpecies(false);
+  };
+  const handleMainImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) setMainImage(file);
+  };
+  const removeMainImage = () => {
+    setMainImage(undefined);
+  };
+  const handleExtraImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = e.target.files ? e.target.files : [];
+    if (selectedFiles.length + extraImages.length > 9) {
+      alert("Você pode enviar no máximo 10 fotos.");
+      return;
+    }
+    setExtraImages((prevImages) => [...prevImages, ...selectedFiles]);
+  };
+  const removeExtraImage = (index: number) => {
+    setExtraImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
   if (!authContext?.auth)
     return <h1 className="text-red-700 text-3xl">Acesso negado!</h1>;
@@ -82,14 +103,61 @@ const AnimalRegisterByShelter = () => {
           </label>
           <textarea className="w-full" id="healthCondition" rows={3} />
           <label htmlFor="weight">Peso</label>
-          <input type="number" step={0.01} id="weight" />
-          <label htmlFor="userImage">Foto*</label>
-          <input
-            className="w-full"
-            type="file"
-            accept="image/png, image/jpeg"
-            id="userImage"
+          <input type="number" step={0.01} id="weight" className="w-full" />
+          <label className="font-semibold" htmlFor="mainImage">
+            Foto principal*
+          </label>
+          <ImageInput id="5" onChange={handleMainImageChange} />
+          {mainImage && (
+            <div className="w-full flex flex-col items-center">
+              <h3>Foto principal selecionada:</h3>
+              <div className="relative">
+                <img
+                  src={URL.createObjectURL(mainImage)}
+                  alt={`Imagem principal`}
+                  className="w-full max-w-64 aspect-square object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={removeMainImage}
+                  className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-full"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          )}
+          <label className="font-semibold" htmlFor="extraImages">
+            Fotos extras
+          </label>
+          <ImageInput
+            id="extraImages"
+            multiple
+            onChange={handleExtraImageChange}
           />
+          {extraImages.length > 0 && (
+            <div className="w-full">
+              <h3>Fotos extras selecionadas:</h3>
+              <ul className="flex flex-wrap gap-2">
+                {extraImages.map((image, index) => (
+                  <li key={index} className="relative">
+                    <img
+                      src={URL.createObjectURL(image)}
+                      alt={`Imagem extra ${index + 1}`}
+                      className="w-20 h-20 object-cover rounded-lg"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeExtraImage(index)}
+                      className="absolute top-0 right-0 bg-red-500 text-white py-1 px-3 rounded-full"
+                    >
+                      X
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <Button
             variant="constructive"
             onClick={() => {
