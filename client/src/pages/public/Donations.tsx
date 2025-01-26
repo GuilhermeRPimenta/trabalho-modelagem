@@ -61,7 +61,7 @@ const Index = () => {
             </h2>
 
             <p className="mb-6">
-              Neste trabalho conjunto entre Amigo Não se Compra + protetores + doadores financeiros, já ajudamos mais de 30 mil cachorros e gatos a terem uma cama quentinha para dormir. =^.^=
+              Neste trabalho conjunto entre Adote Aqui + protetores + doadores financeiros, ajudando cachorros e gatos a terem uma cama quentinha para dormir. =^.^=
             </p>
 
             <p className="mb-6">Vem fazer parte desse movimento!</p>
@@ -69,7 +69,7 @@ const Index = () => {
             <h3 className="text-xl font-bold mb-4">Informações administrativas:</h3>
 
             <p>
-              O Amigo Não se Compra surgiu em 2012 como uma iniciativa informal de pessoas apaixonadas por animais. Em 2017, foi cadastrada no CNPJ 12.345.678/0001-99, recebeu o nome de Adote Aqui Não se Compra e tornou-se oficialmente uma Organização da Sociedade Civil.
+              O Adote Aqui surgiu em 2024 como uma iniciativa informal de pessoas apaixonadas por animais
             </p>
           </div>
         </section>
