@@ -1,3 +1,4 @@
+import { AnimalType } from "./animal";
 import { BrazilianState } from "./states";
 import { UserType } from "./user";
 
@@ -18,6 +19,11 @@ interface ShelterType {
   postalCode: string;
   imgUrl: string | null;
   users: { user: UserType; role: UserRoleInShelter; addedAt: Date }[];
+  adoptionRequests: {
+    createdAt: Date;
+    justification: string | null;
+    animal: AnimalType;
+  }[];
   foundationDate: Date;
   createdAt: Date;
 }

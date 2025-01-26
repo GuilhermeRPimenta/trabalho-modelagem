@@ -31,6 +31,9 @@ const UserHome = () => {
             <NavLink to="/user/animalsInDonation" className="w-full">
               Em adoção
             </NavLink>
+            <NavLink to="adoptionRequests" className="w-full">
+              Minhas solicitações
+            </NavLink>
             <NavLink
               to="/user/animalRegister"
               variant="constructive"

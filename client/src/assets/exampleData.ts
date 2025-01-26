@@ -23,6 +23,7 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
     adoptedAnimals: [],
+    adoptionRequests: [],
     createdAt: new Date(),
   },
   {
@@ -45,6 +46,7 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
     adoptedAnimals: [],
+    adoptionRequests: [],
     createdAt: new Date(),
   },
   {
@@ -67,6 +69,7 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
     adoptedAnimals: [],
+    adoptionRequests: [],
     createdAt: new Date(),
   },
   {
@@ -88,6 +91,7 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
     adoptedAnimals: [],
+    adoptionRequests: [],
     createdAt: new Date(),
   },
   {
@@ -110,6 +114,7 @@ const users: UserType[] = [
     shelters: [],
     animals: [],
     adoptedAnimals: [],
+    adoptionRequests: [],
     createdAt: new Date(),
   },
 ];
@@ -131,6 +136,7 @@ const shelters: ShelterType[] = [
     imgUrl: "https://cdn-icons-png.flaticon.com/512/8454/8454352.png",
     users: [],
     foundationDate: new Date(953799656368),
+    adoptionRequests: [],
     createdAt: new Date(),
   },
   {
@@ -149,6 +155,7 @@ const shelters: ShelterType[] = [
     imgUrl: "https://cdn-icons-png.flaticon.com/512/1491/1491099.png",
     users: [],
     foundationDate: new Date(753799646368),
+    adoptionRequests: [],
     createdAt: new Date(),
   },
 ];
@@ -419,6 +426,34 @@ const animals: AnimalType[] = [
       "https://images.pexels.com/photos/1189673/pexels-photo-1189673.jpeg?auto=compress&cs=tinysrgb&w=400",
     ],
   },
+  {
+    donator: users[4],
+    adopter: null,
+    donatorType: "USER",
+    adopterType: null,
+    id: 12,
+    name: "Dogmeat",
+    gender: "MACHO",
+    description: "Filhotinho para alegrar sua casa!",
+    birthDate: null,
+    age: 0,
+    species: "CACHORRO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "Tomou antirrábica",
+    weight: 1,
+    userRequests: [
+      {
+        createdAt: new Date(1737858234000),
+        justification: "Cuidarei com muito carinho",
+        user: users[0],
+      },
+    ],
+    shelterRequests: [],
+    imgUrls: [
+      "https://images.pexels.com/photos/1458916/pexels-photo-1458916.jpeg?auto=compress&cs=tinysrgb&w=600",
+    ],
+  },
 ];
 
 shelters[0].users.push({
@@ -445,5 +480,10 @@ users[0].shelters.push(shelters[0]);
 users[3].shelters.push(shelters[0]);
 users[4].shelters.push(shelters[1]);
 users[0].shelters.push(shelters[1]);
+users[0].adoptionRequests.push({
+  createdAt: new Date(1737858234000),
+  justification: "Cuidarei com muito carinho",
+  animal: animals[11],
+});
 
 export { animals, users, shelters };

@@ -21,6 +21,11 @@ interface UserType {
   shelters: ShelterType[];
   animals: AnimalType[];
   adoptedAnimals: AnimalType[];
+  adoptionRequests: {
+    createdAt: Date;
+    justification: string | null;
+    animal: AnimalType;
+  }[];
   createdAt: Date;
 }
 
