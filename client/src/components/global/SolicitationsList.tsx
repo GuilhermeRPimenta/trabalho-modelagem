@@ -4,6 +4,10 @@ import { UserType } from "../../types/user";
 import Button from "./Button";
 
 const SolicitationsList = ({ person }: { person: UserType | ShelterType }) => {
+  if (person.adoptionRequests.length === 0) {
+    return <h2 className="text-xl font-semibold">Nenhuma solicitação</h2>;
+  }
+
   return (
     <ul
       className="w-fit flex flex-col gap-1 p-2"

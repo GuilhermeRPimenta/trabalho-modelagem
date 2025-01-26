@@ -117,6 +117,28 @@ const users: UserType[] = [
     adoptionRequests: [],
     createdAt: new Date(),
   },
+  {
+    id: 1,
+    name: "Manoel Carvalho",
+    birthDate: "1989-05-11",
+    email: "example6@gmail.com",
+    password: "123456",
+    cpf: "142.752.752-12",
+    phone: "(11) 99999-9999",
+    address: "Avenida Getúlio Vargas",
+    complement: null,
+    number: "1452",
+    neighborhood: "Aurora",
+    city: "São Paulo",
+    state: "SP",
+    postalCode: "2350-678",
+    imgUrl: null,
+    shelters: [],
+    animals: [],
+    adoptedAnimals: [],
+    adoptionRequests: [],
+    createdAt: new Date(),
+  },
 ];
 
 const shelters: ShelterType[] = [
@@ -454,6 +476,29 @@ const animals: AnimalType[] = [
       "https://images.pexels.com/photos/1458916/pexels-photo-1458916.jpeg?auto=compress&cs=tinysrgb&w=600",
     ],
   },
+  {
+    donator: users[5],
+    adopter: null,
+    donatorType: "USER",
+    adopterType: null,
+    id: 13,
+    name: "Ryu",
+    gender: "MACHO",
+    description: "Cachorro muito brincalhão e gosta de brincar na grama.",
+    birthDate: new Date("2022-05-01"),
+    age: null,
+    species: "CACHORRO",
+    customSpecies: null,
+    breed: null,
+    healthCondition: "Vacinado contra raiva",
+    weight: 12,
+    userRequests: [],
+    shelterRequests: [],
+    imgUrls: [
+      "https://images.pexels.com/photos/2742263/pexels-photo-2742263.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/2742261/pexels-photo-2742261.jpeg?auto=compress&cs=tinysrgb&w=600",
+    ],
+  },
 ];
 
 shelters[0].users.push({
@@ -484,6 +529,11 @@ users[0].adoptionRequests.push({
   createdAt: new Date(1737858234000),
   justification: "Cuidarei com muito carinho",
   animal: animals[11],
+});
+shelters[0].adoptionRequests.push({
+  createdAt: new Date(1736533801000),
+  justification: "Temos bastante espaço ao ar livre para ele brincar",
+  animal: animals[12],
 });
 
 export { animals, users, shelters };

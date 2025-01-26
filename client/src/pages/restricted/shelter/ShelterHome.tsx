@@ -34,6 +34,9 @@ const ShelterHome = () => {
             <NavLink to="animalsInDonation" className="w-full">
               Em adoção
             </NavLink>
+            <NavLink to="adoptionRequests" className="w-full">
+              Solicitações do abrigo
+            </NavLink>
             <NavLink
               to={`/shelters/${shelterId}/animalRegister`}
               variant="constructive"
