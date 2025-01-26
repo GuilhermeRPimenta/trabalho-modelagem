@@ -13,11 +13,94 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum BrazilianStates {
+  AC
+  AL
+  AM
+  AP
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MG
+  MS
+  MT
+  PA
+  PB
+  PE
+  PI
+  PR
+  RJ
+  RN
+  RO
+  RR
+  RS
+  SC
+  SE
+  SP
+  TO
+}
+
+enum SpeciesEnum {
+  CACHORRO
+  GATO
+  OUTRO
+}
+
 model SystemAdmin {
   id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
   cpf       String   @db.VarChar(11)
   birthDate DateTime
   email     String   @db.VarChar(255)
   phone     String   @db.VarChar(255)
-  password  String
+  password  String   @db.VarChar(255)
+}
+
+model User {
+  id           Int             @id @default(autoincrement())
+  name         String          @db.VarChar(255)
+  cpf          String          @db.VarChar(11)
+  birthDate    DateTime
+  email        String          @db.VarChar(255)
+  phone        String          @db.VarChar(255)
+  street       String          @db.VarChar(255)
+  complement   String?         @db.VarChar(255)
+  number       Int
+  neighborhood String          @db.VarChar(255)
+  city         String          @db.VarChar(255)
+  state        BrazilianStates
+  postalCode   String          @db.VarChar(255)
+  imgUrl       String?         @db.VarChar(2083)
+  createdAt    DateTime        @default(now()) @map("created_at")
+}
+
+model Animal {
+  id                Int         @id @default(autoincrement())
+  name              String      @db.VarChar(255)
+  species           SpeciesEnum
+  customSpecies     String?     @map("") @db.VarChar(255)
+  birthDate         DateTime?
+  age               Int?
+  description       String?     @db.VarChar(255)
+  healthConditition String?     @db.VarChar(255)
+  weight            Float?
+  imgUrls           String[]
+}
+
+model Shelter {
+  id           Int             @id @default(autoincrement())
+  name         String          @db.VarChar(255)
+  cnpj         String          @db.VarChar(14)
+  phone        String          @db.VarChar(255)
+  street       String          @db.VarChar(255)
+  complement   String?         @db.VarChar(255)
+  number       Int
+  neighborhood String          @db.VarChar(255)
+  city         String          @db.VarChar(255)
+  state        BrazilianStates
+  postalCode   String          @db.VarChar(255)
+  imgUrl       String?         @db.VarChar(2083)
 }
