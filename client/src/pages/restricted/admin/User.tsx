@@ -127,27 +127,29 @@ const User = () => {
       {user.shelters.length > 0 && (
         <>
           <h3 className="text-2xl font-semibold">Abrigos: </h3>
-          {user.shelters.map((shelter) => (
-            <NavLink
-              to={`/admin/shelters/${shelter.id}`}
-              key={shelter.id}
-              style={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.45)" }}
-              className="flex flex-col gap-2 items-center text-center p-1 rounded-sm transition-all duration-75 hover:bg-blue-100 hover:cursor-pointer w-full max-w-64 group"
-            >
-              <h4 className="font-semibold text-xl group-hover:underline">
-                {shelter.name}
-              </h4>
-              <img
-                className="w-full object-cover aspect-square  rounded-md"
-                src={shelter.imgUrl ? shelter.imgUrl : brokenImage}
-              />
-              <p>
-                {shelter.address}, {shelter.number}
-                {shelter.complement && " | " + `${shelter.complement}`},{" "}
-                {shelter.neighborhood}, {shelter.city} - {shelter.state}
-              </p>
-            </NavLink>
-          ))}
+          <div className="flex flex-wrap w-full gap-2 justify-center">
+            {user.shelters.map((shelter) => (
+              <NavLink
+                to={`/admin/shelters/${shelter.id}`}
+                key={shelter.id}
+                style={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.45)" }}
+                className="flex flex-col gap-2 items-center text-center p-1 rounded-sm transition-all duration-75 hover:bg-blue-100 hover:cursor-pointer w-full max-w-64 group"
+              >
+                <h4 className="font-semibold text-xl group-hover:underline">
+                  {shelter.name}
+                </h4>
+                <img
+                  className="w-full object-cover aspect-square  rounded-md"
+                  src={shelter.imgUrl ? shelter.imgUrl : brokenImage}
+                />
+                <p>
+                  {shelter.address}, {shelter.number}
+                  {shelter.complement && " | " + `${shelter.complement}`},{" "}
+                  {shelter.neighborhood}, {shelter.city} - {shelter.state}
+                </p>
+              </NavLink>
+            ))}
+          </div>
         </>
       )}
     </div>
