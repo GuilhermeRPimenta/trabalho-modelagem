@@ -3,9 +3,11 @@ import Button from "../../../components/global/Button";
 import { useAuth } from "../../../components/global/useAuth";
 import { ChangeEvent, useEffect, useState } from "react";
 import { BrazilianState, brazilianStates } from "../../../types/states";
+import ImageInput from "../../../components/global/ImageInput";
 
 const ShelterRegister = () => {
   const authContext = useAuth();
+  const [shelterImage, setShelterImage] = useState<File>();
   const navigate = useNavigate();
   const [cities, setCities] = useState<string[]>([]);
   const fetchStateCities = async (state: BrazilianState) => {
@@ -20,6 +22,13 @@ const ShelterRegister = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+  const handleShelerImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) setShelterImage(file);
+  };
+  const removeShelterImage = () => {
+    setShelterImage(undefined);
   };
   useEffect(() => {
     void fetchStateCities("AC");
@@ -80,12 +89,6 @@ const ShelterRegister = () => {
           <label htmlFor="address">Logradouro*</label>
           <input className="w-full" type="text" id="address" />
           <label htmlFor="addressNumber">Número*</label>
-          <input
-            className="w-full"
-            style={{ MozAppearance: "textfield" }}
-            type="number"
-            id="address"
-          />
           <label htmlFor="addressComplement">Complemento</label>
           <input className="w-full" type="text" id="addressComplement" />
           <label htmlFor="addressNeighborhood">Bairro*</label>
@@ -93,12 +96,30 @@ const ShelterRegister = () => {
           <label htmlFor="addressPostalCode">CEP*</label>
           <input className="w-full" type="text" id="addressPostalCode" />
           <label htmlFor="userImage">Foto</label>
-          <input
+          <ImageInput
             className="w-full"
-            type="file"
-            accept="image/png, image/jpeg"
-            id="userImage"
+            id="image"
+            onChange={handleShelerImageChange}
           />
+          {shelterImage && (
+            <div className="w-full flex flex-col items-center">
+              <h3>Foto de perfil selecionada:</h3>
+              <div className="relative">
+                <img
+                  src={URL.createObjectURL(shelterImage)}
+                  alt={`Imagem principal`}
+                  className="w-full aspect-square max-w-64 object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={removeShelterImage}
+                  className="absolute top-0 right-0  bg-red-500 text-white py-1 px-3 rounded-full"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          )}
           <Button
             variant="constructive"
             onClick={() => {
