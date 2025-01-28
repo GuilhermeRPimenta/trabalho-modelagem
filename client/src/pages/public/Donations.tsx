@@ -20,38 +20,21 @@ const Index = () => {
             contribuindo para que os animais encontrem novas famílias!
           </p>
 
-          <div className="relative mb-12">
-            <img
-              src="public/images/photo_cat_dog.jpg"
-              alt="Cachorro e gato juntos"
-              className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
-            />
-            <div className="absolute top-1 left-24 bg-yellow-100 rounded-full p-6 border-2 border-yellow-400 border-dashed">
-              <p className="text-center text-sm md:text-base">
-                A cada{" "}
-                <span className="text-primary font-bold">R$ 25 doados</span>,
-                <br />
-                você contribui para a<br />
-                adoção de{" "}
-                <span className="text-primary font-bold">5 bichinhos</span>!
-              </p>
-            </div>
-          </div>
-
           <Card className="p-6 mb-12 bg-white">
             <h2 className="text-2xl font-bold text-primary mb-4 ">
-              1) Doações via PIX ou transferência
+              Doações via PIX ou transferência
             </h2>
             <p className="mb-4">
-              A cada 25 reais, você ajuda 5 doguinhos ou gatinhos. Para doar,
-              você pode fazer uma transferência bancária ou PIX:
+              A cada 25 reais, você ajuda até 5 animais a encontrar uma família.
+              Para doar, você pode fazer uma transferência bancária ou PIX:
             </p>
 
             <div className="space-y-4">
               <div>
                 <h3 className="font-bold mb-2">PIX:</h3>
                 <p>
-                  <span className="font-bold">e-mail:</span> adote@email.com.br
+                  <span className="font-bold">e-mail:</span>{" "}
+                  doacoes@adoteaqui.com.br
                 </p>
                 <p>ou</p>
                 <p>
