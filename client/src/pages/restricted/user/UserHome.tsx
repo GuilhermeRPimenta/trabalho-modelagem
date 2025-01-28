@@ -44,14 +44,14 @@ const UserHome = () => {
           </div>
         </div>
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
-          <h2 className="text-center text-2xl font-semibold">Abrigos</h2>
+          <h2 className="text-center text-2xl font-semibold">Instituições</h2>
           <div className="flex sm:flex-row flex-col gap-2 text-center">
             <NavLink to={`shelters`} className="w-full">
-              Meus abrigos
+              Minhas instituições
             </NavLink>
 
             <NavLink to="/shelterRegister" variant="constructive">
-              Cadastrar abrigo
+              Cadastrar instituição
             </NavLink>
           </div>
         </div>

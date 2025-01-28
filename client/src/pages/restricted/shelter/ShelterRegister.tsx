@@ -34,13 +34,13 @@ const ShelterRegister = () => {
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">
-        Cadastro de abrigo
+        Cadastro de instituição
       </h1>
       <div className="flex justify-center text-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
         <div className="flex flex-col gap-2 items-center">
           {/*Substituir div acima por form*/}
           <h2>
-            {`Cadastrando abrigo supervisionado por `}
+            {`Cadastrando instituição supervisionada por `}
             <span className="font-bold">{authContext.auth.name}</span>
           </h2>
           <p>CPF: {authContext.auth.cpf}</p>

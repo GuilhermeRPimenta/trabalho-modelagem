@@ -23,7 +23,7 @@ const ShelterHome = () => {
       <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
         <div className="flex flex-col gap-2 items-center">
           {/*Substituir div acima por form*/}
-          <h2 className="text-2xl font-semibold">Animais do abrigo</h2>
+          <h2 className="text-2xl font-semibold">Animais da instituição</h2>
           <div className="flex sm:flex-row flex-col text-center gap-2 w-full">
             <NavLink to="adoptedAnimals" className="w-full">
               Adotados
@@ -35,7 +35,7 @@ const ShelterHome = () => {
               Em adoção
             </NavLink>
             <NavLink to="adoptionRequests" className="w-full">
-              Solicitações do abrigo
+              Solicitações da instituição
             </NavLink>
             <NavLink
               to={`/shelters/${shelterId}/animalRegister`}

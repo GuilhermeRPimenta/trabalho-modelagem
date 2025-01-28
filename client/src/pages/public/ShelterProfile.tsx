@@ -10,7 +10,7 @@ const ShelterProfile = () => {
   if (!shelter) {
     return (
       <h1 className="font-dynapuff text-3xl text-blue-500">
-        Abrigo não encontrado
+        Instituição não encontrada
       </h1>
     );
   }
@@ -25,7 +25,7 @@ const ShelterProfile = () => {
       <div className="flex flex-col lg:flex-row gap-2 lg:items-start items-center">
         <img
           src={`${shelter.imgUrl || brokenImage}`}
-          alt="Imagem do abrigo"
+          alt="Imagem da instituição"
           className=" aspect-square h-full max-h-[300px] object-cover rounded-lg"
         />
 

@@ -126,7 +126,7 @@ const User = () => {
       )}
       {user.shelters.length > 0 && (
         <>
-          <h3 className="text-2xl font-semibold">Abrigos: </h3>
+          <h3 className="text-2xl font-semibold">Instituições: </h3>
           <div className="flex flex-wrap w-full gap-2 justify-center">
             {user.shelters.map((shelter) => (
               <NavLink

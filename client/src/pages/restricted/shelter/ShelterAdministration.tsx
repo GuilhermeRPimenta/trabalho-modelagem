@@ -12,9 +12,9 @@ const ShelterAdministration = () => {
     return (
       <div className="flex flex-col w-full  justify-center items-center gap-2">
         <h1 className="text-blue-700 text-3xl font-dynapuff">
-          Administrar abrigos
+          Administrar instituições
         </h1>
-        <h2>Abrigo não encontrado!</h2>
+        <h2>Instituições não encontrada!</h2>
       </div>
     );
   }
