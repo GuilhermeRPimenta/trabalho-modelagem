@@ -110,7 +110,8 @@ const AnimalInfo = ({
               </>
             )}
           </div>
-          <div className="mt-2 xl:mt-0">{children}</div>
+
+          {children}
         </div>
       </div>
     </div>

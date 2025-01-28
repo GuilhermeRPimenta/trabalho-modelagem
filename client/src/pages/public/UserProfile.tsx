@@ -41,13 +41,13 @@ const UserProfile = () => {
         </div>
       </div>
       {animalsInDonation.length > 0 && (
-        <>
+        <div>
           <h3 className="text-2xl font-semibold">Animais em adoção: </h3>
           <AnimalCardList
             customBaseUrl="/animals"
             animals={animalsInDonation}
           />
-        </>
+        </div>
       )}
     </div>
   );
