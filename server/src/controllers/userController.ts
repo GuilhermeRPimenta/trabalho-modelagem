@@ -23,8 +23,8 @@ const userRegister = async (req: Request, res: Response) => {
       password,
     } = req.body;
 
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
     const imgUrl = req.file ? `/uploads/${req.file.filename}` : null;
     const user = await prisma.user.create({
       data: {
