@@ -36,62 +36,21 @@ const UserRegister = () => {
     e.preventDefault();
     const formData = new FormData();
 
-    const formElements = e.target as HTMLFormElement;
-    formData.append(
-      "name",
-      (formElements.elements.namedItem("name") as HTMLInputElement).value
-    );
-    formData.append(
-      "birthdate",
-      (formElements.elements.namedItem("birthdate") as HTMLInputElement).value
-    );
-    formData.append(
-      "cpf",
-      (formElements.elements.namedItem("cpf") as HTMLInputElement).value
-    );
-    formData.append(
-      "email",
-      (formElements.elements.namedItem("email") as HTMLInputElement).value
-    );
-    formData.append(
-      "phone",
-      (formElements.elements.namedItem("phone") as HTMLInputElement).value
-    );
-    formData.append(
-      "state",
-      (formElements.elements.namedItem("state") as HTMLSelectElement).value
-    );
-    formData.append(
-      "city",
-      (formElements.elements.namedItem("city") as HTMLSelectElement).value
-    );
-    formData.append(
-      "street",
-      (formElements.elements.namedItem("street") as HTMLInputElement).value
-    );
-    formData.append(
-      "number",
-      (formElements.elements.namedItem("number") as HTMLInputElement).value
-    );
-    formData.append(
-      "complement",
-      (formElements.elements.namedItem("complement") as HTMLInputElement).value
-    );
-    formData.append(
-      "neighborhood",
-      (formElements.elements.namedItem("neighborhood") as HTMLInputElement)
-        .value
-    );
-    formData.append(
-      "postalCode",
-      (formElements.elements.namedItem("postalCode") as HTMLInputElement).value
-    );
+    const form = e.target as HTMLFormElement;
+    for (let i = 0; i < form.elements.length; i++) {
+      const field = form.elements[i] as
+        | HTMLInputElement
+        | HTMLSelectElement
+        | HTMLTextAreaElement;
+
+      if (field.name) {
+        formData.append(field.name, field.value);
+      }
+    }
     if (userImage) {
       formData.append("image", userImage);
     }
 
-    formData.append("password", formElements.password.value);
-    formData.append("passwordConfirm", formElements.passwordConfirm.value);
     try {
       const response = await fetch(`${apiBaseUrl}/user/userRegister`, {
         method: "POST",
@@ -100,6 +59,7 @@ const UserRegister = () => {
       });
       const responseJson = await response.json();
       console.log(responseJson);
+      navigate("/login");
     } catch (e) {
       console.log(e);
     }
@@ -119,11 +79,18 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="name">
             Nome completo*
           </label>
-          <input className="w-full" type="text" id="name" name="name" />
+          <input
+            required
+            className="w-full"
+            type="text"
+            id="name"
+            name="name"
+          />
           <label className="font-semibold" htmlFor="birthdate">
             Data de nascimento*
           </label>
           <input
+            required
             className="w-full"
             id="birthdate"
             type="date"
@@ -133,6 +100,7 @@ const UserRegister = () => {
             CPF*
           </label>
           <input
+            required
             className="w-full"
             type="numeric"
             id="cpf"
@@ -142,15 +110,28 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="email">
             E-mail*
           </label>
-          <input className="w-full" type="email" id="email" name="email" />
+          <input
+            required
+            className="w-full"
+            type="email"
+            id="email"
+            name="email"
+          />
           <label className="font-semibold" htmlFor="phone">
             Telefone*
           </label>
-          <input className="w-full" type="text" id="phone" name="phone" />
+          <input
+            required
+            className="w-full"
+            type="text"
+            id="phone"
+            name="phone"
+          />
           <label className="font-semibold" htmlFor="addressState">
             Estado*
           </label>
           <select
+            required
             className="w-full bg-white"
             onChange={handleStateChange}
             name="state"
@@ -165,7 +146,7 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="city">
             Cidade*
           </label>
-          <select className="w-full bg-white" id="city" name="city">
+          <select required className="w-full bg-white" id="city" name="city">
             {cities.map((city, index) => (
               <option key={index} value={city}>
                 {city}
@@ -175,11 +156,18 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="street">
             Logradouro*
           </label>
-          <input className="w-full" type="text" id="street" name="street" />
+          <input
+            required
+            className="w-full"
+            type="text"
+            id="street"
+            name="street"
+          />
           <label className="font-semibold" htmlFor="number">
             Número*
           </label>
           <input
+            required
             className="w-full"
             style={{ MozAppearance: "textfield" }}
             type="number"
@@ -199,6 +187,7 @@ const UserRegister = () => {
             Bairro*
           </label>
           <input
+            required
             className="w-full"
             type="text"
             id="neighborhood"
@@ -209,6 +198,7 @@ const UserRegister = () => {
             CEP*
           </label>
           <input
+            required
             className="w-full"
             type="text"
             id="postalCode"
@@ -245,6 +235,7 @@ const UserRegister = () => {
             Senha*
           </label>
           <input
+            required
             className="w-full"
             type="password"
             id="password"
@@ -254,6 +245,7 @@ const UserRegister = () => {
             Confirme a senha*
           </label>
           <input
+            required
             className="w-full"
             type="password"
             id="passwordConfirm"
