@@ -3,6 +3,7 @@ import Button from "../../components/global/Button";
 import ImageInput from "../../components/global/ImageInput";
 import { ChangeEvent, useEffect, useState } from "react";
 import { BrazilianState, brazilianStates } from "../../types/states";
+import apiBaseUrl from "../../APIBaseURL";
 
 const UserRegister = () => {
   const navigate = useNavigate();
@@ -31,6 +32,78 @@ const UserRegister = () => {
   const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     void fetchStateCities(e.target.value as BrazilianState);
   };
+  const handleFormPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    const formElements = e.target as HTMLFormElement;
+    formData.append(
+      "name",
+      (formElements.elements.namedItem("name") as HTMLInputElement).value
+    );
+    formData.append(
+      "birthdate",
+      (formElements.elements.namedItem("birthdate") as HTMLInputElement).value
+    );
+    formData.append(
+      "cpf",
+      (formElements.elements.namedItem("cpf") as HTMLInputElement).value
+    );
+    formData.append(
+      "email",
+      (formElements.elements.namedItem("email") as HTMLInputElement).value
+    );
+    formData.append(
+      "phone",
+      (formElements.elements.namedItem("phone") as HTMLInputElement).value
+    );
+    formData.append(
+      "state",
+      (formElements.elements.namedItem("state") as HTMLSelectElement).value
+    );
+    formData.append(
+      "city",
+      (formElements.elements.namedItem("city") as HTMLSelectElement).value
+    );
+    formData.append(
+      "street",
+      (formElements.elements.namedItem("street") as HTMLInputElement).value
+    );
+    formData.append(
+      "number",
+      (formElements.elements.namedItem("number") as HTMLInputElement).value
+    );
+    formData.append(
+      "complement",
+      (formElements.elements.namedItem("complement") as HTMLInputElement).value
+    );
+    formData.append(
+      "neighborhood",
+      (formElements.elements.namedItem("neighborhood") as HTMLInputElement)
+        .value
+    );
+    formData.append(
+      "postalCode",
+      (formElements.elements.namedItem("postalCode") as HTMLInputElement).value
+    );
+    if (userImage) {
+      formData.append("image", userImage);
+    }
+
+    formData.append("password", formElements.password.value);
+    formData.append("passwordConfirm", formElements.passwordConfirm.value);
+    try {
+      const response = await fetch(`${apiBaseUrl}/user/userRegister`, {
+        method: "POST",
+
+        body: formData,
+      });
+      const responseJson = await response.json();
+      console.log(responseJson);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     void fetchStateCities("AC");
   }, []);
@@ -38,8 +111,11 @@ const UserRegister = () => {
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">Cadastrar</h1>
       <div className="flex justify-center flex-col bg-blue-100 w-full max-w-96 p-4 rounded-lg gap-4">
-        <div className="flex flex-col gap-2 items-center">
-          {/*Substituir div acima por form*/}
+        <form
+          className="flex flex-col gap-2 items-center"
+          encType="multipart/form-data"
+          onSubmit={handleFormPost}
+        >
           <label className="font-semibold" htmlFor="name">
             Nome completo*
           </label>
@@ -183,15 +259,8 @@ const UserRegister = () => {
             id="passwordConfirm"
             name="passwordConfirm"
           />
-          <Button
-            variant="constructive"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Cadastrar
-          </Button>
-        </div>
+          <Button variant="constructive">Cadastrar</Button>
+        </form>
       </div>
     </div>
   );

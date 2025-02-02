@@ -22,6 +22,7 @@ const userRegister = async (req: Request, res: Response) => {
       postalCode,
       password,
     } = req.body;
+    console.log(req);
 
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
