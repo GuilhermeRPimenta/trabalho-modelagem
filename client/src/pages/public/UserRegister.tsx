@@ -43,11 +43,16 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="name">
             Nome completo*
           </label>
-          <input className="w-full" type="text" id="name" />
+          <input className="w-full" type="text" id="name" name="name" />
           <label className="font-semibold" htmlFor="birthdate">
             Data de nascimento*
           </label>
-          <input className="w-full" id="birthdate" type="date" />
+          <input
+            className="w-full"
+            id="birthdate"
+            type="date"
+            name="birthdate"
+          />
           <label className="font-semibold" htmlFor="cpf">
             CPF*
           </label>
@@ -55,16 +60,17 @@ const UserRegister = () => {
             className="w-full"
             type="numeric"
             id="cpf"
+            name="cpf"
             style={{ MozAppearance: "textfield" }}
           />
           <label className="font-semibold" htmlFor="email">
             E-mail*
           </label>
-          <input className="w-full" type="email" id="email" />
+          <input className="w-full" type="email" id="email" name="email" />
           <label className="font-semibold" htmlFor="phone">
             Telefone*
           </label>
-          <input className="w-full" type="text" id="phone" />
+          <input className="w-full" type="text" id="phone" name="phone" />
           <label className="font-semibold" htmlFor="addressState">
             Estado*
           </label>
@@ -80,46 +86,66 @@ const UserRegister = () => {
               </option>
             ))}
           </select>
-          <label className="font-semibold" htmlFor="addressCity">
+          <label className="font-semibold" htmlFor="city">
             Cidade*
           </label>
-          <select className="w-full bg-white" id="addressCity">
+          <select className="w-full bg-white" id="city" name="city">
             {cities.map((city, index) => (
               <option key={index} value={city}>
                 {city}
               </option>
             ))}
           </select>
-          <label className="font-semibold" htmlFor="address">
+          <label className="font-semibold" htmlFor="street">
             Logradouro*
           </label>
-          <input className="w-full" type="text" id="address" />
-          <label className="font-semibold" htmlFor="addressNumber">
+          <input className="w-full" type="text" id="street" name="street" />
+          <label className="font-semibold" htmlFor="number">
             Número*
           </label>
           <input
             className="w-full"
             style={{ MozAppearance: "textfield" }}
             type="number"
-            id="address"
+            id="number"
+            name="number"
           />
-          <label className="font-semibold" htmlFor="addressComplement">
+          <label className="font-semibold" htmlFor="complement">
             Complemento
           </label>
-          <input className="w-full" type="text" id="addressComplement" />
+          <input
+            className="w-full"
+            type="text"
+            id="complement"
+            name="complement"
+          />
           <label className="font-semibold" htmlFor="addressNeighborhood">
             Bairro*
           </label>
-          <input className="w-full" type="text" id="addressNeighborhood" />
+          <input
+            className="w-full"
+            type="text"
+            id="neighborhood"
+            name="neighborhood"
+          />
 
-          <label className="font-semibold" htmlFor="addressPostalCode">
+          <label className="font-semibold" htmlFor="postalCode">
             CEP*
           </label>
-          <input className="w-full" type="text" id="addressPostalCode" />
+          <input
+            className="w-full"
+            type="text"
+            id="postalCode"
+            name="postalCode"
+          />
           <label className="font-semibold" htmlFor="userImage">
             Foto
           </label>
-          <ImageInput id="userImage" onChange={handleUserImageChange} />
+          <ImageInput
+            id="image"
+            name="image"
+            onChange={handleUserImageChange}
+          />
           {userImage && (
             <div className="w-full flex flex-col items-center">
               <h3>Foto de perfil selecionada:</h3>
@@ -142,11 +168,21 @@ const UserRegister = () => {
           <label className="font-semibold" htmlFor="password">
             Senha*
           </label>
-          <input className="w-full" type="password" id="password" />
+          <input
+            className="w-full"
+            type="password"
+            id="password"
+            name="password"
+          />
           <label className="font-semibold" htmlFor="passwordConfirm">
             Confirme a senha*
           </label>
-          <input className="w-full" type="password" id="passwordConfirm" />
+          <input
+            className="w-full"
+            type="password"
+            id="passwordConfirm"
+            name="passwordConfirm"
+          />
           <Button
             variant="constructive"
             onClick={() => {

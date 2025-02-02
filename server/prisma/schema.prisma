@@ -63,7 +63,7 @@ model SystemAdmin {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
   cpf       String   @db.VarChar(11)
-  birthDate DateTime
+  birthdate DateTime
   email     String   @db.VarChar(255)
   phone     String   @db.VarChar(255)
   password  String   @db.VarChar(255)
@@ -73,8 +73,8 @@ model User {
   id               Int               @id @default(autoincrement())
   name             String            @db.VarChar(255)
   cpf              String            @db.VarChar(11)
-  birthDate        DateTime
-  email            String            @db.VarChar(255)
+  birthdate        DateTime
+  email            String            @unique() @db.VarChar(255)
   phone            String            @db.VarChar(255)
   street           String            @db.VarChar(255)
   complement       String?           @db.VarChar(255)
@@ -83,6 +83,7 @@ model User {
   city             String            @db.VarChar(255)
   state            BrazilianStates
   postalCode       String            @db.VarChar(255)
+  password         String
   imgUrl           String?           @db.VarChar(2083)
   createdAt        DateTime          @default(now()) @map("created_at")
   donationAnimals  Animal[]          @relation("user_donator")
@@ -95,8 +96,8 @@ model Animal {
   id                Int         @id @default(autoincrement())
   name              String      @db.VarChar(255)
   species           SpeciesEnum
-  customSpecies     String?     @map("") @db.VarChar(255)
-  birthDate         DateTime?
+  customSpecies     String?     @map("custom_species") @db.VarChar(255)
+  birthdate         DateTime?
   age               Int?
   description       String?     @db.VarChar(255)
   healthConditition String?     @db.VarChar(255)
