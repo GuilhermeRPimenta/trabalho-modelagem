@@ -49,6 +49,16 @@ enum SpeciesEnum {
   OUTRO
 }
 
+enum InstitutionRoles {
+  ADMIN
+  COLLABORATOR
+}
+
+enum PersonType {
+  USER
+  INSTITUTION
+}
+
 model SystemAdmin {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
@@ -60,21 +70,25 @@ model SystemAdmin {
 }
 
 model User {
-  id           Int             @id @default(autoincrement())
-  name         String          @db.VarChar(255)
-  cpf          String          @db.VarChar(11)
-  birthDate    DateTime
-  email        String          @db.VarChar(255)
-  phone        String          @db.VarChar(255)
-  street       String          @db.VarChar(255)
-  complement   String?         @db.VarChar(255)
-  number       Int
-  neighborhood String          @db.VarChar(255)
-  city         String          @db.VarChar(255)
-  state        BrazilianStates
-  postalCode   String          @db.VarChar(255)
-  imgUrl       String?         @db.VarChar(2083)
-  createdAt    DateTime        @default(now()) @map("created_at")
+  id               Int               @id @default(autoincrement())
+  name             String            @db.VarChar(255)
+  cpf              String            @db.VarChar(11)
+  birthDate        DateTime
+  email            String            @db.VarChar(255)
+  phone            String            @db.VarChar(255)
+  street           String            @db.VarChar(255)
+  complement       String?           @db.VarChar(255)
+  number           Int
+  neighborhood     String            @db.VarChar(255)
+  city             String            @db.VarChar(255)
+  state            BrazilianStates
+  postalCode       String            @db.VarChar(255)
+  imgUrl           String?           @db.VarChar(2083)
+  createdAt        DateTime          @default(now()) @map("created_at")
+  donationAnimals  Animal[]          @relation("user_donator")
+  adopterAnimals   Animal[]          @relation("user_adopter")
+  adoptionRequests AdoptionRequest[]
+  userInstitutions UserInstitution[]
 }
 
 model Animal {
@@ -87,10 +101,20 @@ model Animal {
   description       String?     @db.VarChar(255)
   healthConditition String?     @db.VarChar(255)
   weight            Float?
-  imgUrls           String[]
+
+  userDonator          User?             @relation("user_donator", fields: [userDonatorId], references: [id])
+  userAdopter          User?             @relation("user_adopter", fields: [userAdopterId], references: [id])
+  institutionDonator   Institution?      @relation("institution_donator", fields: [institutionDonatorId], references: [id])
+  institutionAdopter   Institution?      @relation("institution_adopter", fields: [institutionAdopterId], references: [id])
+  userDonatorId        Int               @map("user_donator_id")
+  userAdopterId        Int?              @map("user_adopter_id")
+  institutionDonatorId Int               @map("institution_donator_id")
+  institutionAdopterId Int?              @map("institution_adopter_id")
+  adoptionRequests     AdoptionRequest[]
+  imgUrls              String[]
 }
 
-model Shelter {
+model Institution {
   id           Int             @id @default(autoincrement())
   name         String          @db.VarChar(255)
   cnpj         String          @db.VarChar(14)
@@ -103,4 +127,29 @@ model Shelter {
   state        BrazilianStates
   postalCode   String          @db.VarChar(255)
   imgUrl       String?         @db.VarChar(2083)
+
+  userInstitution  UserInstitution[]
+  donationAnimals  Animal[]          @relation("institution_donator")
+  adopterAnimals   Animal[]          @relation("institution_adopter")
+  adoptionRequests AdoptionRequest[]
+}
+
+model UserInstitution {
+  id            Int              @id() @default(autoincrement())
+  role          InstitutionRoles
+  institution   Institution      @relation(fields: [institutionId], references: [id])
+  user          User             @relation(fields: [userId], references: [id])
+  institutionId Int              @map("institution_id")
+  userId        Int              @map("userId")
+}
+
+model AdoptionRequest {
+  id            Int          @id() @default(autoincrement())
+  notes         String       @db.VarChar(255)
+  animal        Animal       @relation(fields: [animalId], references: [id])
+  user          User?        @relation(fields: [userId], references: [id])
+  institution   Institution? @relation(fields: [institutionId], references: [id])
+  animalId      Int          @map("animal_id")
+  userId        Int?         @map("user_id")
+  institutionId Int?         @map("institution_id")
 }
