@@ -7,6 +7,22 @@ import NavLink from "../../../components/global/NavLink";
 const UserHome = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:7000/user/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (response.ok) {
+        authContext?.setAuth(null);
+        navigate("/login");
+      } else {
+        console.log("Error ao deslogar");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   if (!authContext?.auth)
     return (
       <h1 className="text-blue-red text-center text-3xl font-dynapuff">
@@ -65,12 +81,9 @@ const UserHome = () => {
         </div>
         <div className="justify-center flex">
           <Button
-            onClick={() => {
-              authContext?.setAuth(null);
-              navigate("/login");
-            }}
             variant="desctructive"
             className="w-32"
+            onClick={handleLogout}
           >
             <CiLogout />
             Sair
