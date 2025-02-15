@@ -7,4 +7,5 @@ router.post(
   upload.single("image"),
   userController.userRegister
 );
+router.get("/login", userController.login);
 export { router };
