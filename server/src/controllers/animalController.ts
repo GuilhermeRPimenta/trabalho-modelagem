@@ -1,3 +1,4 @@
+import { BrazilianStates, SpeciesEnum } from "@prisma/client";
 import prisma from "../prisma/prisma.ts";
 import express from "express";
 
@@ -52,4 +53,62 @@ const register = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-export { register };
+const fetch = async (req: Request, res: Response): Promise<any> => {
+  const { state, city, species } = req.query;
+  try {
+    const animals = await prisma.animal.findMany({
+      where: {
+        ...(species ? { species: species as SpeciesEnum } : {}),
+        OR: [
+          {
+            userDonator: {
+              ...(state ? { state: state as BrazilianStates } : {}),
+              ...(city ? { city: String(city) } : {}),
+            },
+          },
+          {
+            institutionDonator: {
+              ...(state ? { state: state as BrazilianStates } : {}),
+              ...(city ? { city: String(city) } : {}),
+            },
+          },
+        ],
+      },
+      include: {
+        userDonator: {
+          select: {
+            neighborhood: true,
+            city: true,
+            state: true,
+          },
+        },
+        institutionDonator: {
+          select: {
+            neighborhood: true,
+            city: true,
+            state: true,
+          },
+        },
+      },
+    });
+    const formattedAnimals = animals.map((animal) => {
+      const formattedUrls = animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+      let donator = { neighborhood: "", city: "", state: "" };
+      if (animal.userDonator) {
+        donator = { ...animal.userDonator };
+      } else if (animal.institutionDonator) {
+        donator = { ...animal.institutionDonator };
+      }
+
+      return { ...animal, donator: donator, imgUrls: formattedUrls };
+    });
+    return res.status(200).json(formattedAnimals);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ messagem: "Error fetching animals" });
+  }
+};
+
+export { register, fetch };

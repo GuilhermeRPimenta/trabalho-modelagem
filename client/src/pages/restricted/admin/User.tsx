@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import brokenImage from "../../../assets/brokenImage.png";
 import { useCallback, useEffect, useState } from "react";
 import LoadingIcon from "../../../components/global/LoadingIcon";
+import apiBaseUrl from "../../../apiBaseUrl";
 
 const User = () => {
   const navigate = useNavigate();
@@ -110,13 +111,10 @@ const User = () => {
   const handleDeleteUser = async () => {
     try {
       setPageState("LOADING");
-      const response = await fetch(
-        `http://localhost:7000/user/adminDelete/${userId}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${apiBaseUrl}/user/adminDelete/${userId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
       if (!response.ok) {
         setPageState("ERROR");
       }

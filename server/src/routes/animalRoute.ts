@@ -10,4 +10,5 @@ animalRouter.post(
   upload.array("images", 10),
   animalController.register
 );
+animalRouter.get("/fetch", animalController.fetch);
 export { animalRouter };

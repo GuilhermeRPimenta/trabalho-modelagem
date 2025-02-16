@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { BrazilianState, brazilianStates } from "../../../types/states";
 import NavLink from "../../../components/global/NavLink";
 import LoadingIcon from "../../../components/global/LoadingIcon";
+import apiBaseUrl from "../../../apiBaseUrl";
 
 const Users = () => {
   const [pageState, setPageState] = useState<"LOADING" | "SUCCESS" | "ERROR">(
@@ -33,7 +34,7 @@ const Users = () => {
     try {
       setPageState("LOADING");
       const fetchedUsers = await fetch(
-        `http://localhost:7000/user/adminFetch?${
+        `${apiBaseUrl}/user/adminFetch?${
           filter.state ? "state=" + filter.state : ""
         }${filter.city ? "&city=" + filter.city : ""}`,
         { method: "GET", credentials: "include" }
