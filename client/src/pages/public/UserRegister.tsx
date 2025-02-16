@@ -10,12 +10,11 @@ import { FaCheckCircle } from "react-icons/fa";
 const UserRegister = () => {
   const [pageState, setPageState] = useState<
     "FORM" | "LOADING" | "SUCCESS" | "ERROR"
-  >("LOADING");
+  >("FORM");
   const [userImage, setUserImage] = useState<File>();
   const [cities, setCities] = useState<string[]>([]);
   const fetchStateCities = async (state: BrazilianState) => {
     try {
-      setPageState("LOADING");
       const fetchedCities = await fetch(
         `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`,
         { method: "GET" }
@@ -23,7 +22,6 @@ const UserRegister = () => {
       const citiesData: { nome: string }[] = await fetchedCities.json();
 
       setCities(citiesData.map((city) => city.nome));
-      setPageState("FORM");
     } catch (e) {
       console.log(e);
     }
