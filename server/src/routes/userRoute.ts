@@ -1,15 +1,15 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.ts";
 import { upload } from "../middlewares/multer.ts";
-import { authenticateToken } from "../middlewares/authenticateToken.ts";
+import { authenticateToken } from "../middlewares/authenticateUser.ts";
 import express from "express";
-const router = Router();
-router.post(
+const userRouter = Router();
+userRouter.post(
   "/userRegister",
   upload.single("image"),
   userController.userRegister
 );
-router.post("/login", userController.login);
-router.post("/logout", userController.logout);
-router.get("/get", userController.get);
-export { router };
+userRouter.post("/login", userController.login);
+userRouter.post("/logout", userController.logout);
+userRouter.get("/get", userController.get);
+export { userRouter };

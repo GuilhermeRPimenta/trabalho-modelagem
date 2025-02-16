@@ -7,43 +7,22 @@ import dotenv from "dotenv";
 type Request = express.Request;
 type Response = express.Response;
 
-const userRegister = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
   try {
-    const {
-      name,
-      birthdate,
-      cpf,
-      email,
-      phone,
-      state,
-      city,
-      street,
-      number,
-      complement,
-      neighborhood,
-      postalCode,
-      password,
-    } = req.body;
+    const { name, birthdate, cpf, email, phone, password } = req.body;
+    console.log(req.body);
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    const imgUrl = req.file ? `/uploads/${req.file.filename}` : null;
-    const user = await prisma.user.create({
+
+    const admin = await prisma.systemAdmin.create({
       data: {
         name,
         birthdate: new Date(birthdate),
         cpf,
         email,
         phone,
-        state,
-        city,
-        street,
-        number: parseInt(number),
-        complement,
-        neighborhood,
-        postalCode,
         password: hashedPassword,
-        imgUrl,
       },
       select: {
         id: true,
@@ -52,14 +31,14 @@ const userRegister = async (req: Request, res: Response) => {
     });
 
     res.status(201).json({
-      message: "Usuário criado com sucesso",
-      user: { id: user.id, name: user.name },
+      message: "Administrador criado com sucesso",
+      admin: { id: admin.id, name: admin.name },
     });
     return;
   } catch (e) {
     console.log(e);
     res.status(500).json({
-      message: "Erro ao criar o usuário",
+      message: "Erro ao criar o administrador",
       error: e.message,
     });
     return;
@@ -71,7 +50,7 @@ const login = async (req: Request, res: Response) => {
   const cpf = String(req.body.cpf);
   const password = String(req.body.password);
   try {
-    const user = await prisma.user.findUnique({
+    const admin = await prisma.systemAdmin.findUnique({
       where: {
         cpf,
       },
@@ -81,21 +60,21 @@ const login = async (req: Request, res: Response) => {
         password: true,
       },
     });
-    if (!user) {
+    if (!admin) {
       res.status(400).json({ message: "Incorrect Credentials" });
       return;
     }
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, admin.password);
     if (!isValidPassword) {
       res.status(400).json({ message: "Incorrect Credentials" });
       return;
     }
 
     const accessToken = jwt.sign(
-      { id: user.id, name: user.name },
+      { id: admin.id, name: admin.name },
       process.env.JWT_SECRET_KEY!
     );
-    res.cookie("user_token", accessToken, {
+    res.cookie("admin_token", accessToken, {
       httpOnly: true,
       sameSite: "none",
       secure: true,
@@ -103,7 +82,7 @@ const login = async (req: Request, res: Response) => {
 
     res.status(200).json({
       message: "Login successful",
-      user: { id: user.id, name: user.name }, // Enviar dados do usuário, sem senha
+      admin: { id: admin.id, name: admin.name },
     });
     return;
   } catch (e) {
@@ -114,7 +93,7 @@ const login = async (req: Request, res: Response) => {
 };
 
 const logout = async (req: Request, res: Response) => {
-  res.clearCookie("user_token", {
+  res.clearCookie("admin_token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
@@ -124,7 +103,7 @@ const logout = async (req: Request, res: Response) => {
 };
 
 const get = async (req: Request, res: Response) => {
-  const token = req.cookies.user_token;
+  const token = req.cookies.admin_token;
   if (!token) {
     res.status(401).json({ message: "Not authenticated" });
     return;
@@ -143,4 +122,4 @@ const get = async (req: Request, res: Response) => {
   });
 };
 
-export { userRegister, login, logout, get };
+export { register, login, logout, get };

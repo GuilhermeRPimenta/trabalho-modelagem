@@ -30,7 +30,7 @@ const Login = () => {
       });
       if (response.ok) {
         setPageState("SUCCESS");
-        authContext?.authUpdate();
+        authContext?.authUserUpdate();
       } else {
         setPageState("ERROR");
       }
@@ -41,8 +41,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (authContext?.auth) navigate("/user");
-  }, [authContext?.auth, navigate]);
+    if (authContext.auth.user) navigate("/user");
+  }, [authContext.auth.user, navigate]);
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">Login</h1>

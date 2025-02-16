@@ -1,47 +1,93 @@
-import { createContext, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useEffect, useState } from "react";
+
+type AuthUser = { id: number; name: string } | null;
+type AuthAdmin = { id: number; name: string } | null;
+
+interface Auth {
+  user: AuthUser;
+  admin: AuthAdmin;
+}
+
+type SetAuth = React.Dispatch<
+  React.SetStateAction<{
+    user: AuthUser;
+    admin: AuthAdmin;
+  }>
+>;
 
 const AuthContext = createContext<{
-  auth: { id: number; name: string } | null;
-  setAuth: React.Dispatch<
-    React.SetStateAction<{ id: number; name: string } | null>
-  >;
-  authUpdate: () => void;
-} | null>(null);
+  auth: Auth;
+  setAuth: SetAuth;
+  authUserUpdate: () => void;
+  authAdminUpdate: () => void;
+}>({
+  auth: { user: null, admin: null },
+  setAuth: () => {},
+  authUserUpdate: () => {},
+  authAdminUpdate: () => {},
+});
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useState<{ id: number; name: string } | null>(null);
-  const authUpdate = useCallback(async () => {
+  const [auth, setAuth] = useState<Auth>({ user: null, admin: null });
+  const authUserUpdate = async () => {
     try {
       const response = await fetch("http://localhost:7000/user/get", {
         method: "GET",
-        credentials: "include", // Certifique-se de incluir cookies na requisição
+        credentials: "include", // Incluindo cookies na requisição
       });
 
       if (response.ok) {
         const user = await response.json();
         console.log(user);
-        setAuth({ id: user.id, name: user.name ?? "placeholder" });
+        setAuth((prev) => ({
+          admin: prev?.admin ?? null,
+          user: user?.id ? { id: user.id, name: user.name } : null,
+        }));
       } else {
-        setAuth(null); // Caso não consiga obter o usuário, loga o usuário
-        navigate("/login"); // Redireciona para a página de login
+        setAuth((prev) => ({ admin: prev?.admin ?? null, user: null }));
       }
     } catch (error) {
       console.error("Erro ao verificar token:", error);
-      setAuth(null);
+      setAuth((prev) => ({ admin: prev?.admin ?? null, user: null }));
     }
-  }, [navigate]);
+  };
+
+  const authAdminUpdate = async () => {
+    try {
+      const response = await fetch("http://localhost:7000/admin/get", {
+        method: "GET",
+        credentials: "include", // Incluindo cookies na requisição
+      });
+
+      if (response.ok) {
+        const admin = await response.json();
+        console.log(admin);
+        setAuth((prev) => ({
+          user: prev.user ?? null,
+          admin: admin?.id ? { id: admin.id, name: admin.name } : null,
+        }));
+      } else {
+        setAuth((prev) => ({ admin: null, user: prev.user ?? null }));
+      }
+    } catch (error) {
+      console.error("Erro ao verificar token:", error);
+      setAuth((prev) => ({ admin: null, user: prev.user ?? null }));
+    }
+  };
 
   useEffect(() => {
-    authUpdate();
-  }, [authUpdate]);
+    authUserUpdate();
+    authAdminUpdate();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, authUpdate }}>
+    <AuthContext.Provider
+      value={{ auth, setAuth, authUserUpdate, authAdminUpdate }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
 export { AuthProvider, AuthContext };
+export { type AuthUser, type AuthAdmin, type Auth, type SetAuth };

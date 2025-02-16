@@ -17,8 +17,7 @@ const authenticateToken = async (
   next: NextFunction
 ) => {
   console.log(req);
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader?.split(" ")[1];
+  const token = req.cookies.user_token;
   if (!token) return res.status(401).json({ message: "Unauthorized" });
 
   jwt.verify(token, process.env.JWT_SECRET_KEY!, (error, user) => {

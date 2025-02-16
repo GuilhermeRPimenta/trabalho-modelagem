@@ -1,0 +1,11 @@
+import { Router } from "express";
+import * as adminController from "../controllers/adminController.ts";
+import { upload } from "../middlewares/multer.ts";
+import { authenticateToken } from "../middlewares/authenticateUser.ts";
+import express from "express";
+const adminRouter = Router();
+adminRouter.post("/register", adminController.register);
+adminRouter.post("/login", adminController.login);
+adminRouter.post("/logout", adminController.logout);
+adminRouter.get("/get", adminController.get);
+export { adminRouter };

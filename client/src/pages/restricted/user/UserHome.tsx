@@ -14,7 +14,10 @@ const UserHome = () => {
         credentials: "include",
       });
       if (response.ok) {
-        authContext?.setAuth(null);
+        authContext.setAuth((prev) => ({
+          admin: prev.admin ?? null,
+          user: null,
+        }));
         navigate("/login");
       } else {
         console.log("Error ao deslogar");
@@ -23,16 +26,15 @@ const UserHome = () => {
       console.log(e);
     }
   };
-  if (!authContext?.auth)
-    return (
-      <h1 className="text-blue-red text-center text-3xl font-dynapuff">
-        Acesso negado
-      </h1>
-    );
+  if (!authContext.auth.user) {
+    navigate("/login");
+    return;
+  }
+
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Bem vindo(a), {authContext.auth.name}
+        Bem vindo(a), {authContext.auth.user.name}
       </h1>
       <div className="flex flex-col gap-2">
         <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">

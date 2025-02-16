@@ -7,6 +7,7 @@ import { useAuth } from "../global/useAuth";
 
 const Header = () => {
   const authContext = useAuth();
+  const authUser = authContext.auth.user;
   const location = useLocation();
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
@@ -28,7 +29,7 @@ const Header = () => {
 
         <div className="flex items-center justify-center">
           <Nav
-            authContext={authContext}
+            authUser={authUser}
             mobileNavIsOpen={mobileNavIsOpen}
             handleMobileNavIsOpenChange={handleMobileNavIsOpenChange}
             location={location}
@@ -39,7 +40,7 @@ const Header = () => {
         <div className="sm:hidden bg-gray-100 shadow-md">
           <NavLinks
             className="text-xl"
-            authContext={authContext}
+            authUser={authUser}
             handleNavLinkClick={handleNavLinkClick}
             location={location}
           />
