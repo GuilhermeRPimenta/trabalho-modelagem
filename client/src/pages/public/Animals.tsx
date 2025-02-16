@@ -4,7 +4,32 @@ import { BrazilianState, brazilianStates } from "../../types/states";
 import apiBaseUrl from "../../apiBaseUrl";
 import LoadingIcon from "../../components/global/LoadingIcon";
 
+interface Animal {
+  id: number;
+  name: string;
+  species: string | null;
+  customSpecies: string | null;
+  gender: string;
+  userAdopterId: number | null;
+  institutionAdopterId: number | null;
+  imgUrls: string[];
+  userDonator: {
+    id: number;
+    neighborhood: string;
+    city: string;
+    state: string;
+  } | null;
+  institutionDonator: {
+    id: number;
+    neighborhood: string;
+    city: string;
+    state: string;
+  } | null;
+}
+
 const Animals = () => {
+  const [searchName, setSearchName] = useState("");
+  const [displayedAnimals, setDisplayedAnimals] = useState<Animal[]>([]);
   const [pageState, setPageState] = useState<"LOADING" | "SUCCESS" | "ERROR">(
     "LOADING"
   );
@@ -94,6 +119,17 @@ const Animals = () => {
   useEffect(() => {
     void fetchAnimals();
   }, [fetchAnimals]);
+  useEffect(() => {
+    const name = searchName.toLowerCase();
+    if (name === "") {
+      setDisplayedAnimals(animals);
+    } else {
+      const filtered = animals.filter((animal) =>
+        animal.name.toLowerCase().includes(name)
+      );
+      setDisplayedAnimals(filtered);
+    }
+  }, [animals, searchName]);
   console.log(animals);
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
@@ -138,6 +174,10 @@ const Animals = () => {
           </select>
           <input
             type="text"
+            onChange={(e) => {
+              setSearchName(e.target.value);
+            }}
+            value={searchName}
             className="outline outline-1 outline-blue-700 rounded-lg p-2"
             placeholder="Pesquisar nome..."
           />
@@ -149,7 +189,7 @@ const Animals = () => {
         </h2>
       )}
 
-      <AnimalCardList animals={animals} showDonatorAddress />
+      <AnimalCardList animals={displayedAnimals} showDonatorAddress />
     </div>
   );
 };
