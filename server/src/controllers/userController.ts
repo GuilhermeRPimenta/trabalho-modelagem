@@ -77,6 +77,7 @@ const login = async (req: Request, res: Response): Promise<any> => {
       select: {
         id: true,
         name: true,
+        cpf: true,
         password: true,
       },
     });
@@ -89,7 +90,7 @@ const login = async (req: Request, res: Response): Promise<any> => {
     }
 
     const accessToken = jwt.sign(
-      { id: user.id, name: user.name },
+      { id: user.id, name: user.name, cpf: user.cpf },
       process.env.JWT_SECRET_KEY!
     );
     res.cookie("user_token", accessToken, {
@@ -130,6 +131,7 @@ const get = async (req: Request, res: Response): Promise<any> => {
     return res.status(200).json({
       id: decoded.id,
       name: decoded.name,
+      cpf: decoded.cpf,
     });
   });
 };

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-type AuthUser = { id: number; name: string } | null;
+type AuthUser = { id: number; name: string; cpf: string } | null;
 type AuthAdmin = { id: number; name: string } | null;
 
 interface Auth {
@@ -30,6 +30,7 @@ const AuthContext = createContext<{
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<Auth>({ user: null, admin: null });
   const authUserUpdate = async () => {
+    console.log("ddd");
     try {
       const response = await fetch("http://localhost:7000/user/get", {
         method: "GET",
@@ -41,7 +42,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(user);
         setAuth((prev) => ({
           admin: prev?.admin ?? null,
-          user: user?.id ? { id: user.id, name: user.name } : null,
+          user: user?.id
+            ? { id: user.id, name: user.name, cpf: user.cpf }
+            : null,
         }));
       } else {
         setAuth((prev) => ({ admin: prev?.admin ?? null, user: null }));

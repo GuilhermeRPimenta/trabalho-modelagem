@@ -44,8 +44,8 @@ enum BrazilianStates {
 }
 
 enum Gender {
-  MALE
-  FEMALE
+  FEMEA
+  MACHO
 }
 
 enum SpeciesEnum {
@@ -98,24 +98,25 @@ model User {
 }
 
 model Animal {
-  id                Int         @id @default(autoincrement())
-  name              String      @db.VarChar(255)
-  species           SpeciesEnum
-  customSpecies     String?     @map("custom_species") @db.VarChar(255)
-  gender            Gender
-  birthdate         DateTime?
-  age               Int?
-  description       String?     @db.VarChar(255)
-  healthConditition String?     @db.VarChar(255)
-  weight            Float?
+  id              Int         @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  species         SpeciesEnum
+  customSpecies   String?     @map("custom_species") @db.VarChar(255)
+  breed           String?     @db.VarChar(255)
+  gender          Gender
+  birthdate       DateTime?
+  age             Int?
+  description     String?     @db.VarChar(255)
+  healthCondition String?     @db.VarChar(255)
+  weight          Float?
 
   userDonator          User?             @relation("user_donator", fields: [userDonatorId], references: [id], onDelete: Cascade)
   userAdopter          User?             @relation("user_adopter", fields: [userAdopterId], references: [id])
   institutionDonator   Institution?      @relation("institution_donator", fields: [institutionDonatorId], references: [id], onDelete: Cascade)
   institutionAdopter   Institution?      @relation("institution_adopter", fields: [institutionAdopterId], references: [id])
-  userDonatorId        Int               @map("user_donator_id")
+  userDonatorId        Int?              @map("user_donator_id")
   userAdopterId        Int?              @map("user_adopter_id")
-  institutionDonatorId Int               @map("institution_donator_id")
+  institutionDonatorId Int?              @map("institution_donator_id")
   institutionAdopterId Int?              @map("institution_adopter_id")
   adoptionRequests     AdoptionRequest[]
   imgUrls              String[]
