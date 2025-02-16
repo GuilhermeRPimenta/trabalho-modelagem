@@ -10,7 +10,28 @@ const AnimalCardList = ({
   showRequestsInfo,
   customBaseUrl,
 }: {
-  animals: AnimalType[];
+  animals: {
+    id: number;
+    name: string;
+    species: string | null;
+    customSpecies: string | null;
+    gender: string;
+    imgUrls: string[];
+    donator?: {
+      neighborhood: string;
+      city: string;
+      state: string;
+    };
+    adopter?: {
+      id: number;
+    };
+    adoptionRequests?: {
+      id: number;
+      notes: string;
+      userId: number | null;
+      institutionId: number | null;
+    }[];
+  }[];
   showDonatorAddress?: boolean;
   customBaseUrl?: string;
   showDonationStatus?: boolean;
@@ -49,8 +70,8 @@ const AnimalCardList = ({
           </div>
           {showDonatorAddress && (
             <p>
-              {animal.donator.neighborhood}, {animal.donator.city} -
-              {animal.donator.state}
+              {animal.donator?.neighborhood}, {animal.donator?.city} -
+              {animal.donator?.state}
             </p>
           )}
           {showDonationStatus && (
@@ -64,8 +85,8 @@ const AnimalCardList = ({
             </p>
           )}
           {showRequestsInfo &&
-            (animal.userRequests.length > 0 ||
-              animal.shelterRequests.length > 0) && (
+            animal.adoptionRequests &&
+            animal.adoptionRequests.length > 0 && (
               <p className="mt-auto flex items-center text-green-600">
                 <strong>Há solicitações!</strong>
               </p>

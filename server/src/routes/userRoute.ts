@@ -12,5 +12,15 @@ userRouter.post(
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
 userRouter.get("/get", userController.get);
-userRouter.get("/fetch", authenticateAdmin, userController.fetch);
+userRouter.get("/adminFetch", authenticateAdmin, userController.adminFetch);
+userRouter.get(
+  "/adminFetchUnique/:id",
+  authenticateAdmin,
+  userController.adminFetchUnique
+);
+userRouter.delete(
+  "/adminDelete/:id",
+  authenticateAdmin,
+  userController.adminDelete
+);
 export { userRouter };

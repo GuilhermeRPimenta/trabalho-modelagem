@@ -16,7 +16,7 @@ const Users = () => {
       state: string;
       createdAt: string;
       _count: {
-        adopterAnimals: number;
+        adoptedAnimals: number;
         donationAnimals: number;
       };
     }[]
@@ -33,7 +33,7 @@ const Users = () => {
     try {
       setPageState("LOADING");
       const fetchedUsers = await fetch(
-        `http://localhost:7000/user/fetch?${
+        `http://localhost:7000/user/adminFetch?${
           filter.state ? "state=" + filter.state : ""
         }${filter.city ? "&city=" + filter.city : ""}`,
         { method: "GET", credentials: "include" }
@@ -157,7 +157,7 @@ const Users = () => {
                         <p>
                           Animais cadastrados: {user._count.donationAnimals}
                         </p>
-                        <p>Animais adotados: {user._count.adopterAnimals}</p>
+                        <p>Animais adotados: {user._count.adoptedAnimals}</p>
                         <p>
                           Registro em:{" "}
                           {new Date(user.createdAt).toLocaleString("pt-BR", {

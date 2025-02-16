@@ -8,7 +8,7 @@ import { BrazilianStates } from "@prisma/client";
 type Request = express.Request;
 type Response = express.Response;
 
-const userRegister = async (req: Request, res: Response) => {
+const userRegister = async (req: Request, res: Response): Promise<any> => {
   try {
     const {
       name,
@@ -52,22 +52,20 @@ const userRegister = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Usuário criado com sucesso",
       user: { id: user.id, name: user.name },
     });
-    return;
   } catch (e) {
     console.log(e);
-    res.status(500).json({
+    return res.status(500).json({
       message: "Erro ao criar o usuário",
       error: e.message,
     });
-    return;
   }
 };
 
-const login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response): Promise<any> => {
   console.log(req.body);
   const cpf = String(req.body.cpf);
   const password = String(req.body.password);
@@ -83,13 +81,11 @@ const login = async (req: Request, res: Response) => {
       },
     });
     if (!user) {
-      res.status(400).json({ message: "Incorrect Credentials" });
-      return;
+      return res.status(400).json({ message: "Incorrect Credentials" });
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
-      res.status(400).json({ message: "Incorrect Credentials" });
-      return;
+      return res.status(400).json({ message: "Incorrect Credentials" });
     }
 
     const accessToken = jwt.sign(
@@ -102,49 +98,43 @@ const login = async (req: Request, res: Response) => {
       secure: true,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Login successful",
       user: { id: user.id, name: user.name }, // Enviar dados do usuário, sem senha
     });
-    return;
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "Internal server error" });
-    return;
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
-const logout = async (req: Request, res: Response) => {
+const logout = async (req: Request, res: Response): Promise<any> => {
   res.clearCookie("user_token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   });
-  res.status(200).json({ message: "Logout successful" });
-  return;
+  return res.status(200).json({ message: "Logout successful" });
 };
 
-const get = async (req: Request, res: Response) => {
+const get = async (req: Request, res: Response): Promise<any> => {
   const token = req.cookies.user_token;
   if (!token) {
-    res.status(401).json({ message: "Not authenticated" });
-    return;
+    return res.status(401).json({ message: "Not authenticated" });
   }
 
   jwt.verify(token, process.env.JWT_SECRET_KEY!, (err, decoded) => {
     if (err) {
-      res.status(401).json({ message: "Invalid token" });
-      return;
+      return res.status(401).json({ message: "Invalid token" });
     }
-    res.status(200).json({
+    return res.status(200).json({
       id: decoded.id,
       name: decoded.name,
     });
-    return;
   });
 };
 
-const fetch = async (req: Request, res: Response) => {
+const adminFetch = async (req: Request, res: Response): Promise<any> => {
   const { state, city } = req.query;
   try {
     const users = await prisma.user.findMany({
@@ -162,18 +152,102 @@ const fetch = async (req: Request, res: Response) => {
         createdAt: true,
         _count: {
           select: {
-            adopterAnimals: true,
+            adoptedAnimals: true,
             donationAnimals: true,
           },
         },
       },
     });
-    res.status(200).json(users);
-    return;
+    return res.status(200).json(users);
   } catch (e) {
-    res.status(500).json({ message: "Error" });
-    return;
+    return res.status(500).json({ message: "Error" });
   }
 };
 
-export { userRegister, login, logout, get, fetch };
+const adminFetchUnique = async (req: Request, res: Response): Promise<any> => {
+  const id = Number(req.params.id);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        cpf: true,
+        birthdate: true,
+        email: true,
+        phone: true,
+        street: true,
+        complement: true,
+        number: true,
+        neighborhood: true,
+        city: true,
+        state: true,
+        postalCode: true,
+        imgUrl: true,
+        createdAt: true,
+        donationAnimals: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            customSpecies: true,
+            gender: true,
+            userAdopterId: true,
+            institutionAdopterId: true,
+            imgUrls: true,
+          },
+        },
+        adoptedAnimals: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            customSpecies: true,
+            gender: true,
+            imgUrls: true,
+          },
+        },
+        userInstitutions: {
+          include: {
+            institution: true,
+          },
+        },
+      },
+    });
+    const userWithFormattedImgUrls = {
+      ...user,
+      imgUrl: user?.imgUrl
+        ? "http://localhost:" + process.env.SERVER_PORT! + user?.imgUrl
+        : null,
+    };
+    return res.status(200).json(userWithFormattedImgUrls);
+  } catch (e) {
+    return res.status(500).json({ message: "Error fetching user" });
+  }
+};
+
+const adminDelete = async (req: Request, res: Response): Promise<any> => {
+  const id = Number(req.params.id);
+  try {
+    await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+    return res.status(200).json({ message: "User deleted" });
+  } catch (e) {
+    return res.status(500).json({ message: "Failed to delete user" });
+  }
+};
+
+export {
+  userRegister,
+  login,
+  logout,
+  get,
+  adminFetch,
+  adminFetchUnique,
+  adminDelete,
+};
