@@ -13,23 +13,27 @@ type NextFunction = express.NextFunction;
 type VerifyErrors = jwt.VerifyErrors;
 type JwtPayload = jwt.JwtPayload;
 
-const authenticateUser = async (
+const authenticateAdmin = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const token = req.cookies.user_token;
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
+  const token = req.cookies.admin_token;
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
   jwt.verify(
     token,
     process.env.JWT_SECRET_KEY!,
     (error: VerifyErrors | null, user: JwtPayload | string | undefined) => {
-      if (error) return res.sendStatus(403);
+      if (error) {
+        return res.sendStatus(403);
+      }
       req.user = user;
       next();
     }
   );
 };
 
-export { authenticateUser };
+export { authenticateAdmin };

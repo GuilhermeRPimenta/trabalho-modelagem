@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as adminController from "../controllers/adminController.ts";
 import { upload } from "../middlewares/multer.ts";
-import { authenticateToken } from "../middlewares/authenticateUser.ts";
+import { authenticateUser } from "../middlewares/authenticateUser.ts";
 import express from "express";
 const adminRouter = Router();
 adminRouter.post("/register", adminController.register);

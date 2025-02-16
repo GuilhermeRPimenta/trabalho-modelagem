@@ -1,8 +1,8 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.ts";
 import { upload } from "../middlewares/multer.ts";
-import { authenticateToken } from "../middlewares/authenticateUser.ts";
-import express from "express";
+import { authenticateAdmin } from "../middlewares/authenticateAdmin.ts";
+
 const userRouter = Router();
 userRouter.post(
   "/userRegister",
@@ -12,4 +12,5 @@ userRouter.post(
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
 userRouter.get("/get", userController.get);
+userRouter.get("/fetch", authenticateAdmin, userController.fetch);
 export { userRouter };

@@ -3,6 +3,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { BrazilianStates } from "@prisma/client";
 
 type Request = express.Request;
 type Response = express.Response;
@@ -143,4 +144,36 @@ const get = async (req: Request, res: Response) => {
   });
 };
 
-export { userRegister, login, logout, get };
+const fetch = async (req: Request, res: Response) => {
+  const { state, city } = req.query;
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        ...(state ? { state: state as BrazilianStates } : {}),
+        ...(city ? { city: String(city) } : {}),
+      },
+      select: {
+        id: true,
+        name: true,
+        street: true,
+        neighborhood: true,
+        city: true,
+        state: true,
+        createdAt: true,
+        _count: {
+          select: {
+            adopterAnimals: true,
+            donationAnimals: true,
+          },
+        },
+      },
+    });
+    res.status(200).json(users);
+    return;
+  } catch (e) {
+    res.status(500).json({ message: "Error" });
+    return;
+  }
+};
+
+export { userRegister, login, logout, get, fetch };
