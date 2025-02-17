@@ -107,8 +107,82 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
     return res.status(200).json(formattedAnimals);
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ messagem: "Error fetching animals" });
+    return res.status(500).json({ message: "Error fetching animals" });
   }
 };
 
-export { register, fetch };
+const fetchPublic = async (req: Request, res: Response): Promise<any> => {
+  const { id } = req.params;
+  try {
+    const animal = await prisma.animal.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        userDonator: true,
+        institutionDonator: true,
+      },
+    });
+    if (!animal) {
+      return res.status(404).json({ message: "Animal not found" });
+    }
+    const formattedUrls = animal.imgUrls.map((url) => {
+      return "http://localhost:" + process.env.SERVER_PORT! + url;
+    });
+    const donatorType = animal?.userDonatorId ? "USER" : "INSTITUTION";
+    if (donatorType === "USER") {
+      const formattedAnimal = {
+        id: animal.id,
+        name: animal.name,
+        species: animal.species,
+        customSpecies: animal.customSpecies,
+        breed: animal.breed,
+        gender: animal.gender,
+        birthdate: animal.birthdate,
+        age: animal.age,
+        description: animal.description,
+        healthCondition: animal.healthCondition,
+        weight: animal.weight,
+        imgUrls: formattedUrls,
+        donatorType: donatorType,
+        donator: {
+          id: animal.userDonatorId,
+          name: animal.userDonator?.name,
+          neighborhood: animal.userDonator?.neighborhood,
+          city: animal.userDonator?.city,
+          state: animal.userDonator?.state,
+        },
+      };
+      return res.status(200).json(formattedAnimal);
+    } else {
+      const formattedAnimal = {
+        id: animal.id,
+        name: animal.name,
+        species: animal.species,
+        customSpecies: animal.customSpecies,
+        breed: animal.breed,
+        gender: animal.gender,
+        birthdate: animal.birthdate,
+        age: animal.age,
+        description: animal.description,
+        healthCondition: animal.healthCondition,
+        weight: animal.weight,
+        imgUrls: formattedUrls,
+        donatorType: donatorType,
+        donator: {
+          id: animal.institutionDonatorId,
+          name: animal.institutionDonator?.name,
+          neighborhood: animal.institutionDonator?.neighborhood,
+          city: animal.institutionDonator?.city,
+          state: animal.institutionDonator?.state,
+        },
+      };
+      return res.status(200).json(formattedAnimal);
+    }
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: "Error fetching animal" });
+  }
+};
+
+export { register, fetch, fetchPublic };

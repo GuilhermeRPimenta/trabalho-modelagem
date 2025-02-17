@@ -71,7 +71,8 @@ const Animals = () => {
           filter.state ? "state=" + filter.state : ""
         }${filter.city ? "&city=" + filter.city : ""}${
           filter.species !== "TODAS" ? "&species=" + filter.species : ""
-        }`
+        }`,
+        { method: "GET" }
       );
       const animalsData = await fetchedAnimals.json();
       setAnimals(animalsData);
@@ -130,7 +131,6 @@ const Animals = () => {
       setDisplayedAnimals(filtered);
     }
   }, [animals, searchName]);
-  console.log(animals);
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">Animais</h1>

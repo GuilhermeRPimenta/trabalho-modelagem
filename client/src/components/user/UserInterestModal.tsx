@@ -7,6 +7,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { useAuth } from "../global/useAuth";
 import { NavLink } from "react-router-dom";
 import { users } from "../../assets/exampleData";
+import apiBaseUrl from "../../apiBaseUrl";
 
 const UserInterestModal = ({
   isOpen,
@@ -15,22 +16,47 @@ const UserInterestModal = ({
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const [loginFormData, setLoginFormData] = useState({ cpf: "", password: "" });
   const authContext = useAuth();
   const [pageState, setPageState] = useState<
     "FORM" | "LOADING" | "ERROR" | "SUCCESS" | "LOGIN"
-  >(authContext?.auth ? "FORM" : "LOGIN");
+  >(authContext?.auth.user ? "FORM" : "LOGIN");
   const [person, setPerson] = useState("%USER");
 
   const resetModal = () => {
-    setPageState("FORM");
+    setPageState(authContext?.auth.user ? "FORM" : "LOGIN");
   };
 
   useEffect(() => {
-    setPageState(authContext?.auth ? "FORM" : "LOGIN");
-  }, [authContext?.auth]);
+    setPageState(authContext?.auth.user ? "FORM" : "LOGIN");
+  }, [authContext?.auth.user]);
 
   const handlePersonChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setPerson(e.target.value);
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setPageState("LOADING");
+      const response = await fetch(`${apiBaseUrl}/user/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(loginFormData),
+      });
+      if (response.ok) {
+        setPageState("SUCCESS");
+        authContext?.authUserUpdate();
+      } else {
+        setPageState("ERROR");
+      }
+    } catch (e) {
+      console.log(e);
+      setPageState("ERROR");
+    }
   };
 
   return (
@@ -59,25 +85,39 @@ const UserInterestModal = ({
           <div className="flex flex-col w-full overflow-auto  justify-center items-center gap-2">
             <h1 className="text-blue-700 text-3xl font-dynapuff">Login</h1>
             <div className="flex justify-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
-              <div className="flex flex-col gap-2 items-center">
-                {/*Substituir div acima por form*/}
+              <form
+                className="flex flex-col gap-2 items-center"
+                onSubmit={handleLogin}
+              >
                 <label htmlFor="cpf">CPF</label>
                 <input
                   type="numeric"
                   id="cpf"
+                  name="cpf"
+                  value={loginFormData.cpf}
                   style={{ MozAppearance: "textfield" }}
+                  onChange={(e) => {
+                    setLoginFormData((prev) => ({
+                      ...prev,
+                      cpf: e.target.value,
+                    }));
+                  }}
                 />
                 <label htmlFor="password">Senha</label>
-                <input type="password" id="password" />
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    authContext?.setAuth(users[0]);
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={loginFormData.password}
+                  onChange={(e) => {
+                    setLoginFormData((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }));
                   }}
-                >
-                  Entrar
-                </Button>
-              </div>
+                />
+                <Button variant="primary">Entrar</Button>
+              </form>
             </div>
             <div className="flex sm:flex-row flex-col items-center">
               <p>Não possui uma conta?</p>
@@ -91,9 +131,9 @@ const UserInterestModal = ({
           </div>
         ) : (
           <>
-            {pageState === "FORM" && (
+            {/*pageState === "FORM" && (
               <div className="flex px-1 overflow-auto items-center flex-col gap-1">
-                {/*Trocar div acima por form*/}
+                Trocar div acima por form
                 {authContext &&
                   authContext.auth &&
                   authContext.auth.shelters.length > 0 && (
@@ -144,7 +184,7 @@ const UserInterestModal = ({
                   Enviar
                 </Button>
               </div>
-            )}
+            )*/}
             {pageState === "LOADING" && (
               <LoadingIcon className="text-7xl w-full" />
             )}

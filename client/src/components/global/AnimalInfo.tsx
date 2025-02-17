@@ -1,6 +1,5 @@
 import { ReactNode, useState } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { AnimalType } from "../../types/animal";
 
 const calculateAge = (birthDate: Date) => {
   const currentDate = new Date();
@@ -18,7 +17,20 @@ const AnimalInfo = ({
   animal,
 }: {
   children?: ReactNode;
-  animal: AnimalType;
+  animal: {
+    id: number;
+    name: string | null;
+    species: string;
+    customSpecies: string | null;
+    breed: string | null;
+    gender: string;
+    birthdate: string | null;
+    age: number | null;
+    description: string | null;
+    healthCondition: string | null;
+    weight: number | null;
+    imgUrls: string[];
+  };
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   return (
@@ -75,11 +87,11 @@ const AnimalInfo = ({
                 <p>{animal.breed}</p>
               </>
             )}
-            {animal.birthDate && (
+            {animal.birthdate && (
               <>
                 <h2 className="font-semibold">Nascimento: </h2>
                 <p>
-                  {animal.birthDate?.toLocaleString("pt-BR", {
+                  {new Date(animal.birthdate)?.toLocaleString("pt-BR", {
                     day: "2-digit",
                     month: "2-digit",
                     year: "2-digit",
@@ -87,12 +99,12 @@ const AnimalInfo = ({
                 </p>
               </>
             )}
-            {(animal.birthDate || animal.age) && (
+            {(animal.birthdate || animal.age) && (
               <>
                 <h2 className="font-semibold">Idade: </h2>
                 <p>
-                  {animal?.birthDate
-                    ? calculateAge(animal.birthDate)
+                  {animal?.birthdate
+                    ? calculateAge(new Date(animal.birthdate))
                     : animal?.age + " anos (no momento de registro)"}
                 </p>
               </>
