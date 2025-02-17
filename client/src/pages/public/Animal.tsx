@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { animals } from "../../assets/exampleData";
 import Button from "../../components/global/Button";
 import AnimalInfo from "../../components/global/AnimalInfo";
 import { useCallback, useEffect, useState } from "react";
@@ -49,6 +48,7 @@ const Animal = () => {
       );
       if (!response.ok) {
         setPageState("ERROR");
+        return;
       }
       const animal = await response.json();
       setAnimal(animal);
@@ -62,7 +62,7 @@ const Animal = () => {
   useEffect(() => {
     void fetchAnimal();
   }, [fetchAnimal]);
-
+  console.log(animal);
   if (pageState === "SUCCESS" && animal) {
     return (
       <div className="flex flex-col w-full items-center gap-2">
