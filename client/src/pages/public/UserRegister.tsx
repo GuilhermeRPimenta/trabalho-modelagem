@@ -52,6 +52,7 @@ const UserRegister = () => {
       }
     }
     if (userImage) {
+      formData.append("saveImage", "true");
       formData.append("image", userImage);
     }
 

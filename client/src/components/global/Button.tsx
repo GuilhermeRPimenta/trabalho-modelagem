@@ -4,11 +4,13 @@ const Button = ({
   children,
   variant,
   className,
+  type,
   onClick,
 }: {
   children?: React.ReactNode;
   variant?: "constructive" | "desctructive" | "ghost" | "primary";
   className?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
 }) => {
   const baseStyle =
@@ -22,6 +24,7 @@ const Button = ({
 
   return (
     <button
+      type={type ?? undefined}
       onClick={onClick}
       className={`${className} ${baseStyle} ${
         variant ? variantStyles[variant] : variantStyles["primary"]

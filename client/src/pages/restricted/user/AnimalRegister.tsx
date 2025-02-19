@@ -54,6 +54,7 @@ const AnimalRegister = () => {
       }
     }
     if (mainImage) {
+      formData.append("saveImage", "true");
       formData.append("images", mainImage);
     }
     if (extraImages.length > 0) {

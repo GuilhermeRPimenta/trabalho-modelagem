@@ -28,7 +28,7 @@ const userRegister = async (req: Request, res: Response): Promise<any> => {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    const imgUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    const imgUrl = req.file ? `/uploads/users/${req.file.filename}` : null;
     const user = await prisma.user.create({
       data: {
         name,
@@ -66,7 +66,6 @@ const userRegister = async (req: Request, res: Response): Promise<any> => {
 };
 
 const login = async (req: Request, res: Response): Promise<any> => {
-  console.log(req.body);
   const cpf = String(req.body.cpf);
   const password = String(req.body.password);
   try {
@@ -244,6 +243,101 @@ const adminDelete = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const fetchForEdit = async (req: Request, res: Response): Promise<any> => {
+  const id = Number(req.params.id);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        name: true,
+        birthdate: true,
+        cpf: true,
+        email: true,
+        phone: true,
+        state: true,
+        city: true,
+        street: true,
+        number: true,
+        complement: true,
+        neighborhood: true,
+        postalCode: true,
+        imgUrl: true,
+      },
+    });
+    const userWithFormattedImgUrls = {
+      ...user,
+      imgUrl: user?.imgUrl
+        ? "http://localhost:" + process.env.SERVER_PORT! + user?.imgUrl
+        : null,
+    };
+    return res.status(200).json(userWithFormattedImgUrls);
+  } catch (e) {
+    return res.status(500).json({ message: "Error fetching user data" });
+  }
+};
+
+const update = async (req: Request, res: Response): Promise<any> => {
+  const {
+    id,
+    name,
+    birthdate,
+    cpf,
+    email,
+    phone,
+    state,
+    city,
+    street,
+    number,
+    complement,
+    neighborhood,
+    postalCode,
+    changePassword,
+    changeImage,
+    password,
+  } = req.body;
+  console.log(req.body);
+  try {
+    let hashedPassword = "";
+    if (changePassword) {
+      const salt = await bcrypt.genSalt();
+      hashedPassword = await bcrypt.hash(password, salt);
+    }
+    let imgUrl: string | null = "";
+    if (changeImage) {
+      imgUrl = req.file ? `/uploads/users/${req.file.filename}` : null;
+    }
+    console.log(imgUrl);
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name,
+        birthdate: new Date(birthdate),
+        cpf,
+        email,
+        phone,
+        state,
+        city,
+        street,
+        number: Number(number),
+        complement,
+        neighborhood,
+        postalCode,
+        ...(changePassword ? { password: hashedPassword } : {}),
+        ...(changeImage ? { imgUrl } : {}),
+      },
+    });
+    console.log(user);
+    return res.status(200).json({ message: "User updated" });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: "Error during user update" });
+  }
+};
+
 export {
   userRegister,
   login,
@@ -252,4 +346,6 @@ export {
   adminFetch,
   adminFetchUnique,
   adminDelete,
+  fetchForEdit,
+  update,
 };
