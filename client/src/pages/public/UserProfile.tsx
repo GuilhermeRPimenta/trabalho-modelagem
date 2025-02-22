@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import {} from "../../assets/exampleData";
 import { CiLocationOn } from "react-icons/ci";
 import AnimalCardList from "../../components/global/AnimalCardList";
 import brokenImage from "../../assets/brokenImage.png";
