@@ -12,5 +12,10 @@ animalRouter.post(
 );
 animalRouter.get("/fetch", animalController.fetch);
 animalRouter.get("/fetchPublic/:id", animalController.fetchPublic);
+animalRouter.get(
+  "/fetchUserAnimalsInDonation",
+  authenticateUser,
+  animalController.fetchUserAnimalsInDonation
+);
 
 export { animalRouter };

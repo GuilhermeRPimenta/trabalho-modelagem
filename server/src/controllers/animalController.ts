@@ -63,32 +63,50 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
   const institutionAdopterId = parseInt(
     req.query.institutionAdopterId as string
   );
+  const donated =
+    req.query.donated !== undefined ? req.query.donated === "true" : undefined;
   try {
     const animals = await prisma.animal.findMany({
       where: {
-        ...(species ? { species: species as SpeciesEnum } : {}),
-        ...(!isNaN(userDonatorId) ? { userDonatorId } : {}),
-        ...(!isNaN(institutionDonatorId) ? { institutionDonatorId } : {}),
-        ...(!isNaN(userAdopterId) ? { userAdopterId } : {}),
-        ...(!isNaN(institutionAdopterId) ? { institutionAdopterId } : {}),
-        ...(state || city
-          ? {
-              OR: [
-                {
-                  userDonator: {
-                    ...(state ? { state: state as BrazilianStates } : {}),
-                    ...(city ? { city: String(city) } : {}),
+        AND: [
+          ...(species ? [{ species: species as SpeciesEnum }] : []),
+          ...(!isNaN(userDonatorId) ? [{ userDonatorId }] : []),
+          ...(!isNaN(institutionDonatorId) ? [{ institutionDonatorId }] : []),
+          ...(!isNaN(userAdopterId) ? [{ userAdopterId }] : []),
+          ...(!isNaN(institutionAdopterId) ? [{ institutionAdopterId }] : []),
+          ...(typeof donated === "boolean"
+            ? donated
+              ? [
+                  {
+                    OR: [
+                      { userAdopterId: { not: null } },
+                      { institutionAdopterId: { not: null } },
+                    ],
                   },
-                },
+                ]
+              : [{ userAdopterId: null, institutionAdopterId: null }]
+            : []),
+          ...(state || city
+            ? [
                 {
-                  institutionDonator: {
-                    ...(state ? { state: state as BrazilianStates } : {}),
-                    ...(city ? { city: String(city) } : {}),
-                  },
+                  OR: [
+                    {
+                      userDonator: {
+                        ...(state ? { state: state as BrazilianStates } : {}),
+                        ...(city ? { city: String(city) } : {}),
+                      },
+                    },
+                    {
+                      institutionDonator: {
+                        ...(state ? { state: state as BrazilianStates } : {}),
+                        ...(city ? { city: String(city) } : {}),
+                      },
+                    },
+                  ],
                 },
-              ],
-            }
-          : {}),
+              ]
+            : []),
+        ],
       },
       include: {
         userDonator: {
@@ -125,6 +143,31 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
     console.log(e);
     return res.status(500).json({ message: "Error fetching animals" });
   }
+};
+
+const fetchUserAnimalsInDonation = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const userId = parseInt(req.user.id);
+  const animals = await prisma.animal.findMany({
+    where: {
+      userDonatorId: userId,
+      userAdopterId: null,
+      institutionAdopterId: null,
+    },
+    include: {
+      adoptionRequests: true,
+    },
+  });
+  const formattedAnimals = animals.map((animal) => {
+    const formattedUrls = animal.imgUrls.map((url) => {
+      return "http://localhost:" + process.env.SERVER_PORT! + url;
+    });
+
+    return { ...animal, imgUrls: formattedUrls };
+  });
+  return res.status(200).json(formattedAnimals);
 };
 
 const fetchPublic = async (req: Request, res: Response): Promise<any> => {
@@ -201,4 +244,4 @@ const fetchPublic = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-export { register, fetch, fetchPublic };
+export { register, fetch, fetchPublic, fetchUserAnimalsInDonation };

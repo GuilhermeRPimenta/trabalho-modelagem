@@ -67,8 +67,8 @@ const Animals = () => {
   const fetchAnimals = useCallback(async () => {
     try {
       const fetchedAnimals = await fetch(
-        `${apiBaseUrl}/animal/fetch?${
-          filter.state ? "state=" + filter.state : ""
+        `${apiBaseUrl}/animal/fetch?donated=false${
+          filter.state ? "&state=" + filter.state : ""
         }${filter.city ? "&city=" + filter.city : ""}${
           filter.species !== "TODAS" ? "&species=" + filter.species : ""
         }`,

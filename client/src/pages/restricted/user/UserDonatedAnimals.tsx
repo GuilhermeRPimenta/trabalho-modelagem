@@ -34,7 +34,7 @@ const UserDonatedAnimals = () => {
   const fetchAnimals = useCallback(async () => {
     try {
       const fetchedAnimals = await fetch(
-        `${apiBaseUrl}/animal/fetch?userDonatorId=${authContext.auth.user?.id}`,
+        `${apiBaseUrl}/animal/fetch?userDonatorId=${authContext.auth.user?.id}&donated=true`,
         { method: "GET" }
       );
       const animalsData = await fetchedAnimals.json();
@@ -66,7 +66,7 @@ const UserDonatedAnimals = () => {
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Animais adotados
+        Animais doados
       </h1>
       {pageState === "SUCCESS" && (
         <>
