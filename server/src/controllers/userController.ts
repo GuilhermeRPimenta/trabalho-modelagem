@@ -314,13 +314,15 @@ const fetchForPublicProfile = async (
       });
       return { ...animal, imgUrls: formattedUrls };
     });
-    const userWithFormattedImgUrls = {
-      ...user,
-      donationAnimals: formattedAnimals,
-      imgUrl: user?.imgUrl
-        ? "http://localhost:" + process.env.SERVER_PORT! + user?.imgUrl
-        : null,
-    };
+    const userWithFormattedImgUrls = user?.imgUrl
+      ? {
+          ...user,
+          donationAnimals: formattedAnimals,
+          imgUrl: user?.imgUrl
+            ? "http://localhost:" + process.env.SERVER_PORT! + user?.imgUrl
+            : null,
+        }
+      : user;
     return res.status(200).json(userWithFormattedImgUrls);
   } catch (e) {
     return res.status(500).json({ message: "Error fetcing user data" });

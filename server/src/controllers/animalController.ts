@@ -59,12 +59,18 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
   const institutionDonatorId = parseInt(
     req.query.institutionDonatorId as string
   );
+  const userAdopterId = parseInt(req.query.userAdopterId as string);
+  const institutionAdopterId = parseInt(
+    req.query.institutionAdopterId as string
+  );
   try {
     const animals = await prisma.animal.findMany({
       where: {
         ...(species ? { species: species as SpeciesEnum } : {}),
         ...(!isNaN(userDonatorId) ? { userDonatorId } : {}),
         ...(!isNaN(institutionDonatorId) ? { institutionDonatorId } : {}),
+        ...(!isNaN(userAdopterId) ? { userAdopterId } : {}),
+        ...(!isNaN(institutionAdopterId) ? { institutionAdopterId } : {}),
         ...(state || city
           ? {
               OR: [
