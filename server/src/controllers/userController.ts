@@ -389,6 +389,44 @@ const update = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const fetchInstitutions = async (req: Request, res: Response): Promise<any> => {
+  const userId = parseInt(req.user.id);
+  try {
+    const institutions = await prisma.institution.findMany({
+      where: {
+        userInstitution: {
+          some: {
+            userId: userId,
+          },
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        neighborhood: true,
+        city: true,
+        state: true,
+        imgUrl: true,
+        userInstitution: {
+          select: {
+            role: true,
+          },
+        },
+      },
+    });
+    const formattedInstitutions = institutions.map((institution) => {
+      const formattedUrl =
+        "http://localhost:" + process.env.SERVER_PORT! + institution.imgUrl;
+
+      return { ...institution, imgUrl: formattedUrl };
+    });
+    return res.status(200).json(formattedInstitutions);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: "Error during institutions fetch" });
+  }
+};
+
 export {
   userRegister,
   login,
@@ -400,4 +438,5 @@ export {
   fetchForEdit,
   update,
   fetchForPublicProfile,
+  fetchInstitutions,
 };
