@@ -1,5 +1,4 @@
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { AnimalType } from "../../types/animal";
 import { NavLink } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 

@@ -55,24 +55,34 @@ const register = async (req: Request, res: Response): Promise<any> => {
 
 const fetch = async (req: Request, res: Response): Promise<any> => {
   const { state, city, species } = req.query;
+  const userDonatorId = parseInt(req.query.userDonatorId as string);
+  const institutionDonatorId = parseInt(
+    req.query.institutionDonatorId as string
+  );
   try {
     const animals = await prisma.animal.findMany({
       where: {
         ...(species ? { species: species as SpeciesEnum } : {}),
-        OR: [
-          {
-            userDonator: {
-              ...(state ? { state: state as BrazilianStates } : {}),
-              ...(city ? { city: String(city) } : {}),
-            },
-          },
-          {
-            institutionDonator: {
-              ...(state ? { state: state as BrazilianStates } : {}),
-              ...(city ? { city: String(city) } : {}),
-            },
-          },
-        ],
+        ...(!isNaN(userDonatorId) ? { userDonatorId } : {}),
+        ...(!isNaN(institutionDonatorId) ? { institutionDonatorId } : {}),
+        ...(state || city
+          ? {
+              OR: [
+                {
+                  userDonator: {
+                    ...(state ? { state: state as BrazilianStates } : {}),
+                    ...(city ? { city: String(city) } : {}),
+                  },
+                },
+                {
+                  institutionDonator: {
+                    ...(state ? { state: state as BrazilianStates } : {}),
+                    ...(city ? { city: String(city) } : {}),
+                  },
+                },
+              ],
+            }
+          : {}),
       },
       include: {
         userDonator: {

@@ -8,6 +8,8 @@ import { BrazilianStates } from "@prisma/client";
 type Request = express.Request;
 type Response = express.Response;
 
+type PersonType = "USER" | "INSTITUTION";
+
 const userRegister = async (req: Request, res: Response): Promise<any> => {
   try {
     const {
@@ -278,6 +280,53 @@ const fetchForEdit = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const fetchForPublicProfile = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const id = Number(req.params.id);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        name: true,
+        state: true,
+        city: true,
+        neighborhood: true,
+        imgUrl: true,
+        donationAnimals: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            customSpecies: true,
+            gender: true,
+            imgUrls: true,
+          },
+        },
+      },
+    });
+    const formattedAnimals = user?.donationAnimals.map((animal) => {
+      const formattedUrls = animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+      return { ...animal, imgUrls: formattedUrls };
+    });
+    const userWithFormattedImgUrls = {
+      ...user,
+      donationAnimals: formattedAnimals,
+      imgUrl: user?.imgUrl
+        ? "http://localhost:" + process.env.SERVER_PORT! + user?.imgUrl
+        : null,
+    };
+    return res.status(200).json(userWithFormattedImgUrls);
+  } catch (e) {
+    return res.status(500).json({ message: "Error fetcing user data" });
+  }
+};
+
 const update = async (req: Request, res: Response): Promise<any> => {
   const {
     id,
@@ -348,4 +397,5 @@ export {
   adminDelete,
   fetchForEdit,
   update,
+  fetchForPublicProfile,
 };

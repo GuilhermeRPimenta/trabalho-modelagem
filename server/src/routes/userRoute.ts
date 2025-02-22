@@ -25,6 +25,10 @@ userRouter.get(
   authenticateAdmin,
   userController.adminFetchUnique
 );
+userRouter.get(
+  "/fetchForPublicProfile/:id",
+  userController.fetchForPublicProfile
+);
 userRouter.delete(
   "/adminDelete/:id",
   authenticateAdmin,

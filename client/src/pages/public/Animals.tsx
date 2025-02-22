@@ -75,6 +75,7 @@ const Animals = () => {
         { method: "GET" }
       );
       const animalsData = await fetchedAnimals.json();
+      console.log(animalsData);
       setAnimals(animalsData);
       setPageState("SUCCESS");
     } catch (e) {
@@ -82,7 +83,7 @@ const Animals = () => {
       setPageState("ERROR");
     }
   }, [filter]);
-
+  console.log(filter);
   const fetchStateCities = async (state: BrazilianState) => {
     try {
       const fetchedCities = await fetch(
