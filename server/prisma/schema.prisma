@@ -127,6 +127,7 @@ model Institution {
   name         String          @db.VarChar(255)
   cnpj         String          @db.VarChar(14)
   phone        String          @db.VarChar(255)
+  email        String?         @unique() @db.VarChar(255)
   street       String          @db.VarChar(255)
   complement   String?         @db.VarChar(255)
   number       Int
@@ -140,6 +141,8 @@ model Institution {
   donationAnimals  Animal[]          @relation("institution_donator")
   adopterAnimals   Animal[]          @relation("institution_adopter")
   adoptionRequests AdoptionRequest[]
+  foundationDate   DateTime?         @db.Date
+  createdAt        DateTime          @default(now())
 }
 
 model UserInstitution {
