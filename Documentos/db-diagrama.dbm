@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.1.6" use-changelog="false" max-obj-count="10"
+	 last-position="53,0" last-zoom="1" scene-rect="0,0,2297.03,1076.8"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="postgres" encoding="UTF8" lc-collate="pt-BR" lc-ctype="pt-BR" is-template="false" allow-conns="true" sql-disabled="true">
+	<role name="postgres"/>
+	<tablespace name="pg_default"/>
+	<comment> <![CDATA[default administrative connection database]]> </comment>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<table name="_prisma_migrations" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="60"/>
+	<column name="id" not-null="true">
+		<type name="character varying" length="36"/>
+	</column>
+	<column name="checksum" not-null="true">
+		<type name="character varying" length="64"/>
+	</column>
+	<column name="finished_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="migration_name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="logs">
+		<type name="text" length="0"/>
+	</column>
+	<column name="rolled_back_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="started_at" not-null="true" default-value="now()">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="applied_steps_count" not-null="true" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="_prisma_migrations_pkey" type="pk-constr" table="public._prisma_migrations">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="BrazilianStates" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration label="AC"/>
+	<enumeration label="AL"/>
+	<enumeration label="AM"/>
+	<enumeration label="AP"/>
+	<enumeration label="BA"/>
+	<enumeration label="CE"/>
+	<enumeration label="DF"/>
+	<enumeration label="ES"/>
+	<enumeration label="GO"/>
+	<enumeration label="MA"/>
+	<enumeration label="MG"/>
+	<enumeration label="MS"/>
+	<enumeration label="MT"/>
+	<enumeration label="PA"/>
+	<enumeration label="PB"/>
+	<enumeration label="PE"/>
+	<enumeration label="PI"/>
+	<enumeration label="PR"/>
+	<enumeration label="RJ"/>
+	<enumeration label="RN"/>
+	<enumeration label="RO"/>
+	<enumeration label="RR"/>
+	<enumeration label="RS"/>
+	<enumeration label="SC"/>
+	<enumeration label="SE"/>
+	<enumeration label="SP"/>
+	<enumeration label="TO"/>
+</usertype>
+
+<usertype name="SpeciesEnum" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration label="CACHORRO"/>
+	<enumeration label="GATO"/>
+	<enumeration label="OUTRO"/>
+</usertype>
+
+<usertype name="InstitutionRoles" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration label="ADMIN"/>
+	<enumeration label="COLLABORATOR"/>
+</usertype>
+
+<usertype name="PersonType" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration label="USER"/>
+	<enumeration label="INSTITUTION"/>
+</usertype>
+
+<sequence name="SystemAdmin_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="SystemAdmin" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="60"/>
+	<column name="id" not-null="true" sequence="public.&quot;SystemAdmin_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="cpf" not-null="true">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="phone" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="birthdate" not-null="true">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<constraint name="SystemAdmin_pkey" type="pk-constr" table="public.&quot;SystemAdmin&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="User_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="User" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="960" y="60"/>
+	<column name="id" not-null="true" sequence="public.&quot;User_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="cpf" not-null="true">
+		<type name="character varying" length="11"/>
+	</column>
+	<column name="birthdate" not-null="true">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="phone" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="street" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="complement">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="number" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="neighborhood" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="city" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="state" not-null="true">
+		<type name="public.&quot;BrazilianStates&quot;" length="0"/>
+	</column>
+	<column name="postalCode" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="imgUrl">
+		<type name="character varying" length="2083"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<constraint name="User_pkey" type="pk-constr" table="public.&quot;User&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="Gender" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration label="FEMEA"/>
+	<enumeration label="MACHO"/>
+</usertype>
+
+<sequence name="Animal_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="Animal" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1420" y="60"/>
+	<column name="id" not-null="true" sequence="public.&quot;Animal_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="species" not-null="true">
+		<type name="public.&quot;SpeciesEnum&quot;" length="0"/>
+	</column>
+	<column name="custom_species">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="age">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="description">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="weight">
+		<type name="double precision" length="0"/>
+	</column>
+	<column name="user_donator_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="user_adopter_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="institution_donator_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="institution_adopter_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="imgUrls">
+		<type name="text" length="0" dimension="1"/>
+	</column>
+	<column name="birthdate">
+		<type name="timestamp" length="0" precision="3"/>
+	</column>
+	<column name="gender" not-null="true">
+		<type name="public.&quot;Gender&quot;" length="0"/>
+	</column>
+	<column name="breed">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="healthCondition">
+		<type name="character varying" length="255"/>
+	</column>
+	<constraint name="Animal_pkey" type="pk-constr" table="public.&quot;Animal&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="Institution_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="Institution" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1900" y="60"/>
+	<column name="id" not-null="true" sequence="public.&quot;Institution_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="cnpj" not-null="true">
+		<type name="character varying" length="14"/>
+	</column>
+	<column name="phone" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="street" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="complement">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="number" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="neighborhood" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="city" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="state" not-null="true">
+		<type name="public.&quot;BrazilianStates&quot;" length="0"/>
+	</column>
+	<column name="postalCode" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="imgUrl">
+		<type name="character varying" length="2083"/>
+	</column>
+	<constraint name="Institution_pkey" type="pk-constr" table="public.&quot;Institution&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="UserInstitution_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="UserInstitution" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="60" y="600"/>
+	<column name="id" not-null="true" sequence="public.&quot;UserInstitution_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="role" not-null="true">
+		<type name="public.&quot;InstitutionRoles&quot;" length="0"/>
+	</column>
+	<column name="institution_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="userId" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="UserInstitution_pkey" type="pk-constr" table="public.&quot;UserInstitution&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="AdoptionRequest_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="2147483647" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="AdoptionRequest" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="520" y="600"/>
+	<column name="id" not-null="true" sequence="public.&quot;AdoptionRequest_id_seq&quot;">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="notes" not-null="true">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="animal_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="user_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="institution_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="AdoptionRequest_pkey" type="pk-constr" table="public.&quot;AdoptionRequest&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="User_cpf_key" table="public.&quot;User&quot;"
+	 concurrent="false" unique="true" fast-update="false" buffering="false" nulls-not-distinct="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="cpf"/>
+		</idxelement>
+</index>
+
+<index name="SystemAdmin_cpf_key" table="public.&quot;SystemAdmin&quot;"
+	 concurrent="false" unique="true" fast-update="false" buffering="false" nulls-not-distinct="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="cpf"/>
+		</idxelement>
+</index>
+
+<index name="SystemAdmin_email_key" table="public.&quot;SystemAdmin&quot;"
+	 concurrent="false" unique="true" fast-update="false" buffering="false" nulls-not-distinct="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="email"/>
+		</idxelement>
+</index>
+
+<index name="User_email_key" table="public.&quot;User&quot;"
+	 concurrent="false" unique="true" fast-update="false" buffering="false" nulls-not-distinct="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="email"/>
+		</idxelement>
+</index>
+
+<constraint name="Animal_user_adopter_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.&quot;User&quot;" table="public.&quot;Animal&quot;">
+	<columns names="user_adopter_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Animal_institution_adopter_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.&quot;Institution&quot;" table="public.&quot;Animal&quot;">
+	<columns names="institution_adopter_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Animal_user_donator_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;User&quot;" table="public.&quot;Animal&quot;">
+	<columns names="user_donator_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="Animal_institution_donator_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="CASCADE" ref-table="public.&quot;Institution&quot;" table="public.&quot;Animal&quot;">
+	<columns names="institution_donator_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="UserInstitution_institution_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;Institution&quot;" table="public.&quot;UserInstitution&quot;">
+	<columns names="institution_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="UserInstitution_userId_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;User&quot;" table="public.&quot;UserInstitution&quot;">
+	<columns names="userId" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="AdoptionRequest_animal_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="RESTRICT" ref-table="public.&quot;Animal&quot;" table="public.&quot;AdoptionRequest&quot;">
+	<columns names="animal_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="AdoptionRequest_user_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.&quot;User&quot;" table="public.&quot;AdoptionRequest&quot;">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="AdoptionRequest_institution_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="CASCADE" del-action="SET NULL" ref-table="public.&quot;Institution&quot;" table="public.&quot;AdoptionRequest&quot;">
+	<columns names="institution_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="&quot;rel_Animal_User&quot;" type="relfk" layers="0"
+	 custom-color="#966458"
+	 src-table="public.&quot;Animal&quot;"
+	 dst-table="public.&quot;User&quot;" reference-fk="Animal_user_adopter_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_Animal_Institution&quot;" type="relfk" layers="0"
+	 custom-color="#975891"
+	 src-table="public.&quot;Animal&quot;"
+	 dst-table="public.&quot;Institution&quot;" reference-fk="Animal_institution_adopter_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_Animal_User1&quot;" type="relfk" layers="0"
+	 custom-color="#2e3043"
+	 src-table="public.&quot;Animal&quot;"
+	 dst-table="public.&quot;User&quot;" reference-fk="Animal_user_donator_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_Animal_Institution1&quot;" type="relfk" layers="0"
+	 custom-color="#4dd6f8"
+	 src-table="public.&quot;Animal&quot;"
+	 dst-table="public.&quot;Institution&quot;" reference-fk="Animal_institution_donator_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_UserInstitution_Institution&quot;" type="relfk" layers="0"
+	 custom-color="#034432"
+	 src-table="public.&quot;UserInstitution&quot;"
+	 dst-table="public.&quot;Institution&quot;" reference-fk="UserInstitution_institution_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="&quot;rel_UserInstitution_User&quot;" type="relfk" layers="0"
+	 custom-color="#6c5260"
+	 src-table="public.&quot;UserInstitution&quot;"
+	 dst-table="public.&quot;User&quot;" reference-fk="UserInstitution_userId_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="&quot;rel_AdoptionRequest_Animal&quot;" type="relfk" layers="0"
+	 custom-color="#5e0d89"
+	 src-table="public.&quot;AdoptionRequest&quot;"
+	 dst-table="public.&quot;Animal&quot;" reference-fk="AdoptionRequest_animal_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="&quot;rel_AdoptionRequest_User&quot;" type="relfk" layers="0"
+	 custom-color="#4b44c5"
+	 src-table="public.&quot;AdoptionRequest&quot;"
+	 dst-table="public.&quot;User&quot;" reference-fk="AdoptionRequest_user_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_AdoptionRequest_Institution&quot;" type="relfk" layers="0"
+	 custom-color="#e91513"
+	 src-table="public.&quot;AdoptionRequest&quot;"
+	 dst-table="public.&quot;Institution&quot;" reference-fk="AdoptionRequest_institution_id_fkey"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
