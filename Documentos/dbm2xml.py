@@ -4,7 +4,7 @@ def convert_dbm_to_drawio(dbm_file, output_xml):
     tree = ET.parse(dbm_file)
     root = tree.getroot()
     
-    drawio_root = ET.Element("mxGraphModel")
+    drawio_root = ET.Element("mxfile")
     root_elem = ET.SubElement(drawio_root, "root")
     ET.SubElement(root_elem, "mxCell", id="0")
     ET.SubElement(root_elem, "mxCell", id="1", parent="0")
@@ -39,4 +39,4 @@ def convert_dbm_to_drawio(dbm_file, output_xml):
     print(f"Arquivo XML para draw.io gerado: {output_xml}")
 
 # Uso: 
-convert_dbm_to_drawio("db-diagrama.dbm", "db-diagrama.xml")
+convert_dbm_to_drawio("D://Users//rapha//OneDrive//UFJF//02 - Modelagem de Sistemas//Trabalho//trabalho-modelagem//Documentos//db-diagrama.dbm", "D://Users//rapha//OneDrive//UFJF//02 - Modelagem de Sistemas//Trabalho//trabalho-modelagem//Documentos//db-diagrama.xml")
