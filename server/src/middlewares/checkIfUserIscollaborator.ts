@@ -12,6 +12,8 @@ const checkIfUserIsCollaborator = async (
 ): Promise<any> => {
   const userId = parseInt(req.user.id);
   const institutionId = parseInt(req.params.id);
+  console.log("user ", userId);
+  console.log("inst", institutionId);
   try {
     const institution = await prisma.institution.findFirst({
       where: {
@@ -19,6 +21,7 @@ const checkIfUserIsCollaborator = async (
         userInstitution: {
           some: {
             userId: userId,
+            institutionId: institutionId,
           },
         },
       },

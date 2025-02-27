@@ -60,7 +60,10 @@ const router = createBrowserRouter(
         { path: "/login", element: <Login /> },
         { path: "/user", element: <UserHome /> },
         { path: "/users/:userId", element: <UserProfile /> },
-        { path: "/sheltersProfiles/:shelterId", element: <ShelterProfile /> },
+        {
+          path: "/sheltersProfiles/:institutionId",
+          element: <ShelterProfile />,
+        },
         { path: "/user/edit", element: <UserEdit /> },
         { path: "/user/animalRegister", element: <AnimalRegister /> },
         { path: "/user/adoptedAnimals", element: <UserAdoptedAnimals /> },
@@ -85,45 +88,45 @@ const router = createBrowserRouter(
         { path: "/user/adoptionRequests", element: <UserRequests /> },
         { path: "/user/shelters", element: <UserShelters /> },
         { path: "/shelterRegister", element: <ShelterRegister /> },
-        { path: "/shelters/:shelterId", element: <ShelterHome /> },
+        { path: "/shelters/:institutionId", element: <ShelterHome /> },
         {
-          path: "/shelters/:shelterId/admin",
+          path: "/shelters/:institutionId/admin",
           element: <ShelterAdministration />,
         },
         {
-          path: "/shelters/:shelterId/animalRegister",
+          path: "/shelters/:institutionId/animalRegister",
           element: <AnimalRegisterByShelter />,
         },
         {
-          path: "/shelters/:shelterId/adoptedAnimals",
+          path: "/shelters/:institutionId/adoptedAnimals",
           element: <ShelterAdoptedAnimals />,
         },
         {
-          path: "/shelters/:shelterId/adoptedAnimals/:adoptedAnimalId",
+          path: "/shelters/:institutionId/adoptedAnimals/:adoptedAnimalId",
           element: <ShelterAdoptedAnimal />,
         },
         {
-          path: "/shelters/:shelterId/donatedAnimals",
+          path: "/shelters/:institutionId/donatedAnimals",
           element: <ShelterDonatedAnimals />,
         },
         {
-          path: "/shelters/:shelterId/donatedAnimals/:donatedAnimalId",
+          path: "/shelters/:institutionId/donatedAnimals/:donatedAnimalId",
           element: <ShelterDonatedAnimal />,
         },
         {
-          path: "/shelters/:shelterId/animalsInDonation",
+          path: "/shelters/:institutionId/animalsInDonation",
           element: <ShelterAnimalsInDonation />,
         },
         {
-          path: "/shelters/:shelterId/animalsInDonation/:animalInDonationId",
+          path: "/shelters/:institutionId/animalsInDonation/:animalInDonationId",
           element: <ShelterAnimalInDonation />,
         },
         {
-          path: "/shelters/:shelterId/animalsInDonation/:animalId/edit",
+          path: "/shelters/:institutionId/animalsInDonation/:animalId/edit",
           element: <ShelterEditAnimal />,
         },
         {
-          path: "/shelters/:shelterId/adoptionRequests",
+          path: "/shelters/:institutionId/adoptionRequests",
           element: <ShelterRequests />,
         },
         { path: "/adminLogin", element: <AdminLogin /> },

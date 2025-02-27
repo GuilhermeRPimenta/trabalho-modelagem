@@ -3,13 +3,14 @@ import Button from "../../../components/global/Button";
 import { useAuth } from "../../../components/global/useAuth";
 import { useNavigate } from "react-router-dom";
 import NavLink from "../../../components/global/NavLink";
+import apiBaseUrl from "../../../apiBaseUrl";
 
 const UserHome = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:7000/user/logout", {
+      const response = await fetch(`${apiBaseUrl}/user/logout`, {
         method: "POST",
         credentials: "include",
       });

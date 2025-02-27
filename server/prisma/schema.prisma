@@ -152,6 +152,8 @@ model UserInstitution {
   user          User             @relation(fields: [userId], references: [id])
   institutionId Int              @map("institution_id")
   userId        Int              @map("userId")
+
+  @@unique([institutionId, userId])
 }
 
 model AdoptionRequest {
