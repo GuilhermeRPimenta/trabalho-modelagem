@@ -91,4 +91,92 @@ const fetchForInstitutionHome = async (
   }
 };
 
-export { register, fetchForInstitutionHome };
+const fetchForInstitutionAdminstrationPage = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const institutionId = parseInt(req.params.id);
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: {
+        id: institutionId,
+      },
+      include: {
+        userInstitution: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                name: true,
+                cpf: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return res.status(200).json(institution);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e });
+  }
+};
+
+const addCollaborator = async (req: Request, res: Response): Promise<any> => {
+  const { cpf, institutionId } = req.body;
+  console.log(req.body);
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        cpf: cpf,
+      },
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const userInstitution = await prisma.userInstitution.create({
+      data: {
+        user: { connect: { id: user?.id } },
+        institution: { connect: { id: parseInt(institutionId) } },
+        role: "COLLABORATOR",
+      },
+    });
+    return res.status(200).json(user);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e });
+  }
+};
+
+const removeCollaborator = async function name(
+  req: Request,
+  res: Response
+): Promise<any> {
+  const { userId, institutionId } = req.body;
+  try {
+    await prisma.userInstitution.delete({
+      where: {
+        institutionId_userId: {
+          userId: parseInt(userId),
+          institutionId: parseInt(institutionId),
+        },
+      },
+    });
+    return res.status(200).json();
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e });
+  }
+};
+
+export {
+  register,
+  fetchForInstitutionHome,
+  fetchForInstitutionAdminstrationPage,
+  addCollaborator,
+  removeCollaborator,
+};

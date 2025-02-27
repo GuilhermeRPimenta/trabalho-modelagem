@@ -6,21 +6,24 @@ import Button from "../../../components/global/Button";
 import LoadingIcon from "../../../components/global/LoadingIcon";
 import apiBaseUrl from "../../../apiBaseUrl";
 
-const AddCollaboratorModal = ({
+const RemoveCollaboratorModal = ({
   isOpen,
   institutionId,
+  userId,
+  userName,
   setIsOpen,
   handleCollaboratorUpdate,
 }: {
   isOpen: boolean;
   institutionId: number;
+  userId: number;
+  userName: string;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   handleCollaboratorUpdate: () => void;
 }) => {
   const [pageState, setPageState] = useState<
     "FORM" | "LOADING" | "ERROR" | "SUCCESS"
   >("FORM");
-  const [user, setUser] = useState<{ name: string } | null>(null);
 
   const handleFormPost = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,16 +47,15 @@ const AddCollaboratorModal = ({
     try {
       setPageState("LOADING");
       const response = await fetch(
-        `${apiBaseUrl}/institution/addCollaborator/${institutionId}`,
+        `${apiBaseUrl}/institution/removeCollaborator/${institutionId}`,
         {
-          method: "POST",
+          method: "DELETE",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         }
       );
-      const user = await response.json();
-      setUser(user);
+
       if (response.ok) {
         setPageState("SUCCESS");
       } else {
@@ -78,7 +80,7 @@ const AddCollaboratorModal = ({
       <div className=" flex flex-col bg-white gap-4 max-h-[90vh] rounded-lg p-5">
         <div className="flex items-center  w-full">
           <h1 className="font-dynapuff  text-blue-700 text-xl">
-            Adicionar colaborador
+            Remover colaborador
           </h1>
           {pageState !== "SUCCESS" && (
             <Button
@@ -98,20 +100,16 @@ const AddCollaboratorModal = ({
             onSubmit={handleFormPost}
             className="flex overflow-auto items-center flex-col px-1 gap-1"
           >
-            {/*Trocar div acima por form*/}
-            <label htmlFor="justification">CPF do colaborador</label>
+            <p className="text-lg font-semibold">{userName}</p>
             <input
-              className="w-full outline outline-1 outline-blue-700"
-              name="cpf"
-              id="cpf"
+              type="hidden"
+              value={userId}
+              name="userId"
+              id="userId"
             ></input>
-            <p>
-              {" "}
-              <strong>Atenção: </strong>
-              Certifique-se que o colaborador já está cadastrado no sistema
-            </p>
-            <Button variant="constructive" className="mt-3">
-              Adicionar
+
+            <Button variant="desctructive" className="mt-3">
+              Remover
             </Button>
           </form>
         )}
@@ -119,9 +117,14 @@ const AddCollaboratorModal = ({
         {pageState === "SUCCESS" && (
           <div className="flex flex-col overflow-auto">
             <FaRegCheckCircle className="text-7xl w-full text-green-300 mb-5" />
-            <p className="font-bold text-2xl">Colaborador adicionado!</p>
-            <p>{user?.name}</p>
-            <Button className="mt-2" onClick={resetModal}>
+            <p className="font-bold text-2xl">Colaborador removido!</p>
+            <Button
+              className="mt-2"
+              onClick={() => {
+                handleCollaboratorUpdate();
+                setIsOpen(false);
+              }}
+            >
               Fechar
             </Button>
           </div>
@@ -142,4 +145,4 @@ const AddCollaboratorModal = ({
   );
 };
 
-export default AddCollaboratorModal;
+export default RemoveCollaboratorModal;

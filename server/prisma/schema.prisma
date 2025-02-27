@@ -152,6 +152,7 @@ model UserInstitution {
   user          User             @relation(fields: [userId], references: [id])
   institutionId Int              @map("institution_id")
   userId        Int              @map("userId")
+  addedAt       DateTime         @default(now())
 
   @@unique([institutionId, userId])
 }

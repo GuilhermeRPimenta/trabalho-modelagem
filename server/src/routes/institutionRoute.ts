@@ -19,4 +19,25 @@ institutionRouter.get(
   institutionController.fetchForInstitutionHome
 );
 
+institutionRouter.get(
+  "/fetchForInstitutionAdmin/:id",
+  authenticateUser,
+  checkIfUserIsCollaborator,
+  institutionController.fetchForInstitutionAdminstrationPage
+);
+
+institutionRouter.post(
+  "/addCollaborator/:id",
+  authenticateUser,
+  checkIfUserIsCollaborator,
+  institutionController.addCollaborator
+);
+
+institutionRouter.delete(
+  "/removeCollaborator/:id",
+  authenticateUser,
+  checkIfUserIsCollaborator,
+  institutionController.removeCollaborator
+);
+
 export { institutionRouter };
