@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Institution" ALTER COLUMN "cnpj" SET DATA TYPE VARCHAR(255);
+
+-- AlterTable
+ALTER TABLE "SystemAdmin" ALTER COLUMN "cpf" SET DATA TYPE VARCHAR(255);
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "cpf" SET DATA TYPE VARCHAR(255);

@@ -65,4 +65,30 @@ const register = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-export { register };
+const fetchForInstitutionHome = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const userId = parseInt(req.user.id);
+  const institutionId = parseInt(req.params.id);
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: {
+        id: institutionId,
+      },
+      include: {
+        userInstitution: {
+          where: {
+            userId: userId,
+          },
+        },
+      },
+    });
+    return res.status(200).json(institution);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e });
+  }
+};
+
+export { register, fetchForInstitutionHome };

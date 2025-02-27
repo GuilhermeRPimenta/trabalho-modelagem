@@ -67,7 +67,7 @@ enum PersonType {
 model SystemAdmin {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
-  cpf       String   @unique() @db.VarChar(11)
+  cpf       String   @unique() @db.VarChar(255)
   birthdate DateTime
   email     String   @unique() @db.VarChar(255)
   phone     String   @db.VarChar(255)
@@ -77,7 +77,7 @@ model SystemAdmin {
 model User {
   id               Int               @id @default(autoincrement())
   name             String            @db.VarChar(255)
-  cpf              String            @unique() @db.VarChar(11)
+  cpf              String            @unique() @db.VarChar(255)
   birthdate        DateTime          @db.Date
   email            String            @unique() @db.VarChar(255)
   phone            String            @db.VarChar(255)
@@ -125,7 +125,7 @@ model Animal {
 model Institution {
   id           Int             @id @default(autoincrement())
   name         String          @db.VarChar(255)
-  cnpj         String          @db.VarChar(14)
+  cnpj         String          @db.VarChar(255)
   phone        String          @db.VarChar(255)
   email        String?         @unique() @db.VarChar(255)
   street       String          @db.VarChar(255)

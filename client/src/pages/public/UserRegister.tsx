@@ -216,7 +216,7 @@ const UserRegister = () => {
               id="postalCode"
               name="postalCode"
             />
-            <label className="font-semibold" htmlFor="userImage">
+            <label className="font-semibold" htmlFor="image">
               Foto
             </label>
             <ImageInput

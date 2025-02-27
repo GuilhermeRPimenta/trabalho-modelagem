@@ -11,4 +11,10 @@ institutionRouter.post(
   institutionController.register
 );
 
+institutionRouter.get(
+  "/fetchForInstitutionHome/:id",
+  authenticateUser,
+  institutionController.fetchForInstitutionHome
+);
+
 export { institutionRouter };
