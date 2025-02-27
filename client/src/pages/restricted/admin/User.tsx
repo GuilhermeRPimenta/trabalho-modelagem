@@ -197,7 +197,12 @@ const User = () => {
                 {user.phone}
               </p>
               <p className="flex items-start text-lg">
-                Data de nascimento: {user.birthdate}
+                Data de nascimento:{" "}
+                {new Date(user.birthdate).toLocaleString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
               </p>
               <p className="flex items-start text-lg">
                 Registrado em:{" "}

@@ -219,6 +219,22 @@ const adminFetchUnique = async (req: Request, res: Response): Promise<any> => {
         },
       },
     });
+    user?.userInstitutions.forEach((ui) => {
+      ui.institution.imgUrl = ui.institution.imgUrl
+        ? "http://localhost:" + process.env.SERVER_PORT! + ui.institution.imgUrl
+        : null;
+    });
+    user?.adoptedAnimals.forEach((animal) => {
+      animal.imgUrls = animal.imgUrls.map(
+        (imgUrl) => "http://localhost:" + process.env.SERVER_PORT! + imgUrl
+      );
+    });
+
+    user?.donationAnimals.forEach((animal) => {
+      animal.imgUrls = animal.imgUrls.map(
+        (imgUrl) => "http://localhost:" + process.env.SERVER_PORT! + imgUrl
+      );
+    });
     const userWithFormattedImgUrls = {
       ...user,
       imgUrl: user?.imgUrl
