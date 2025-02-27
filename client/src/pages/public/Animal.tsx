@@ -86,7 +86,11 @@ const Animal = () => {
 
           <Button onClick={() => setModalIsOpen(true)}>Tenho interesse</Button>
         </AnimalInfo>
-        <UserInterestModal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
+        <UserInterestModal
+          isOpen={modalIsOpen}
+          setIsOpen={setModalIsOpen}
+          animalId={animal.id}
+        />
       </div>
     );
   } else if (pageState === "LOADING")

@@ -17,5 +17,10 @@ animalRouter.get(
   authenticateUser,
   animalController.fetchUserAnimalsInDonation
 );
+animalRouter.post(
+  "/createAdoptionRequest",
+  authenticateUser,
+  animalController.createAdoptionRequest
+);
 
 export { animalRouter };

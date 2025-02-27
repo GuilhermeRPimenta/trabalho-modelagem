@@ -1,4 +1,4 @@
-import { BrazilianStates, SpeciesEnum } from "@prisma/client";
+import { BrazilianStates, Prisma, SpeciesEnum } from "@prisma/client";
 import prisma from "../prisma/prisma.ts";
 import express from "express";
 
@@ -246,4 +246,51 @@ const fetchPublic = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-export { register, fetch, fetchPublic, fetchUserAnimalsInDonation };
+const createAdoptionRequest = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const userIdAuth = parseInt(req.user.id);
+  const { animalId, notes, person } = req.body;
+  console.log(req.body);
+  let userId: number | null = null;
+  let institutionId: number | null = null;
+  if (person === "%USER") {
+    userId = userIdAuth;
+  } else {
+    institutionId = parseInt(person);
+  }
+  if (!userId && !institutionId) {
+    return res.status(403).json({ message: "No adopter provided" });
+  }
+  try {
+    const data: any = {
+      notes,
+      animal: { connect: { id: parseInt(animalId) } },
+    };
+
+    if (userId) data.user = { connect: { id: userId } };
+    if (institutionId) data.institution = { connect: { id: institutionId } };
+
+    const adoptionRequest = await prisma.adoptionRequest.create({ data });
+    return res.status(201).json();
+  } catch (e) {
+    console.log(e);
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === "P2002") {
+        return res
+          .status(409)
+          .json({ message: "Adoption request already exists" });
+      }
+    }
+    return res.status(500).json({ message: "Error creating adoption request" });
+  }
+};
+
+export {
+  register,
+  fetch,
+  fetchPublic,
+  fetchUserAnimalsInDonation,
+  createAdoptionRequest,
+};

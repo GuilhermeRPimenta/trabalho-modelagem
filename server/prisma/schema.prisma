@@ -166,4 +166,7 @@ model AdoptionRequest {
   animalId      Int          @map("animal_id")
   userId        Int?         @map("user_id")
   institutionId Int?         @map("institution_id")
+
+  @@unique([animalId, userId])
+  @@unique([animalId, institutionId])
 }
