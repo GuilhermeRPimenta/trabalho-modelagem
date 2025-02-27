@@ -42,7 +42,9 @@ const register = async (req: Request, res: Response): Promise<any> => {
         description,
         healthCondition,
         ...(!isNaN(weight) ? { weight: weight } : { weight: null }),
-        ...(institutionId ? { userInstitutionIdId: institutionId } : {}),
+        ...(!isNaN(institutionId)
+          ? { institutionDonator: { connect: { id: institutionId } } }
+          : {}),
         imgUrls,
       },
     });

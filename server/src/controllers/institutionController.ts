@@ -84,7 +84,6 @@ const fetchForInstitutionHome = async (
         },
       },
     });
-    console.log(institution);
     return res.status(200).json(institution);
   } catch (e) {
     console.log(e);
