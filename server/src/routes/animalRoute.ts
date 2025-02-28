@@ -22,5 +22,15 @@ animalRouter.post(
   authenticateUser,
   animalController.createAdoptionRequest
 );
+animalRouter.get(
+  "/fetchForAnimalInDonationPage/:id",
+  authenticateUser,
+  animalController.fetchForAnimalInDonationPage
+);
+animalRouter.post(
+  "/confirmDonation",
+  authenticateUser,
+  animalController.donationConfirm
+);
 
 export { animalRouter };

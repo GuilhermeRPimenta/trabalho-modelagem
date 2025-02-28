@@ -287,10 +287,61 @@ const createAdoptionRequest = async (
   }
 };
 
+const fetchForAnimalInDonationPage = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const { id } = req.params;
+  try {
+    const animal = await prisma.animal.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        adoptionRequests: {
+          include: {
+            user: true,
+            institution: true,
+          },
+        },
+      },
+    });
+    if (animal && animal.imgUrls) {
+      animal.imgUrls = animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+    }
+    console.log(animal);
+    return res.status(200).json(animal);
+  } catch (e) {
+    return res.status(500).json();
+  }
+};
+
+const donationConfirm = async (req: Request, res: Response): Promise<any> => {
+  const { animalId, institutionId, userId } = req.body;
+  try {
+    await prisma.animal.update({
+      where: {
+        id: animalId,
+      },
+      data: {
+        ...(institutionId ? { institutionAdopterId: institutionId } : {}),
+        ...(userId ? { userAdopterId: userId } : {}),
+      },
+    });
+    return res.status(200).json();
+  } catch (e) {
+    return res.status(500).json();
+  }
+};
+
 export {
   register,
   fetch,
   fetchPublic,
   fetchUserAnimalsInDonation,
   createAdoptionRequest,
+  fetchForAnimalInDonationPage,
+  donationConfirm,
 };

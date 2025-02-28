@@ -9,7 +9,7 @@ const UserRequests = () => {
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">
-        {`Solicitações de ${authContext.auth.name}`}
+        {`Solicitações de ${authContext.auth.user?.name}`}
       </h1>
       <SolicitationsList person={authContext.auth} />
     </div>

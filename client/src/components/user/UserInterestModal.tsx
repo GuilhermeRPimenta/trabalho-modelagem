@@ -216,15 +216,22 @@ const UserInterestModal = ({
                 onSubmit={handleFormPost}
                 className="flex px-1 overflow-auto items-center flex-col gap-1"
               >
-                Trocar div acima por form
+                <input
+                  type="hidden"
+                  name="animalId"
+                  id="animalId"
+                  value={animalId}
+                />
+                {institutions.length === 0 && (
+                  <input
+                    type="hidden"
+                    name="person"
+                    id="person"
+                    value={"%USER"}
+                  />
+                )}
                 {institutions.length > 0 && (
                   <div className="flex flex-col gap-1">
-                    <input
-                      type="hidden"
-                      name="animalId"
-                      id="animalId"
-                      value={animalId}
-                    />
                     <label htmlFor="person">Pedir como:</label>
                     <select
                       id="person"
