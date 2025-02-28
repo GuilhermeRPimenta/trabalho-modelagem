@@ -1,0 +1,172 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BrazilianStates {
+  AC
+  AL
+  AM
+  AP
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MG
+  MS
+  MT
+  PA
+  PB
+  PE
+  PI
+  PR
+  RJ
+  RN
+  RO
+  RR
+  RS
+  SC
+  SE
+  SP
+  TO
+}
+
+enum Gender {
+  FEMEA
+  MACHO
+}
+
+enum SpeciesEnum {
+  CACHORRO
+  GATO
+  OUTRO
+}
+
+enum InstitutionRoles {
+  ADMIN
+  COLLABORATOR
+}
+
+enum PersonType {
+  USER
+  INSTITUTION
+}
+
+model SystemAdmin {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  cpf       String   @unique() @db.VarChar(255)
+  birthdate DateTime
+  email     String   @unique() @db.VarChar(255)
+  phone     String   @db.VarChar(255)
+  password  String   @db.VarChar(255)
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  name             String            @db.VarChar(255)
+  cpf              String            @unique() @db.VarChar(255)
+  birthdate        DateTime          @db.Date
+  email            String            @unique() @db.VarChar(255)
+  phone            String            @db.VarChar(255)
+  street           String            @db.VarChar(255)
+  complement       String?           @db.VarChar(255)
+  number           Int
+  neighborhood     String            @db.VarChar(255)
+  city             String            @db.VarChar(255)
+  state            BrazilianStates
+  postalCode       String            @db.VarChar(255)
+  password         String
+  imgUrl           String?           @db.VarChar(2083)
+  createdAt        DateTime          @default(now()) @map("created_at")
+  donationAnimals  Animal[]          @relation("user_donator")
+  adoptedAnimals   Animal[]          @relation("user_adopter")
+  adoptionRequests AdoptionRequest[]
+  userInstitutions UserInstitution[]
+}
+
+model Animal {
+  id              Int         @id @default(autoincrement())
+  name            String      @db.VarChar(255)
+  species         SpeciesEnum
+  customSpecies   String?     @map("custom_species") @db.VarChar(255)
+  breed           String?     @db.VarChar(255)
+  gender          Gender
+  birthdate       DateTime?
+  age             Int?
+  description     String?     @db.VarChar(255)
+  healthCondition String?     @db.VarChar(255)
+  weight          Float?
+
+  userDonator          User?             @relation("user_donator", fields: [userDonatorId], references: [id], onDelete: Cascade)
+  userAdopter          User?             @relation("user_adopter", fields: [userAdopterId], references: [id])
+  institutionDonator   Institution?      @relation("institution_donator", fields: [institutionDonatorId], references: [id], onDelete: Cascade)
+  institutionAdopter   Institution?      @relation("institution_adopter", fields: [institutionAdopterId], references: [id])
+  userDonatorId        Int?              @map("user_donator_id")
+  userAdopterId        Int?              @map("user_adopter_id")
+  institutionDonatorId Int?              @map("institution_donator_id")
+  institutionAdopterId Int?              @map("institution_adopter_id")
+  adoptionRequests     AdoptionRequest[]
+  imgUrls              String[]
+}
+
+model Institution {
+  id           Int             @id @default(autoincrement())
+  name         String          @db.VarChar(255)
+  cnpj         String          @db.VarChar(255)
+  phone        String          @db.VarChar(255)
+  email        String?         @unique() @db.VarChar(255)
+  street       String          @db.VarChar(255)
+  complement   String?         @db.VarChar(255)
+  number       Int
+  neighborhood String          @db.VarChar(255)
+  city         String          @db.VarChar(255)
+  state        BrazilianStates
+  postalCode   String          @db.VarChar(255)
+  imgUrl       String?         @db.VarChar(2083)
+
+  userInstitution  UserInstitution[]
+  donationAnimals  Animal[]          @relation("institution_donator")
+  adopterAnimals   Animal[]          @relation("institution_adopter")
+  adoptionRequests AdoptionRequest[]
+  foundationDate   DateTime?         @db.Date
+  createdAt        DateTime          @default(now())
+}
+
+model UserInstitution {
+  id            Int              @id() @default(autoincrement())
+  role          InstitutionRoles
+  institution   Institution      @relation(fields: [institutionId], references: [id])
+  user          User             @relation(fields: [userId], references: [id])
+  institutionId Int              @map("institution_id")
+  userId        Int              @map("userId")
+  addedAt       DateTime         @default(now())
+
+  @@unique([institutionId, userId])
+}
+
+model AdoptionRequest {
+  id            Int          @id() @default(autoincrement())
+  notes         String       @db.VarChar(255)
+  animal        Animal       @relation(fields: [animalId], references: [id])
+  user          User?        @relation(fields: [userId], references: [id])
+  institution   Institution? @relation(fields: [institutionId], references: [id])
+  animalId      Int          @map("animal_id")
+  userId        Int?         @map("user_id")
+  institutionId Int?         @map("institution_id")
+
+  @@unique([animalId, userId])
+  @@unique([animalId, institutionId])
+}

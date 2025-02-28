@@ -2,26 +2,23 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../global/Button";
 import NavLinks from "./NavLinks";
 import { Location } from "react-router-dom";
-import { UserType } from "../../types/user";
+import { AuthUser } from "../global/AuthProvider";
 
 const Nav = ({
   mobileNavIsOpen,
   handleMobileNavIsOpenChange,
-  authContext,
+  authUser,
   location,
 }: {
   mobileNavIsOpen: boolean;
-  authContext: {
-    auth: UserType | null;
-    setAuth: React.Dispatch<React.SetStateAction<UserType | null>>;
-  } | null;
+  authUser: AuthUser;
   location: Location;
   handleMobileNavIsOpenChange: () => void;
 }) => {
   return (
     <nav className="flex items-center flex-col">
       <div className="hidden gap-2 sm:flex sm:items-center sm:justify-center">
-        <NavLinks location={location} authContext={authContext} />
+        <NavLinks location={location} authUser={authUser} />
       </div>
       <Button
         className={"sm:hidden"}

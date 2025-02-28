@@ -2,20 +2,17 @@ import { FaRegHeart, FaUserAlt } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { TbDog } from "react-icons/tb";
 import { Location, NavLink } from "react-router-dom";
-import { UserType } from "../../types/user";
 import { BiInfoCircle } from "react-icons/bi";
+import { AuthUser } from "../global/AuthProvider";
 
 const NavLinks = ({
   className,
-  authContext,
+  authUser,
   location,
   handleNavLinkClick,
 }: {
   className?: string;
-  authContext: {
-    auth: UserType | null;
-    setAuth: React.Dispatch<React.SetStateAction<UserType | null>>;
-  } | null;
+  authUser: AuthUser;
   location: Location;
   handleNavLinkClick?: () => void;
 }) => {
@@ -44,7 +41,7 @@ const NavLinks = ({
         }`}
       >
         <FaUserAlt />
-        {authContext?.auth ? authContext.auth.name.split(" ")[0] : "Entrar"}
+        {authUser ? authUser.name.split(" ")[0] : "Entrar"}
       </NavLink>
       <NavLink
         onClick={handleNavLinkClick}

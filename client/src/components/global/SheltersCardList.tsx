@@ -1,45 +1,52 @@
 import { NavLink } from "react-router-dom";
 import brokenImage from "../../assets/brokenImage.png";
-import { ShelterType } from "../../types/shelter";
-import { UserType } from "../../types/user";
 
 const SheltersCardList = ({
-  shelters,
+  institutions,
   customBaseUrl,
   showUserAdminRole,
-  user,
 }: {
-  shelters: ShelterType[];
+  institutions: {
+    id: number;
+    name: string;
+    neighborhood: string;
+    city: string;
+    state: string;
+    imgUrl: string;
+    userInstitution: {
+      role: string;
+    }[];
+  }[];
   customBaseUrl?: string;
   showUserAdminRole?: boolean;
-  user?: UserType;
 }) => {
   return (
     <div className="flex flex-wrap w-full gap-2 justify-center">
-      {shelters.map((shelter) => (
+      {institutions.map((institution) => (
         <NavLink
           to={`${
-            customBaseUrl ? customBaseUrl + "/" + shelter.id : shelter.id
+            customBaseUrl
+              ? customBaseUrl + "/" + institution.id
+              : institution.id
           }`}
-          key={shelter.id}
+          key={institution.id}
           style={{ boxShadow: "0 0 5px rgba(0, 0, 0, 0.45)" }}
           className="flex flex-col gap-2 items-center text-center p-1 rounded-sm transition-all duration-75 hover:bg-blue-100 hover:cursor-pointer w-full max-w-64 group"
         >
           <h2 className="font-semibold text-xl group-hover:underline">
-            {shelter.name}
+            {institution.name}
           </h2>
 
           <img
             className="w-full object-cover aspect-square  rounded-md"
-            src={shelter.imgUrl ? shelter.imgUrl : brokenImage}
+            src={institution.imgUrl ? institution.imgUrl : brokenImage}
           />
 
           <p>
-            {shelter.neighborhood}, {shelter.city} -{shelter.state}
+            {institution.neighborhood}, {institution.city} -{institution.state}
           </p>
           {showUserAdminRole &&
-            shelter.users.find((user) => user.role === "ADMINISTRATOR")?.user
-              .id === user?.id && (
+            institution.userInstitution[0].role === "ADMIN" && (
               <p className="text-yellow-600">Administrador</p>
             )}
         </NavLink>
