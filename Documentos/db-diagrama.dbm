@@ -4,7 +4,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
 <dbmodel pgmodeler-ver="1.1.6" use-changelog="false" max-obj-count="10"
-	 last-position="53,0" last-zoom="1" scene-rect="0,0,2297.03,1076.8"
+	 last-position="-112,0" last-zoom="0.8" scene-rect="-488,-47,2785.03,1196.72"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -23,7 +23,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="_prisma_migrations" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="60" y="60"/>
+	<position x="-100" y="20"/>
 	<column name="id" not-null="true">
 		<type name="character varying" length="36"/>
 	</column>
@@ -115,7 +115,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="SystemAdmin" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="560" y="60"/>
+	<position x="-460" y="20"/>
 	<column name="id" not-null="true" sequence="public.&quot;SystemAdmin_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -150,7 +150,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="User" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="960" y="60"/>
+	<position x="360" y="40"/>
 	<column name="id" not-null="true" sequence="public.&quot;User_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -219,7 +219,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Animal" layers="0" collapse-mode="2" max-obj-count="19" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1420" y="60"/>
+	<position x="840" y="540"/>
 	<column name="id" not-null="true" sequence="public.&quot;Animal_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -281,7 +281,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Institution" layers="0" collapse-mode="2" max-obj-count="14" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1900" y="60"/>
+	<position x="120" y="700"/>
 	<column name="id" not-null="true" sequence="public.&quot;Institution_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -331,7 +331,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="UserInstitution" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="60" y="600"/>
+	<position x="-180" y="340"/>
 	<column name="id" not-null="true" sequence="public.&quot;UserInstitution_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -357,7 +357,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="AdoptionRequest" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="600"/>
+	<position x="860" y="80"/>
 	<column name="id" not-null="true" sequence="public.&quot;AdoptionRequest_id_seq&quot;">
 		<type name="integer" length="0"/>
 	</column>
@@ -464,11 +464,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<relationship name="&quot;rel_Animal_User&quot;" type="relfk" layers="0"
+<relationship name="rel_Animal_User" type="relfk" layers="0"
 	 custom-color="#966458"
 	 src-table="public.&quot;Animal&quot;"
 	 dst-table="public.&quot;User&quot;" reference-fk="Animal_user_adopter_id_fkey"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="41.5518" y="-123.88"/>
+	</label>
+</relationship>
 
 <relationship name="&quot;rel_Animal_Institution&quot;" type="relfk" layers="0"
 	 custom-color="#975891"
@@ -476,11 +480,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;Institution&quot;" reference-fk="Animal_institution_adopter_id_fkey"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="&quot;rel_Animal_User1&quot;" type="relfk" layers="0"
+<relationship name="rel_Animal_User1" type="relfk" layers="0"
 	 custom-color="#2e3043"
 	 src-table="public.&quot;Animal&quot;"
 	 dst-table="public.&quot;User&quot;" reference-fk="Animal_user_donator_id_fkey"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-54.9482" y="13.542"/>
+	</label>
+</relationship>
 
 <relationship name="&quot;rel_Animal_Institution1&quot;" type="relfk" layers="0"
 	 custom-color="#4dd6f8"
@@ -506,16 +514,24 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;Animal&quot;" reference-fk="AdoptionRequest_animal_id_fkey"
 	 src-required="false" dst-required="true"/>
 
-<relationship name="&quot;rel_AdoptionRequest_User&quot;" type="relfk" layers="0"
+<relationship name="rel_AdoptionRequest_User" type="relfk" layers="0"
 	 custom-color="#4b44c5"
 	 src-table="public.&quot;AdoptionRequest&quot;"
 	 dst-table="public.&quot;User&quot;" reference-fk="AdoptionRequest_user_id_fkey"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="40.0518" y="-99.5679"/>
+	</label>
+</relationship>
 
-<relationship name="&quot;rel_AdoptionRequest_Institution&quot;" type="relfk" layers="0"
+<relationship name="rel_AdoptionRequest_Institution" type="relfk" layers="0"
 	 custom-color="#e91513"
 	 src-table="public.&quot;AdoptionRequest&quot;"
 	 dst-table="public.&quot;Institution&quot;" reference-fk="AdoptionRequest_institution_id_fkey"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-102.056" y="94.947"/>
+	</label>
+</relationship>
 
 </dbmodel>
