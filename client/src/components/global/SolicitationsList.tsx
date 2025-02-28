@@ -2,8 +2,28 @@ import { NavLink } from "react-router-dom";
 import { ShelterType } from "../../types/shelter";
 import { UserType } from "../../types/user";
 import Button from "./Button";
+import apiBaseUrl from "../../apiBaseUrl";
 
-const SolicitationsList = ({ adoptionRequests }) => {
+const SolicitationsList = ({ adoptionRequests, fetchAdoptionRequests }) => {
+  const handleDeleteRequest = async (requestId: number) => {
+    try {
+      console.log("ENTROU");
+      const response = await fetch(
+        `${apiBaseUrl}/user/deleteRequest/${requestId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        return;
+      }
+      void fetchAdoptionRequests();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   if (adoptionRequests.length === 0) {
     return <h2 className="text-xl font-semibold">Nenhuma solicitação</h2>;
   }
@@ -35,7 +55,14 @@ const SolicitationsList = ({ adoptionRequests }) => {
               <p>{req.justification}</p>
             </NavLink>
 
-            <Button variant="desctructive">Cancelar</Button>
+            <Button
+              onClick={() => {
+                handleDeleteRequest(req.id);
+              }}
+              variant="desctructive"
+            >
+              Cancelar
+            </Button>
           </div>
         );
       })}

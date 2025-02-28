@@ -40,7 +40,10 @@ const UserRequests = () => {
         <h1 className="text-blue-700 font-dynapuff text-3xl">
           {`Solicitações de ${authContext.auth.user?.name}`}
         </h1>
-        <SolicitationsList adoptionRequests={adoptionRequests} />
+        <SolicitationsList
+          fetchAdoptionRequests={fetchAdoptionRequests}
+          adoptionRequests={adoptionRequests}
+        />
       </div>
     );
   else if (pageState === "LOADING")

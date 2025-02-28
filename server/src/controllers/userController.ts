@@ -466,6 +466,22 @@ const fetchRequests = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const deleteRequest = async (req: Request, res: Response): Promise<any> => {
+  const id = req.params.id;
+  try {
+    const requests = await prisma.adoptionRequest.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    return res.status(200).json();
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
 export {
   userRegister,
   login,
@@ -479,4 +495,5 @@ export {
   fetchForPublicProfile,
   fetchInstitutions,
   fetchRequests,
+  deleteRequest,
 };

@@ -50,4 +50,9 @@ userRouter.get(
   authenticateUser,
   userController.fetchRequests
 );
+userRouter.delete(
+  "/deleteRequest/:id",
+  authenticateUser,
+  userController.deleteRequest
+);
 export { userRouter };
