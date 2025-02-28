@@ -242,9 +242,9 @@ const UserInterestModal = ({
                       <option value="%USER">
                         {authContext.auth.user?.name}
                       </option>
-                      {institutions.map((institution) => {
+                      {institutions.map((institution, index) => {
                         return (
-                          <option value={`${institution.id}`}>
+                          <option key={index} value={`${institution.id}`}>
                             {institution.name}
                           </option>
                         );

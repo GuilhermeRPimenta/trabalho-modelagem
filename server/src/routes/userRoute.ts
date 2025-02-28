@@ -45,4 +45,9 @@ userRouter.put(
   upload.single("image"),
   userController.update
 );
+userRouter.get(
+  "/fetchRequests",
+  authenticateUser,
+  userController.fetchRequests
+);
 export { userRouter };

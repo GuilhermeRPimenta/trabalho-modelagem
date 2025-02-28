@@ -443,6 +443,29 @@ const fetchInstitutions = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const fetchRequests = async (req: Request, res: Response): Promise<any> => {
+  const userId = parseInt(req.user.id);
+  try {
+    const requests = await prisma.adoptionRequest.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        animal: true,
+      },
+    });
+    requests.forEach((req) => {
+      req.animal.imgUrls = req.animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+    });
+    return res.status(200).json(requests);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
 export {
   userRegister,
   login,
@@ -455,4 +478,5 @@ export {
   update,
   fetchForPublicProfile,
   fetchInstitutions,
+  fetchRequests,
 };
