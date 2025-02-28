@@ -6,7 +6,7 @@ const ShelterRequests = () => {
   const { shelterId } = useParams<{ shelterId: string }>();
   const shelter = shelters.find((shelter) => shelter.id === Number(shelterId));
   if (!shelter) {
-    return <h1>Abrigo não encontrado!</h1>;
+    return <h1>Instituição não encontrado!</h1>;
   }
   return (
     <div className="flex flex-col w-full items-center gap-2 ">

@@ -15,9 +15,9 @@ const AdminShelter = () => {
     return (
       <div className="flex flex-col w-full  justify-center items-center gap-2">
         <h1 className="text-blue-700 text-3xl font-dynapuff">
-          Administrar abrigos
+          Administrar instituições
         </h1>
-        <h2>Abrigo não encontrado!</h2>
+        <h2>Instituição não encontrada!</h2>
       </div>
     );
   }
@@ -43,12 +43,12 @@ const AdminShelter = () => {
   return (
     <div className="flex flex-col w-full  items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">
-        Administrar abrigos
+        Administrar instituições
       </h1>
       <div className="flex flex-col lg:flex-row gap-2 lg:items-start items-center">
         <img
           src={`${shelter.imgUrl}`}
-          alt="Imagem do abrigo"
+          alt="Imagem da instituição"
           className=" aspect-square h-full max-h-[300px] object-cover rounded-lg"
         />
 
@@ -98,7 +98,7 @@ const AdminShelter = () => {
             })}
           </p>
           <div className="flex justify-center lg:justify-start">
-            <Button variant="desctructive">Exluir abrigo</Button>
+            <Button variant="desctructive">Exluir instituição</Button>
           </div>
         </div>
       </div>

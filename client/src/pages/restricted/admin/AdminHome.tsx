@@ -49,7 +49,7 @@ const AdminHome = () => {
             </NavLink>
 
             <NavLink to="shelters" className="w-full">
-              Abrigos
+              Instituições
             </NavLink>
           </div>
         </div>

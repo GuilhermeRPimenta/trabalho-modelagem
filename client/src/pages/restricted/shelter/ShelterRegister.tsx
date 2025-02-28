@@ -87,7 +87,7 @@ const ShelterRegister = () => {
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-3xl font-dynapuff">
-        Cadastro de abrigo
+        Cadastro de instituição
       </h1>
       {pageState === "FORM" && (
         <div className="flex justify-center text-center flex-col bg-blue-100 p-4 rounded-lg gap-4">
