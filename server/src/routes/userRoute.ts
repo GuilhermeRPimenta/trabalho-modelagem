@@ -45,4 +45,14 @@ userRouter.put(
   upload.single("image"),
   userController.update
 );
+userRouter.get(
+  "/fetchRequests",
+  authenticateUser,
+  userController.fetchRequests
+);
+userRouter.delete(
+  "/deleteRequest/:id",
+  authenticateUser,
+  userController.deleteRequest
+);
 export { userRouter };
