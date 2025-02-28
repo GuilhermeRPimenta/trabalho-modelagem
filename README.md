@@ -56,3 +56,16 @@ VITE_API_BASE_URL=http://localhost:8000
 
 - Instale as dependências com o comando `npm install`
 - Execute o frontend com o comando `npm run dev`
+
+### OBSERVAÇÃO
+Por questões de segurança não é possivel criar um administrador atraves do sistema, mas foi colocado a rota no backend `/admin/register` que recebe uma requisição `POST` com um JSON:
+```
+{
+    "name":"Administrador",
+    "birthdate":"2022-03-25",
+    "cpf": "00011122233",
+    "email":"admin@admin.com",
+    "phone":"3212345678",
+    "password": "admin"
+}
+```
