@@ -155,6 +155,7 @@ const fetchUserAnimalsInDonation = async (
   const animals = await prisma.animal.findMany({
     where: {
       userDonatorId: userId,
+      institutionDonatorId: null,
       userAdopterId: null,
       institutionAdopterId: null,
     },
@@ -170,6 +171,37 @@ const fetchUserAnimalsInDonation = async (
     return { ...animal, imgUrls: formattedUrls };
   });
   return res.status(200).json(formattedAnimals);
+};
+
+const fetchInstitutionAnimalsInDonation = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const institutionId = parseInt(req.params.institutionId);
+  console.log(institutionId);
+  try {
+    const animals = await prisma.animal.findMany({
+      where: {
+        userDonatorId: null,
+        institutionDonatorId: institutionId,
+        userAdopterId: null,
+        institutionAdopterId: null,
+      },
+      include: {
+        adoptionRequests: true,
+      },
+    });
+    const formattedAnimals = animals.map((animal) => {
+      const formattedUrls = animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+
+      return { ...animal, imgUrls: formattedUrls };
+    });
+    return res.status(200).json(formattedAnimals);
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const fetchPublic = async (req: Request, res: Response): Promise<any> => {
@@ -344,4 +376,5 @@ export {
   createAdoptionRequest,
   fetchForAnimalInDonationPage,
   donationConfirm,
+  fetchInstitutionAnimalsInDonation,
 };

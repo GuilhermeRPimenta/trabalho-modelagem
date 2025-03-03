@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as animalController from "../controllers/animalController.ts";
 import { upload } from "../middlewares/multer.ts";
 import { authenticateUser } from "../middlewares/authenticateUser.ts";
+import { checkIfUserIsCollaborator } from "../middlewares/checkIfUserIsCollaborator.ts";
 import express from "express";
 const animalRouter = Router();
 animalRouter.post(
@@ -16,6 +17,11 @@ animalRouter.get(
   "/fetchUserAnimalsInDonation",
   authenticateUser,
   animalController.fetchUserAnimalsInDonation
+);
+animalRouter.get(
+  "/fetchInstitutionAnimalsInDonation/:institutionId",
+  authenticateUser,
+  animalController.fetchInstitutionAnimalsInDonation
 );
 animalRouter.post(
   "/createAdoptionRequest",
