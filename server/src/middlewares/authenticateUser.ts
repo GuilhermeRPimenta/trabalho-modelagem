@@ -20,7 +20,6 @@ const authenticateUser = async (
 ): Promise<any> => {
   const token = req.cookies.user_token;
   if (!token) return res.status(401).json({ message: "Unauthorized" });
-
   jwt.verify(
     token,
     process.env.JWT_SECRET_KEY!,

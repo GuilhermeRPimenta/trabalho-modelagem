@@ -1,10 +1,12 @@
 import AnimalCardList from "../../../components/global/AnimalCardList";
 import { useCallback, useEffect, useState } from "react";
 import apiBaseUrl from "../../../apiBaseUrl";
+import { useParams } from "react-router-dom";
 
 const ShelterAnimalsInDonation = () => {
   const { institutionId } = useParams<{ institutionId: string }>();
   const [searchName, setSearchName] = useState("");
+  const [institutionName, setInstitutionName] = useState("");
   const [animals, setAnimals] = useState<
     {
       id: number;
@@ -41,6 +43,26 @@ const ShelterAnimalsInDonation = () => {
   const [pageState, setPageState] = useState<"LOADING" | "SUCCESS" | "ERROR">(
     "LOADING"
   );
+  const fetchInstitutionName = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/institution/fetchForInstitutionHome/${institutionId}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        console.log(response);
+        setInstitutionName("[ERRO!]");
+        return;
+      }
+      const institution = await response.json();
+      setInstitutionName(institution.name);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [institutionId]);
   const fetchAnimals = useCallback(async () => {
     try {
       const fetchedAnimals = await fetch(
@@ -56,8 +78,9 @@ const ShelterAnimalsInDonation = () => {
     }
   }, [institutionId]);
   useEffect(() => {
+    void fetchInstitutionName();
     void fetchAnimals();
-  }, [fetchAnimals]);
+  }, [fetchAnimals, fetchInstitutionName]);
   useEffect(() => {
     const name = searchName.toLowerCase();
     if (name === "") {
@@ -73,7 +96,7 @@ const ShelterAnimalsInDonation = () => {
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        {"NOME"}
+        {institutionName}
       </h1>
       <h2 className="text-blue-700 text-center text-3xl font-dynapuff">
         Animais em adoção

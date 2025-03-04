@@ -9,6 +9,7 @@ const ShelterDonatedAnimals = () => {
   const authContext = useAuth();
   const { institutionId } = useParams<{ institutionId: string }>();
   const [searchName, setSearchName] = useState("");
+  const [institutionName, setInstitutionName] = useState("");
   const [animals, setAnimals] = useState<
     {
       id: number;
@@ -47,9 +48,30 @@ const ShelterDonatedAnimals = () => {
       setPageState("ERROR");
     }
   }, [institutionId]);
+  const fetchInstitutionName = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/institution/fetchForInstitutionHome/${institutionId}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        console.log(response);
+        setInstitutionName("[ERRO!]");
+        return;
+      }
+      const institution = await response.json();
+      setInstitutionName(institution.name);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [institutionId]);
   useEffect(() => {
+    void fetchInstitutionName();
     void fetchAnimals();
-  }, [fetchAnimals]);
+  }, [fetchAnimals, fetchInstitutionName]);
   useEffect(() => {
     const name = searchName.toLowerCase();
     if (name === "") {
@@ -67,8 +89,11 @@ const ShelterDonatedAnimals = () => {
   return (
     <div className="flex flex-col w-full  justify-center items-center gap-2">
       <h1 className="text-blue-700 text-center text-3xl font-dynapuff">
-        Animais doados
+        {institutionName}
       </h1>
+      <h2 className="text-blue-700 text-center text-3xl font-dynapuff">
+        Animais doados
+      </h2>
       {pageState === "SUCCESS" && (
         <>
           <input

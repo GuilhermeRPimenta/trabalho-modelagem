@@ -343,9 +343,10 @@ const fetchForAnimalInDonationPage = async (
         return "http://localhost:" + process.env.SERVER_PORT! + url;
       });
     }
-    console.log(animal?.adoptionRequests[0].institution);
+    console.log(animal);
     return res.status(200).json(animal);
   } catch (e) {
+    console.log(e);
     return res.status(500).json();
   }
 };
