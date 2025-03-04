@@ -82,6 +82,7 @@ const AdoptionRequestsModal = ({
               <p>Nenhuma solicitação!</p>
             )}
             {animal.adoptionRequests.map((req, index) => {
+              console.log(req);
               if (req.user) {
                 return (
                   <div
@@ -110,26 +111,35 @@ const AdoptionRequestsModal = ({
                   </div>
                 );
               } else if (req.institution) {
-                <div className="flex flex-col bg-blue-100 rounded-md p-2">
-                  <p className="font-semibold">{req.user.name}</p>
-                  <p>Instituição</p>
-                  <p>{req.user.email}</p>
-                  <p>{req.user.phone}</p>
-                  <p>
-                    {req.user.neighborhood} - {req.user.city} - {req.user.state}
-                  </p>
-                  <p className="py-3">{req.notes}</p>
-                  <div className="flex justify-center">
-                    <Button
-                      onClick={() => {
-                        handleDonationConfirm("INSTITUTION", req.user.id);
-                      }}
-                      variant="constructive"
-                    >
-                      Confirmar doação
-                    </Button>
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col bg-blue-100 rounded-md p-2"
+                  >
+                    <p className="font-semibold">{req.institution.name}</p>
+                    <p>Instituição</p>
+                    <p>{req.institution.email}</p>
+                    <p>{req.institution.phone}</p>
+                    <p>
+                      {req.institution.neighborhood} - {req.institution.city} -{" "}
+                      {req.institution.state}
+                    </p>
+                    <p className="py-3">{req.notes}</p>
+                    <div className="flex justify-center">
+                      <Button
+                        onClick={() => {
+                          handleDonationConfirm(
+                            "INSTITUTION",
+                            req.institution.id
+                          );
+                        }}
+                        variant="constructive"
+                      >
+                        Confirmar doação
+                      </Button>
+                    </div>
                   </div>
-                </div>;
+                );
               }
             })}
           </div>

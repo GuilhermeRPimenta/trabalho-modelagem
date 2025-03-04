@@ -127,6 +127,7 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
         },
       },
     });
+    console.log(animals);
     const formattedAnimals = animals.map((animal) => {
       const formattedUrls = animal.imgUrls.map((url) => {
         return "http://localhost:" + process.env.SERVER_PORT! + url;
@@ -343,7 +344,7 @@ const fetchForAnimalInDonationPage = async (
         return "http://localhost:" + process.env.SERVER_PORT! + url;
       });
     }
-    console.log(animal);
+    console.log(animal?.adoptionRequests[0].institution);
     return res.status(200).json(animal);
   } catch (e) {
     return res.status(500).json();
