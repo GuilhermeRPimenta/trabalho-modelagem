@@ -173,10 +173,34 @@ const removeCollaborator = async function name(
   }
 };
 
+const fetchRequests = async (req: Request, res: Response): Promise<any> => {
+  const institutionId = parseInt(req.params.institutionId);
+  try {
+    const requests = await prisma.adoptionRequest.findMany({
+      where: {
+        institutionId,
+      },
+      include: {
+        animal: true,
+      },
+    });
+    requests.forEach((req) => {
+      req.animal.imgUrls = req.animal.imgUrls.map((url) => {
+        return "http://localhost:" + process.env.SERVER_PORT! + url;
+      });
+    });
+    return res.status(200).json(requests);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
 export {
   register,
   fetchForInstitutionHome,
   fetchForInstitutionAdminstrationPage,
   addCollaborator,
   removeCollaborator,
+  fetchRequests,
 };

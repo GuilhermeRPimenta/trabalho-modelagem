@@ -40,4 +40,10 @@ institutionRouter.delete(
   institutionController.removeCollaborator
 );
 
+institutionRouter.get(
+  "/:institutionId/fetchRequests",
+  authenticateUser,
+  institutionController.fetchRequests
+);
+
 export { institutionRouter };

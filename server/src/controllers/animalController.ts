@@ -127,7 +127,6 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
         },
       },
     });
-    console.log(animals);
     const formattedAnimals = animals.map((animal) => {
       const formattedUrls = animal.imgUrls.map((url) => {
         return "http://localhost:" + process.env.SERVER_PORT! + url;
