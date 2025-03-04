@@ -1,5 +1,3 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../../components/global/useAuth";
 import AnimalCardList from "../../../components/global/AnimalCardList";
 import { useCallback, useEffect, useState } from "react";
 import apiBaseUrl from "../../../apiBaseUrl";

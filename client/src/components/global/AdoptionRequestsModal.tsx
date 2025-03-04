@@ -6,8 +6,6 @@ import { VscError } from "react-icons/vsc";
 import { FaRegCheckCircle } from "react-icons/fa";
 import Button from "./Button";
 import LoadingIcon from "./LoadingIcon";
-import { AnimalType, RequestType } from "../../types/animal";
-import { personTranslationMap } from "../../translations/PersonTranslation";
 import apiBaseUrl from "../../apiBaseUrl";
 import { useNavigate } from "react-router-dom";
 

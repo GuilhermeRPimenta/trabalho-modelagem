@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { animals } from "../../../assets/exampleData";
 import NavLink from "../../../components/global/NavLink";
 import Button from "../../../components/global/Button";
 import AnimalInfo from "../../../components/global/AnimalInfo";
