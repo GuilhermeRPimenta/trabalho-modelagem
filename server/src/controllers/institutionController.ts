@@ -3,6 +3,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { BrazilianStates } from "@prisma/client";
 
 type Request = express.Request;
 type Response = express.Response;
@@ -62,6 +63,28 @@ const register = async (req: Request, res: Response): Promise<any> => {
       message: "Erro ao criar a instituição",
       error: e.message,
     });
+  }
+};
+
+const fetch = async (req: Request, res: Response): Promise<any> => {
+  const { state, city } = req.query;
+  try {
+    const institutions = await prisma.institution.findMany({
+      where: {
+        AND: [
+          state ? { state: state as BrazilianStates } : {},
+          city ? { city: String(city) } : {},
+        ],
+      },
+    });
+    institutions.forEach((institution) => {
+      institution.imgUrl =
+        "http://localhost:" + process.env.SERVER_PORT! + institution.imgUrl;
+    });
+    return res.status(200).json(institutions);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
   }
 };
 
@@ -198,6 +221,7 @@ const fetchRequests = async (req: Request, res: Response): Promise<any> => {
 
 export {
   register,
+  fetch,
   fetchForInstitutionHome,
   fetchForInstitutionAdminstrationPage,
   addCollaborator,

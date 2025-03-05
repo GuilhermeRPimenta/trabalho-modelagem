@@ -1,16 +1,65 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import SheltersCardList from "../../../components/global/SheltersCardList";
+import LoadingIcon from "../../../components/global/LoadingIcon";
+import apiBaseUrl from "../../../apiBaseUrl";
 import { BrazilianState, brazilianStates } from "../../../types/states";
-import { shelters } from "../../../assets/exampleData";
-import { ShelterType } from "../../../types/shelter";
 
 const AdminShelters = () => {
-  const [filteredShelters, setFilteredShelters] = useState<ShelterType[]>([]);
+  const [pageState, setPageState] = useState<"LOADING" | "SUCCESS" | "ERROR">(
+    "LOADING"
+  );
+  const [institutions, setInstitutions] = useState<
+    {
+      id: number;
+      name: string;
+      neighborhood: string;
+      city: string;
+      state: string;
+      imgUrl: string;
+      userInstitution: {
+        role: string;
+      }[];
+    }[]
+  >([]);
+  const [displayedInstitutions, setDisplayedInstitutions] = useState<
+    {
+      id: number;
+      name: string;
+      neighborhood: string;
+      city: string;
+      state: string;
+      imgUrl: string;
+      userInstitution: {
+        role: string;
+      }[];
+    }[]
+  >([]);
+  const [searchName, setSearchName] = useState("");
   const [cities, setCities] = useState<string[]>([]);
   const [filter, setFilter] = useState<{
     state: BrazilianState | null;
     city: string | null;
   }>({ state: null, city: null });
+  const fetchInsitutions = useCallback(async () => {
+    setPageState("LOADING");
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/institution/fetch?${
+          filter.state ? "&state=" + filter.state : ""
+        }${filter.city ? "&city=" + filter.city : ""}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      const institutions = await response.json();
+      setInstitutions(institutions);
+      setPageState("SUCCESS");
+    } catch (e) {
+      console.log(e);
+      setPageState("ERROR");
+    }
+  }, [filter]);
   const fetchStateCities = async (state: BrazilianState) => {
     try {
       const fetchedCities = await fetch(
@@ -40,55 +89,73 @@ const AdminShelters = () => {
     }));
   };
   useEffect(() => {
-    fetchStateCities("SP");
+    fetchStateCities("AC");
   }, []);
   useEffect(() => {
-    setFilteredShelters(
-      shelters.filter(
-        (shelter) =>
-          shelter.state === filter.state &&
-          (filter.city === null || shelter.city === filter.city)
-      )
-    );
-  }, [filter]);
+    void fetchInsitutions();
+  }, [fetchInsitutions]);
+  useEffect(() => {
+    const name = searchName.toLowerCase();
+    if (name === "") {
+      setDisplayedInstitutions(institutions);
+    } else {
+      const filtered = institutions.filter((institution) =>
+        institution.name.toLowerCase().includes(name)
+      );
+      setDisplayedInstitutions(filtered);
+    }
+  }, [institutions, searchName]);
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">
-        Administrar instituições
+        {`Administrar instituições`}
       </h1>
-      <div className="flex flex-wrap justify-center gap-2">
-        <select
-          name="state"
-          id="state"
-          defaultValue={"SP"}
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-          onChange={handleStateChange}
-        >
-          {brazilianStates.map((state, index) => (
-            <option key={index}>{state}</option>
-          ))}
-        </select>
-        <select
-          onChange={handleCityChange}
-          name="city"
-          id="city"
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-        >
-          <option value="%ALL">Todas as cidades</option>
-          {cities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          className="outline outline-1 outline-blue-700 rounded-lg p-2"
-          placeholder="Pesquisar nome..."
-        />
-      </div>
-
-      <SheltersCardList shelters={filteredShelters} />
+      {pageState === "SUCCESS" && (
+        <div className="flex flex-col gap-1">
+          <div className="flex flex-wrap justify-center gap-2">
+            <select
+              name="state"
+              id="state"
+              defaultValue={"AC"}
+              className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+              onChange={handleStateChange}
+            >
+              {brazilianStates.map((state, index) => (
+                <option key={index}>{state}</option>
+              ))}
+            </select>
+            <select
+              onChange={handleCityChange}
+              name="city"
+              id="city"
+              className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+            >
+              <option value="%ALL">Todas as cidades</option>
+              {cities.map((city, index) => (
+                <option key={index} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              onChange={(e) => {
+                setSearchName(e.target.value);
+              }}
+              value={searchName}
+              className="outline outline-1 outline-blue-700 rounded-lg p-2"
+              placeholder="Pesquisar nome..."
+            />
+          </div>
+          <SheltersCardList institutions={displayedInstitutions} />
+        </div>
+      )}
+      {pageState === "LOADING" && <LoadingIcon className="w-32 h-32" />}
+      {pageState === "ERROR" && (
+        <div className="flex flex-col gap-3 items-center">
+          <h4 className="text-red-500 text-xl">Erro ao buscar instituições!</h4>
+        </div>
+      )}
     </div>
   );
 };

@@ -46,4 +46,6 @@ institutionRouter.get(
   institutionController.fetchRequests
 );
 
+institutionRouter.get("/fetch", institutionController.fetch);
+
 export { institutionRouter };

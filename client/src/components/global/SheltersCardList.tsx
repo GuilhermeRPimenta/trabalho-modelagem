@@ -13,7 +13,7 @@ const SheltersCardList = ({
     city: string;
     state: string;
     imgUrl: string;
-    userInstitution: {
+    userInstitution?: {
       role: string;
     }[];
   }[];
@@ -46,6 +46,7 @@ const SheltersCardList = ({
             {institution.neighborhood}, {institution.city} -{institution.state}
           </p>
           {showUserAdminRole &&
+            institution.userInstitution &&
             institution.userInstitution[0].role === "ADMIN" && (
               <p className="text-yellow-600">Administrador</p>
             )}
