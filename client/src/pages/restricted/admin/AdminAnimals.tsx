@@ -1,22 +1,96 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { AnimalType } from "../../../types/animal";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { BrazilianState, brazilianStates } from "../../../types/states";
-import { animals } from "../../../assets/exampleData";
+import apiBaseUrl from "../../../apiBaseUrl";
 import AnimalCardList from "../../../components/global/AnimalCardList";
+import LoadingIcon from "../../../components/global/LoadingIcon";
 
 type AdoptionState = "ADOTATOS" | "NAO_ADOTADOS" | "TODOS";
 
+interface Animal {
+  id: number;
+  name: string;
+  species: string | null;
+  customSpecies: string | null;
+  gender: string;
+  userAdopterId: number | null;
+  institutionAdopterId: number | null;
+  imgUrls: string[];
+  userDonator: {
+    id: number;
+    neighborhood: string;
+    city: string;
+    state: string;
+  } | null;
+  institutionDonator: {
+    id: number;
+    neighborhood: string;
+    city: string;
+    state: string;
+  } | null;
+}
+
 const AdminAnimals = () => {
-  const [unadoptedAnimals, setUnadoptedAnimals] = useState<AnimalType[]>([]);
-  const [adoptedAnimals, setAdoptedAnimals] = useState<AnimalType[]>([]);
+  const [searchName, setSearchName] = useState("");
+  const [adoptionState, setAdoptionState] = useState<AdoptionState>("TODOS");
+  const [displayedAnimals, setDisplayedAnimals] = useState<Animal[]>([]);
+  const [pageState, setPageState] = useState<"LOADING" | "SUCCESS" | "ERROR">(
+    "LOADING"
+  );
+  const [animals, setAnimals] = useState<
+    {
+      id: number;
+      name: string;
+      species: string | null;
+      customSpecies: string | null;
+      gender: string;
+      userAdopterId: number | null;
+      institutionAdopterId: number | null;
+      imgUrls: string[];
+      userDonator: {
+        id: number;
+        neighborhood: string;
+        city: string;
+        state: string;
+      } | null;
+      institutionDonator: {
+        id: number;
+        neighborhood: string;
+        city: string;
+        state: string;
+      } | null;
+    }[]
+  >([]);
   const [cities, setCities] = useState<string[]>([]);
   const [filter, setFilter] = useState<{
     species: string;
-    adoptionState: AdoptionState;
     state: BrazilianState | null;
     city: string | null;
-  }>({ species: "TODAS", adoptionState: "TODOS", state: null, city: null });
+  }>({ species: "TODAS", state: null, city: null });
 
+  const fetchAnimals = useCallback(async () => {
+    try {
+      const fetchedAnimals = await fetch(
+        `${apiBaseUrl}/animal/fetch?${
+          adoptionState === "TODOS"
+            ? ""
+            : adoptionState === "ADOTATOS"
+            ? "donated=true"
+            : "donated=false"
+        }${filter.state ? "&state=" + filter.state : ""}${
+          filter.city ? "&city=" + filter.city : ""
+        }${filter.species !== "TODAS" ? "&species=" + filter.species : ""}`,
+        { method: "GET" }
+      );
+      const animalsData = await fetchedAnimals.json();
+      console.log(animalsData);
+      setAnimals(animalsData);
+      setPageState("SUCCESS");
+    } catch (e) {
+      console.log(e);
+      setPageState("ERROR");
+    }
+  }, [filter, adoptionState]);
+  console.log(filter);
   const fetchStateCities = async (state: BrazilianState) => {
     try {
       const fetchedCities = await fetch(
@@ -35,6 +109,10 @@ const AdminAnimals = () => {
       console.log(e);
     }
   };
+  const handleAdoptionStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setAdoptionState(e.target.value as AdoptionState);
+    void fetchAnimals();
+  };
   const handleStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
     void fetchStateCities(e.target.value as BrazilianState);
   };
@@ -48,112 +126,95 @@ const AdminAnimals = () => {
   const handleSpeciesChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilter((prev) => ({ ...prev, species: e.target.value }));
   };
-  const handleAdoptionStateChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilter((prev) => ({
-      ...prev,
-      adoptionState: e.target.value as AdoptionState,
-    }));
-  };
   useEffect(() => {
-    fetchStateCities("SP");
+    fetchStateCities("AC");
   }, []);
   useEffect(() => {
-    setUnadoptedAnimals(
-      animals.filter(
-        (animal) =>
-          !animal.adopter &&
-          (filter.species === "OUTRO"
-            ? !animal.species
-            : filter.species === "TODAS"
-            ? true
-            : filter.species === animal.species) &&
-          animal.donator.state === filter.state &&
-          (filter.city === null || animal.donator.city === filter.city)
-      )
-    );
-    setAdoptedAnimals(
-      animals.filter(
-        (animal) =>
-          animal.adopter &&
-          (filter.species === "OUTRO"
-            ? !animal.species
-            : filter.species === "TODAS"
-            ? true
-            : filter.species === animal.species) &&
-          animal.donator.state === filter.state &&
-          (filter.city === null || animal.donator.city === filter.city)
-      )
-    );
-  }, [filter]);
+    void fetchAnimals();
+  }, [fetchAnimals]);
+  useEffect(() => {
+    const name = searchName.toLowerCase();
+    if (name === "") {
+      setDisplayedAnimals(animals);
+    } else {
+      const filtered = animals.filter((animal) =>
+        animal.name.toLowerCase().includes(name)
+      );
+      setDisplayedAnimals(filtered);
+    }
+  }, [animals, searchName]);
   return (
     <div className="flex flex-col w-full items-center gap-2 ">
       <h1 className="text-blue-700 font-dynapuff text-3xl">
-        Administrar animais
+        Admistrar Animais
       </h1>
-      <div className="flex flex-wrap justify-center gap-2">
-        <select
-          onChange={handleSpeciesChange}
-          name="species"
-          id="species"
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-        >
-          <option value="TODAS">Todas as espécies</option>
-          <option value="CACHORRO">Cachorros</option>
-          <option value="GATO">Gatos</option>
-          <option value="OUTRO">Outros</option>
-        </select>
-        <select
-          name="adoptionState"
-          id="adoptionState"
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-          onChange={handleAdoptionStateChange}
-        >
-          <option value="TODOS">Todos os animais</option>
-          <option value="ADOTATOS">Adotados</option>
-          <option value="NAO_ADOTADOS">Não adotados</option>
-        </select>
-        <select
-          name="state"
-          id="state"
-          defaultValue={"SP"}
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-          onChange={handleStateChange}
-        >
-          {brazilianStates.map((state, index) => (
-            <option key={index}>{state}</option>
-          ))}
-        </select>
-        <select
-          onChange={handleCityChange}
-          name="city"
-          id="city"
-          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-        >
-          <option value="%ALL">Todas as cidades</option>
-          {cities.map((city, index) => (
-            <option key={index} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          className="outline outline-1 outline-blue-700 rounded-lg p-2"
-          placeholder="Pesquisar nome..."
-        />
-      </div>
+      {pageState === "LOADING" && <LoadingIcon className="w-32 h-32" />}
+      {pageState === "SUCCESS" && (
+        <div className="flex flex-wrap justify-center gap-2">
+          <select
+            onChange={handleSpeciesChange}
+            name="species"
+            id="species"
+            className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+          >
+            <option value="TODAS">Todas as espécies</option>
+            <option value="CACHORRO">Cachorros</option>
+            <option value="GATO">Gatos</option>
+            <option value="OUTRO">Outros</option>
+          </select>
+          <select
+            value={adoptionState}
+            onChange={handleAdoptionStateChange}
+            name="adoptionState"
+            id="adoptionState"
+            className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+          >
+            <option value="TODOS">Todos os animais</option>
+            <option value="ADOTATOS">Adotados</option>
+            <option value="NAO_ADOTADOS">Não adotados</option>
+          </select>
+          <select
+            name="state"
+            id="state"
+            defaultValue={"AC"}
+            className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+            onChange={handleStateChange}
+          >
+            {brazilianStates.map((state, index) => (
+              <option key={index}>{state}</option>
+            ))}
+          </select>
+          <select
+            onChange={handleCityChange}
+            name="city"
+            id="city"
+            className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+          >
+            <option value="%ALL">Todas as cidades</option>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            onChange={(e) => {
+              setSearchName(e.target.value);
+            }}
+            value={searchName}
+            className="outline outline-1 outline-blue-700 rounded-lg p-2"
+            placeholder="Pesquisar nome..."
+          />
+        </div>
+      )}
+      {pageState === "ERROR" && (
+        <h2 className="text-red-500 text-xl font-semibold">
+          Erro ao buscar animais!
+        </h2>
+      )}
 
-      <AnimalCardList
-        animals={
-          filter.adoptionState === "TODOS"
-            ? unadoptedAnimals.concat(adoptedAnimals)
-            : filter.adoptionState === "ADOTATOS"
-            ? adoptedAnimals
-            : unadoptedAnimals
-        }
-        showDonatorAddress
-        showDonationStatus
-      />
+      <AnimalCardList animals={displayedAnimals} showDonatorAddress />
     </div>
   );
 };
