@@ -369,6 +369,21 @@ const donationConfirm = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const deleteAnimal = async (req: Request, res: Response): Promise<any> => {
+  const animalId = parseInt(req.params.animalId);
+  try {
+    await prisma.animal.delete({
+      where: {
+        id: animalId,
+      },
+    });
+    return res.status(204).json();
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
 export {
   register,
   fetch,
@@ -378,4 +393,5 @@ export {
   fetchForAnimalInDonationPage,
   donationConfirm,
   fetchInstitutionAnimalsInDonation,
+  deleteAnimal,
 };

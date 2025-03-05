@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as animalController from "../controllers/animalController.ts";
 import { upload } from "../middlewares/multer.ts";
 import { authenticateUser } from "../middlewares/authenticateUser.ts";
+import { authenticateAdmin } from "../middlewares/authenticateAdmin.ts";
 import { checkIfUserIsCollaborator } from "../middlewares/checkIfUserIsCollaborator.ts";
 import express from "express";
 const animalRouter = Router();
@@ -37,6 +38,11 @@ animalRouter.post(
   "/confirmDonation",
   authenticateUser,
   animalController.donationConfirm
+);
+animalRouter.delete(
+  "/delete/:animalId",
+  authenticateAdmin,
+  animalController.deleteAnimal
 );
 
 export { animalRouter };
