@@ -127,7 +127,7 @@ const AdminAnimals = () => {
     setFilter((prev) => ({ ...prev, species: e.target.value }));
   };
   useEffect(() => {
-    fetchStateCities("AC");
+    fetchStateCities("MG");
   }, []);
   useEffect(() => {
     void fetchAnimals();
@@ -176,7 +176,7 @@ const AdminAnimals = () => {
           <select
             name="state"
             id="state"
-            defaultValue={"AC"}
+            defaultValue={"MG"}
             className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
             onChange={handleStateChange}
           >

@@ -89,7 +89,7 @@ const AdminShelters = () => {
     }));
   };
   useEffect(() => {
-    fetchStateCities("AC");
+    fetchStateCities("MG");
   }, []);
   useEffect(() => {
     void fetchInsitutions();
@@ -110,43 +110,43 @@ const AdminShelters = () => {
       <h1 className="text-blue-700 font-dynapuff text-3xl">
         {`Administrar instituições`}
       </h1>
+      <div className="flex flex-wrap justify-center gap-2">
+        <select
+          name="state"
+          id="state"
+          defaultValue={"MG"}
+          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+          onChange={handleStateChange}
+        >
+          {brazilianStates.map((state, index) => (
+            <option key={index}>{state}</option>
+          ))}
+        </select>
+        <select
+          onChange={handleCityChange}
+          name="city"
+          id="city"
+          className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
+        >
+          <option value="%ALL">Todas as cidades</option>
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          onChange={(e) => {
+            setSearchName(e.target.value);
+          }}
+          value={searchName}
+          className="outline outline-1 outline-blue-700 rounded-lg p-2"
+          placeholder="Pesquisar nome..."
+        />
+      </div>
       {pageState === "SUCCESS" && (
         <div className="flex flex-col gap-1">
-          <div className="flex flex-wrap justify-center gap-2">
-            <select
-              name="state"
-              id="state"
-              defaultValue={"AC"}
-              className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-              onChange={handleStateChange}
-            >
-              {brazilianStates.map((state, index) => (
-                <option key={index}>{state}</option>
-              ))}
-            </select>
-            <select
-              onChange={handleCityChange}
-              name="city"
-              id="city"
-              className="p-2 text-lg bg-white outline outline-blue-500 outline-1 rounded-lg"
-            >
-              <option value="%ALL">Todas as cidades</option>
-              {cities.map((city, index) => (
-                <option key={index} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-            <input
-              type="text"
-              onChange={(e) => {
-                setSearchName(e.target.value);
-              }}
-              value={searchName}
-              className="outline outline-1 outline-blue-700 rounded-lg p-2"
-              placeholder="Pesquisar nome..."
-            />
-          </div>
           <SheltersCardList institutions={displayedInstitutions} />
         </div>
       )}
