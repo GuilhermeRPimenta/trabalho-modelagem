@@ -160,24 +160,32 @@ const AdminShelter = () => {
             })}
         </ul>
 
-        {institution.donationAnimals.length > 0 && (
+        {institution.donationAnimals.filter(
+          (da) => !da.userAdopterId && !da.institutionAdopterId
+        ).length > 0 && (
           <>
             <h3 className="text-2xl font-semibold">Animais em adoção: </h3>
             <AnimalCardList
               customBaseUrl="/admin/animals"
-              animals={institution.donationAnimals}
+              animals={institution.donationAnimals.filter(
+                (da) => !da.userAdopterId && !da.institutionAdopterId
+              )}
             />
           </>
         )}
-        {/*donatedAnimals.length > 0 && (
-        <>
-          <h3 className="text-2xl font-semibold">Animais doados:</h3>
-          <AnimalCardList
-            customBaseUrl="/admin/animals"
-            animals={donatedAnimals}
-          />
-        </>
-      )*/}
+        {institution.donationAnimals.filter(
+          (da) => da.userAdopterId || da.institutionAdopterId
+        ).length > 0 && (
+          <>
+            <h3 className="text-2xl font-semibold">Animais doados:</h3>
+            <AnimalCardList
+              customBaseUrl="/admin/animals"
+              animals={institution.donationAnimals.filter(
+                (da) => da.userAdopterId || da.institutionAdopterId
+              )}
+            />
+          </>
+        )}
         {institution.adopterAnimals.length > 0 && (
           <>
             <h3 className="text-2xl font-semibold">Animais adotados:</h3>

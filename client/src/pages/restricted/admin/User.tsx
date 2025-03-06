@@ -137,7 +137,7 @@ const User = () => {
         ) || [],
       donated:
         user?.donationAnimals.filter(
-          (animal) => animal.userAdopterId && animal.institutionAdopterId
+          (animal) => animal.userAdopterId || animal.institutionAdopterId
         ) || [],
     });
   }, [user]);
