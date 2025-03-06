@@ -26,7 +26,7 @@ const Users = () => {
   const [filter, setFilter] = useState<{
     state: BrazilianState;
     city: string | null;
-  }>({ state: "SP", city: null });
+  }>({ state: "MG", city: null });
   const [searchName, setSearchName] = useState("");
   const [displayedUsers, setDisplayedUsers] = useState(filteredUsers);
 
@@ -76,7 +76,7 @@ const Users = () => {
     }));
   };
   useEffect(() => {
-    fetchStateCities("SP");
+    fetchStateCities("MG");
   }, []);
   useEffect(() => {
     void fetchUsers();
