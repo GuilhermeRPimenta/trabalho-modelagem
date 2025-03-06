@@ -3,6 +3,7 @@ import * as institutionController from "../controllers/institutionController.ts"
 import { upload } from "../middlewares/multer.ts";
 import { authenticateUser } from "../middlewares/authenticateUser.ts";
 import { checkIfUserIsCollaborator } from "../middlewares/checkIfUserIsCollaborator.ts";
+import { authenticateAdmin } from "../middlewares/authenticateAdmin.ts";
 const institutionRouter = Router();
 
 institutionRouter.post(
@@ -47,5 +48,17 @@ institutionRouter.get(
 );
 
 institutionRouter.get("/fetch", institutionController.fetch);
+
+institutionRouter.get(
+  "/fetch/:institutionId",
+  authenticateAdmin,
+  institutionController.fetchUnique
+);
+
+institutionRouter.get(
+  "/adminFetchUnique/:id",
+  authenticateAdmin,
+  institutionController.adminFetchUnique
+);
 
 export { institutionRouter };

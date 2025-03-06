@@ -88,6 +88,111 @@ const fetch = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const fetchUnique = async (req: Request, res: Response): Promise<any> => {
+  const institutionId = parseInt(req.params.institutionId);
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: {
+        id: institutionId,
+      },
+      include: {
+        adopterAnimals: true,
+        donationAnimals: true,
+        userInstitution: {
+          include: {
+            user: {
+              select: {
+                name: true,
+                id: true,
+                neighborhood: true,
+                city: true,
+                state: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return res.status(200).json(institution);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
+const adminFetchUnique = async (req: Request, res: Response): Promise<any> => {
+  const id = parseInt(req.params.id);
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        donationAnimals: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            customSpecies: true,
+            gender: true,
+            userAdopterId: true,
+            institutionAdopterId: true,
+            imgUrls: true,
+          },
+        },
+        adopterAnimals: {
+          select: {
+            id: true,
+            name: true,
+            species: true,
+            customSpecies: true,
+            gender: true,
+            imgUrls: true,
+          },
+        },
+        userInstitution: {
+          select: {
+            role: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                cpf: true,
+                state: true,
+                city: true,
+                neighborhood: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    institution?.adopterAnimals.forEach((animal) => {
+      animal.imgUrls = animal.imgUrls.map(
+        (imgUrl) => "http://localhost:" + process.env.SERVER_PORT! + imgUrl
+      );
+    });
+
+    institution?.donationAnimals.forEach((animal) => {
+      animal.imgUrls = animal.imgUrls.map(
+        (imgUrl) => "http://localhost:" + process.env.SERVER_PORT! + imgUrl
+      );
+    });
+    const institutionWithFormattedImgUrls = {
+      ...institution,
+      imgUrl: institution?.imgUrl
+        ? "http://localhost:" + process.env.SERVER_PORT! + institution?.imgUrl
+        : null,
+    };
+    console.log(institutionWithFormattedImgUrls);
+    return res.status(200).json(institutionWithFormattedImgUrls);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json();
+  }
+};
+
 const fetchForInstitutionHome = async (
   req: Request,
   res: Response
@@ -227,4 +332,6 @@ export {
   addCollaborator,
   removeCollaborator,
   fetchRequests,
+  fetchUnique,
+  adminFetchUnique,
 };

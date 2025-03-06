@@ -136,7 +136,7 @@ const router = createBrowserRouter(
         { path: "/admin/animals", element: <AdminAnimals /> },
         { path: "/admin/animals/:animalId", element: <AdminAnimal /> },
         { path: "/admin/shelters", element: <AdminShelters /> },
-        { path: "/admin/shelters/:shelterId", element: <AdminShelter /> },
+        { path: "/admin/shelters/:institutionId", element: <AdminShelter /> },
       ],
     },
   ],

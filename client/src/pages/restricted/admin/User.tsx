@@ -280,6 +280,9 @@ const User = () => {
                       {userInstitution.institution.city} -{" "}
                       {userInstitution.institution.state}
                     </p>
+                    {userInstitution.role === "ADMIN" && (
+                      <p className="text-yellow-600">Administrador</p>
+                    )}
                   </NavLink>
                 ))}
               </div>
