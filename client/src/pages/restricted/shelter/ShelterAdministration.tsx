@@ -87,7 +87,7 @@ const ShelterAdministration = () => {
                     <p>CPF: {user.user.cpf}</p>
                     <p>
                       Adicionado em:{" "}
-                      {user.addedAt.toLocaleString("pt-BR", {
+                      {new Date(user.addedAt).toLocaleString("pt-BR", {
                         day: "2-digit",
                         month: "2-digit",
                         year: "numeric",

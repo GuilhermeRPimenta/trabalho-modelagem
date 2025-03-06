@@ -75,11 +75,11 @@ const UserEditAnimal = () => {
         <div className="flex flex-col gap-2 items-center">
           <h2>
             {`Editando anúncio de doação por `}
-            <span className="font-bold">{authContext.auth.name}</span>
+            <span className="font-bold">{authContext.auth.user?.name}</span>
           </h2>
           <div className="inline">
             <span>CPF: </span>
-            <span className="font-semibold">{authContext.auth.cpf}</span>
+            <span className="font-semibold">{authContext.auth.user?.cpf}</span>
           </div>
 
           <h2 className="text-2xl font-semibold">Dados do animal</h2>
